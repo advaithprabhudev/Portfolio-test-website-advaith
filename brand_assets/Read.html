@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MyComputer - System Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Work+Sans:wght@400;600;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e3e2e2",
+                        "outline-variant": "#bdc9c8",
+                        "inverse-surface": "#2f3131",
+                        "surface-dim": "#dadada",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "on-surface-variant": "#3e4949",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-primary-fixed": "#00006e",
+                        "secondary-container": "#e0dfdf",
+                        "on-secondary-container": "#626363",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f9",
+                        "surface-variant": "#e3e2e2",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f1f0f0",
+                        "tertiary-fixed": "#93f2f2",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "surface-container-high": "#e8e8e8",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-fixed-dim": "#76d6d5",
+                        "on-primary-container": "#fbf8ff",
+                        "on-tertiary-container": "#e3fffe",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#bfc2ff",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-tertiary-fixed": "#002020",
+                        "error-container": "#ffdad6",
+                        "primary": "#474eb7",
+                        "tertiary": "#006565",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4b53bc",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "surface": "#faf9f9",
+                        "tertiary-container": "#008080",
+                        "primary-container": "#6068d2",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed": "#e0e0ff",
+                        "secondary": "#5d5e5f",
+                        "surface-container-low": "#f4f3f3",
+                        "surface-bright": "#faf9f9",
+                        "outline": "#6e7979",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0rem",
+                        "lg": "0rem",
+                        "xl": "0rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .window-bevel {
+            border-top: 2px solid white;
+            border-left: 2px solid white;
+            border-bottom: 2px solid #5d5e5f;
+            border-right: 2px solid #5d5e5f;
+        }
+
+        .inset-bevel {
+            border-top: 2px solid #5d5e5f;
+            border-left: 2px solid #5d5e5f;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+        }
+
+        .title-bar-gradient {
+            background: linear-gradient(90deg, #474eb7 0%, #6068d2 100%);
+        }
+
+        body {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body class="bg-tertiary-container font-body h-full overflow-hidden text-on-surface">
+    <!-- Top AppBar (from JSON) -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 flex items-center px-1 h-8 bg-slate-300 dark:bg-slate-400 docked full-width border-2 border-t-white border-l-white border-b-slate-600 border-r-slate-600">
+        <div class="bg-blue-800 text-white px-2 py-1 font-bold text-sm mr-2 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">desktop_windows</span>
+            MyComputer
+        </div>
+        <nav class="flex h-full items-center text-black font-label text-[12px] space-x-4 ml-2">
+            <span class="text-black font-bold hover:bg-blue-800 hover:text-white px-2 cursor-default">File</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Edit</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">View</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Go</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Favorites</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Help</span>
+        </nav>
+        <div class="ml-auto flex items-center gap-1">
+            <div class="inset-bevel px-2 py-1 text-[10px] bg-slate-300 mr-2">9:41 AM</div>
+            <button
+                class="window-bevel bg-slate-300 px-1 hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-sm leading-none">close</span>
+            </button>
+        </div>
+    </header>
+    <!-- Main Desktop Canvas -->
+    <main class="relative h-full pt-12 pb-16 px-4 md:px-8">
+        <!-- Desktop Icons (Asymmetric Grid) -->
+        <div class="absolute left-4 top-16 flex flex-col gap-8">
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">desktop_windows</span>
+                </div>
+                <span class="text-[11px] text-white bg-blue-800 px-1 font-label">My Computer</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">delete</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">Recycle Bin</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">folder</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">Documents</span>
+            </div>
+        </div>
+        <!-- Main "My Portfolio" Window (Cascaded Center) -->
+        <div class="absolute top-[10%] left-[10%] md:left-[25%] w-[90%] md:w-[60%] window-bevel bg-surface-dim z-20">
+            <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-white text-sm">person</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-tight">My Portfolio</span>
+                </div>
+                <div class="flex gap-1">
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">_</button>
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">□</button>
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                </div>
+            </div>
+            <div class="bg-surface-dim p-1 border-b border-secondary">
+                <div class="flex gap-4 text-[11px] px-2 py-1">
+                    <button class="flex items-center gap-1 hover:brightness-110">
+                        <span class="material-symbols-outlined text-base">arrow_back</span> Back
+                    </button>
+                    <button class="flex items-center gap-1 hover:brightness-110">
+                        <span class="material-symbols-outlined text-base">arrow_forward</span> Forward
+                    </button>
+                    <button class="flex items-center gap-1 hover:brightness-110">
+                        <span class="material-symbols-outlined text-base">home</span> Home
+                    </button>
+                    <div class="h-4 w-[1px] bg-secondary-fixed"></div>
+                    <div class="flex-grow bg-white inset-bevel px-2 py-[1px] text-gray-500 truncate">
+                        C:\WINDOWS\Desktop\Portfolio\index.html</div>
+                </div>
+            </div>
+            <div
+                class="bg-surface-container-lowest p-8 flex flex-col md:flex-row gap-8 items-center md:items-start min-h-[300px]">
+                <div class="flex-shrink-0">
+                    <div class="w-32 h-32 window-bevel p-1 bg-surface-dim">
+                        <img alt="User Profile" class="w-full h-full object-cover"
+                            data-alt="Close up portrait of a creative professional with a friendly smile, clean minimalist lighting, high-end editorial photography style"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBShsEsSKSa-0nC6LCKGUj--CAD-GMWoYVLq9ao3sCY1T4IfMF5Hx5lE9aSXvOZpgG2FJL9rJ3MqX4JQnoxXaKiNYTyv5lwMzaYKuyV9dmMMRtLoKsKIgiCSatdmliInL-xAxDngextTm4h654j7Fqz-zFIcIExPREctYDcKg8SL0kR3qBcpXXN8E4c_JSnuQnEirQjZx-dzQuw9KtR1tCXZAd8xwaA6uAdwF_s22u9fgOJ5Z6ENEr9pvGwTcgCA9ZzLUvO7mNPUg" />
+                    </div>
+                </div>
+                <div class="flex-grow text-center md:text-left">
+                    <h1 class="font-headline text-4xl font-extrabold text-primary mb-4 tracking-tighter">Welcome to my
+                        OS</h1>
+                    <p class="font-body text-secondary text-lg leading-relaxed max-w-lg">
+                        I am a Digital Archivist and Interface Architect specializing in retro-modern experiences. By
+                        blending the constraints of legacy computing with modern performance, I build digital
+                        environments that feel both nostalgic and authoritative.
+                    </p>
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+                        <button
+                            class="window-bevel bg-primary text-white px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px]">Hire
+                            Me</button>
+                        <button
+                            class="window-bevel bg-surface-dim text-black px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px]">Download
+                            CV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- "Projects" Window (Lower Right) -->
+        <div class="hidden md:block absolute bottom-[15%] right-[5%] w-[350px] window-bevel bg-surface-dim z-30">
+            <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-white text-sm">folder_open</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-tight">Projects</span>
+                </div>
+                <div class="flex gap-1">
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                </div>
+            </div>
+            <div class="bg-surface-dim p-4">
+                <div class="inset-bevel bg-white p-4 grid grid-cols-2 gap-4 h-48 overflow-y-auto">
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
+                        <span class="text-[10px] font-label text-center">Design_2024</span>
+                    </div>
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
+                        <span class="text-[10px] font-label text-center">Source_Code</span>
+                    </div>
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
+                        <span class="text-[10px] font-label text-center">Art_Assets</span>
+                    </div>
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-primary">description</span>
+                        <span class="text-[10px] font-label text-center">readme.txt</span>
+                    </div>
+                </div>
+                <div class="mt-2 text-[10px] text-on-surface-variant flex justify-between">
+                    <span>4 items selected</span>
+                    <span>1.2 MB</span>
+                </div>
+            </div>
+        </div>
+        <!-- "System Identity" Window (Floating) -->
+        <div class="absolute top-[40%] right-[10%] w-[280px] window-bevel bg-surface-dim z-40 shadow-lg">
+            <div class="bg-secondary-fixed h-8 flex items-center px-1 justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-on-surface text-sm">info</span>
+                    <span class="text-on-surface font-headline font-bold text-sm tracking-tight">Identity</span>
+                </div>
+                <button class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+            </div>
+            <div class="p-4 flex gap-4">
+                <div class="w-16 h-16 window-bevel bg-white flex-shrink-0">
+                    <img alt="System Badge" class="w-full h-full object-cover grayscale brightness-125"
+                        data-alt="Abstract pixel art pattern of a computer chip with neon blue and cyan accents on a dark background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKKfwQuBHmB25nXKN-dR_moPZfSoDJTT1KK6cLYqSp6JMyE-SZE3qAmDiejdqmH7EpBQO2tmWr5GDO-lkL8IKz_jaN0DLwe2bmQ62p8z47V5UpAKHkBE7jyG2wZce1jlTqWJs-ANkr4VSeW2iGfbj0LSmRRiIqr-31gpheF0foucfEgS2VF46gS5M-pV2AeFAe_pu8_UDOirTh_CPzfgdvZ8uUa3QrJuEP16R_jY7ZJT0cULnFjVibVt_VPb-82r5yVR1iDw9gwQ" />
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[12px] font-bold">System User: v.1.0.98</span>
+                    <span class="text-[10px] text-secondary-container mt-1">Status: Online</span>
+                    <p class="text-[10px] mt-2 leading-tight">Identity verified. Accessing portfolio archives...</p>
+                </div>
+            </div>
+            <div class="bg-surface-container-low px-4 py-2 border-t border-secondary flex justify-end">
+                <button
+                    class="window-bevel bg-surface-dim px-4 py-1 text-[11px] font-bold active:translate-x-[1px] active:translate-y-[1px]">OK</button>
+            </div>
+        </div>
+    </main>
+    <!-- SideNavBar (from JSON - Mobile Hidden) -->
+    <aside
+        class="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 h-auto flex flex-col w-12 p-2 bg-slate-300 dark:bg-slate-400 docked border-r-2 border-slate-600 z-50 gap-4">
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Portfolio">
+            <span class="material-symbols-outlined text-black">folder</span>
+        </button>
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Blog">
+            <span class="material-symbols-outlined text-black">description</span>
+        </button>
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Contact">
+            <span class="material-symbols-outlined text-black">mail</span>
+        </button>
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Settings">
+            <span class="material-symbols-outlined text-black">settings</span>
+        </button>
+    </aside>
+    <!-- BottomNavBar (from JSON) -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-50 flex items-center px-1 gap-1 bg-slate-300 dark:bg-slate-400 h-12 border-t-2 border-t-white">
+        <!-- Start Button -->
+        <button
+            class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined font-black italic text-blue-900" data-icon="menu">menu</span>
+            <span class="font-headline font-extrabold text-blue-900 italic uppercase text-sm">Start</span>
+        </button>
+        <div class="h-8 w-[2px] bg-white mx-1 opacity-50"></div>
+        <!-- Taskbar Items -->
+        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold">
+                <span class="material-symbols-outlined text-sm" data-icon="folder_open">folder_open</span>
+                <span class="font-label text-[12px] uppercase">Portfolio</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+                <span class="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
+                <span class="font-label text-[12px] uppercase">Blog</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+                <span class="material-symbols-outlined text-sm" data-icon="alternate_email">alternate_email</span>
+                <span class="font-label text-[12px] uppercase">Contact</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+                <span class="material-symbols-outlined text-sm" data-icon="drafts">drafts</span>
+                <span class="font-label text-[12px] uppercase">Mail</span>
+            </button>
+        </div>
+        <button
+            class="ml-auto flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+            <span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+        </button>
+    </nav>
+</body>
+
+</html>
+
+<!-- Win98 Desktop with Icons -->
+<!DOCTYPE html>
+
+<html class="h-full" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MyComputer - System Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Work+Sans:wght@400;600;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e3e2e2",
+                        "outline-variant": "#bdc9c8",
+                        "inverse-surface": "#2f3131",
+                        "surface-dim": "#dadada",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "on-surface-variant": "#3e4949",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-primary-fixed": "#00006e",
+                        "secondary-container": "#e0dfdf",
+                        "on-secondary-container": "#626363",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f9",
+                        "surface-variant": "#e3e2e2",
+                        "on-tertiary": "#ffffff",
+                        "inverse-on-surface": "#f1f0f0",
+                        "tertiary-fixed": "#93f2f2",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "surface-container-high": "#e8e8e8",
+                        "on-surface": "#1a1c1c",
+                        "tertiary-fixed-dim": "#76d6d5",
+                        "on-primary-container": "#fbf8ff",
+                        "on-tertiary-container": "#e3fffe",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-primary": "#bfc2ff",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-tertiary-fixed": "#002020",
+                        "error-container": "#ffdad6",
+                        "primary": "#474eb7",
+                        "tertiary": "#006565",
+                        "on-error-container": "#93000a",
+                        "surface-tint": "#4b53bc",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "surface": "#faf9f9",
+                        "tertiary-container": "#008080",
+                        "primary-container": "#6068d2",
+                        "on-background": "#1a1c1c",
+                        "primary-fixed": "#e0e0ff",
+                        "secondary": "#5d5e5f",
+                        "surface-container-low": "#f4f3f3",
+                        "surface-bright": "#faf9f9",
+                        "outline": "#6e7979",
+                        "on-secondary-fixed-variant": "#464747",
+                        "on-secondary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0rem",
+                        "lg": "0rem",
+                        "xl": "0rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .window-bevel {
+            border-top: 2px solid white;
+            border-left: 2px solid white;
+            border-bottom: 2px solid #5d5e5f;
+            border-right: 2px solid #5d5e5f;
+        }
+
+        .inset-bevel {
+            border-top: 2px solid #5d5e5f;
+            border-left: 2px solid #5d5e5f;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+        }
+
+        .title-bar-gradient {
+            background: linear-gradient(90deg, #474eb7 0%, #6068d2 100%);
+        }
+
+        body {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+
+<body class="bg-tertiary-container font-body h-full overflow-hidden text-on-surface">
+    <!-- Top AppBar (from JSON) -->
+    <header
+        class="fixed top-0 left-0 w-full z-50 flex items-center px-1 h-8 bg-slate-300 dark:bg-slate-400 docked full-width border-2 border-t-white border-l-white border-b-slate-600 border-r-slate-600">
+        <div class="bg-blue-800 text-white px-2 py-1 font-bold text-sm mr-2 flex items-center gap-1">
+            <span class="material-symbols-outlined text-[14px]">desktop_windows</span>
+            MyComputer
+        </div>
+        <nav class="flex h-full items-center text-black font-label text-[12px] space-x-4 ml-2">
+            <span class="text-black font-bold hover:bg-blue-800 hover:text-white px-2 cursor-default">File</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Edit</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">View</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Go</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Favorites</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Help</span>
+        </nav>
+        <div class="ml-auto flex items-center gap-1">
+            <div class="inset-bevel px-2 py-1 text-[10px] bg-slate-300 mr-2">9:41 AM</div>
+            <button
+                class="window-bevel bg-slate-300 px-1 hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-sm leading-none">close</span>
+            </button>
+        </div>
+    </header>
+    <!-- Main Desktop Canvas -->
+    <main class="relative h-full pt-12 pb-16 px-4 md:px-8">
+        <!-- Desktop Icons (Asymmetric Grid) -->
+        <div class="absolute left-4 top-16 flex flex-col gap-8">
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">desktop_windows</span>
+                </div>
+                <span class="text-[11px] text-white bg-blue-800 px-1 font-label">My Computer</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">delete</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">Recycle Bin</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">folder</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">Documents</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">folder</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">Portfolio</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">person</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">About Me</span>
+            </div>
+            <div class="flex flex-col items-center group cursor-pointer w-16">
+                <div class="p-2 mb-1">
+                    <span class="material-symbols-outlined text-4xl text-white opacity-90">mail</span>
+                </div>
+                <span class="text-[11px] text-white px-1 font-label">Contact</span>
+            </div>
+        </div>
+        <!-- Main "My Portfolio" Window (Cascaded Center) -->
+        <div class="absolute top-[10%] left-[10%] md:left-[25%] w-[90%] md:w-[60%] window-bevel bg-surface-dim z-20">
+            <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-white text-sm">person</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-tight">My Portfolio</span>
+                </div>
+                <div class="flex gap-1">
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">_</button>
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">□</button>
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                </div>
+            </div>
+            <div class="bg-surface-dim p-1 border-b border-secondary">
+                <div class="flex gap-4 text-[11px] px-2 py-1">
+                    <button class="flex items-center gap-1 hover:brightness-110">
+                        <span class="material-symbols-outlined text-base">arrow_back</span> Back
+                    </button>
+                    <button class="flex items-center gap-1 hover:brightness-110">
+                        <span class="material-symbols-outlined text-base">arrow_forward</span> Forward
+                    </button>
+                    <button class="flex items-center gap-1 hover:brightness-110">
+                        <span class="material-symbols-outlined text-base">home</span> Home
+                    </button>
+                    <div class="h-4 w-[1px] bg-secondary-fixed"></div>
+                    <div class="flex-grow bg-white inset-bevel px-2 py-[1px] text-gray-500 truncate">
+                        C:\WINDOWS\Desktop\Portfolio\index.html</div>
+                </div>
+            </div>
+            <div
+                class="bg-surface-container-lowest p-8 flex flex-col md:flex-row gap-8 items-center md:items-start min-h-[300px]">
+                <div class="flex-shrink-0">
+                    <div class="w-32 h-32 window-bevel p-1 bg-surface-dim">
+                        <img alt="User Profile" class="w-full h-full object-cover"
+                            data-alt="Close up portrait of a creative professional with a friendly smile, clean minimalist lighting, high-end editorial photography style"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBShsEsSKSa-0nC6LCKGUj--CAD-GMWoYVLq9ao3sCY1T4IfMF5Hx5lE9aSXvOZpgG2FJL9rJ3MqX4JQnoxXaKiNYTyv5lwMzaYKuyV9dmMMRtLoKsKIgiCSatdmliInL-xAxDngextTm4h654j7Fqz-zFIcIExPREctYDcKg8SL0kR3qBcpXXN8E4c_JSnuQnEirQjZx-dzQuw9KtR1tCXZAd8xwaA6uAdwF_s22u9fgOJ5Z6ENEr9pvGwTcgCA9ZzLUvO7mNPUg" />
+                    </div>
+                </div>
+                <div class="flex-grow text-center md:text-left">
+                    <h1 class="font-headline text-4xl font-extrabold text-primary mb-4 tracking-tighter">Welcome to my
+                        OS</h1>
+                    <p class="font-body text-secondary text-lg leading-relaxed max-w-lg">
+                        I am a Digital Archivist and Interface Architect specializing in retro-modern experiences. By
+                        blending the constraints of legacy computing with modern performance, I build digital
+                        environments that feel both nostalgic and authoritative.
+                    </p>
+                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
+                        <button
+                            class="window-bevel bg-primary text-white px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px]">Hire
+                            Me</button>
+                        <button
+                            class="window-bevel bg-surface-dim text-black px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px]">Download
+                            CV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- "Projects" Window (Lower Right) -->
+        <div class="hidden md:block absolute bottom-[15%] right-[5%] w-[350px] window-bevel bg-surface-dim z-30">
+            <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-white text-sm">folder_open</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-tight">Projects</span>
+                </div>
+                <div class="flex gap-1">
+                    <button
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                </div>
+            </div>
+            <div class="bg-surface-dim p-4">
+                <div class="inset-bevel bg-white p-4 grid grid-cols-2 gap-4 h-48 overflow-y-auto">
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
+                        <span class="text-[10px] font-label text-center">Design_2024</span>
+                    </div>
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
+                        <span class="text-[10px] font-label text-center">Source_Code</span>
+                    </div>
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
+                        <span class="text-[10px] font-label text-center">Art_Assets</span>
+                    </div>
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <span class="material-symbols-outlined text-4xl text-primary">description</span>
+                        <span class="text-[10px] font-label text-center">readme.txt</span>
+                    </div>
+                </div>
+                <div class="mt-2 text-[10px] text-on-surface-variant flex justify-between">
+                    <span>4 items selected</span>
+                    <span>1.2 MB</span>
+                </div>
+            </div>
+        </div>
+        <!-- "System Identity" Window (Floating) -->
+        <div class="absolute top-[40%] right-[10%] w-[280px] window-bevel bg-surface-dim z-40 shadow-lg">
+            <div class="bg-secondary-fixed h-8 flex items-center px-1 justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-on-surface text-sm">info</span>
+                    <span class="text-on-surface font-headline font-bold text-sm tracking-tight">Identity</span>
+                </div>
+                <button class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+            </div>
+            <div class="p-4 flex gap-4">
+                <div class="w-16 h-16 window-bevel bg-white flex-shrink-0">
+                    <img alt="System Badge" class="w-full h-full object-cover grayscale brightness-125"
+                        data-alt="Abstract pixel art pattern of a computer chip with neon blue and cyan accents on a dark background"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKKfwQuBHmB25nXKN-dR_moPZfSoDJTT1KK6cLYqSp6JMyE-SZE3qAmDiejdqmH7EpBQO2tmWr5GDO-lkL8IKz_jaN0DLwe2bmQ62p8z47V5UpAKHkBE7jyG2wZce1jlTqWJs-ANkr4VSeW2iGfbj0LSmRRiIqr-31gpheF0foucfEgS2VF46gS5M-pV2AeFAe_pu8_UDOirTh_CPzfgdvZ8uUa3QrJuEP16R_jY7ZJT0cULnFjVibVt_VPb-82r5yVR1iDw9gwQ" />
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-[12px] font-bold">System User: v.1.0.98</span>
+                    <span class="text-[10px] text-secondary-container mt-1">Status: Online</span>
+                    <p class="text-[10px] mt-2 leading-tight">Identity verified. Accessing portfolio archives...</p>
+                </div>
+            </div>
+            <div class="bg-surface-container-low px-4 py-2 border-t border-secondary flex justify-end">
+                <button
+                    class="window-bevel bg-surface-dim px-4 py-1 text-[11px] font-bold active:translate-x-[1px] active:translate-y-[1px]">OK</button>
+            </div>
+        </div>
+    </main>
+    <!-- SideNavBar (from JSON - Mobile Hidden) -->
+    <aside
+        class="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 h-auto flex flex-col w-12 p-2 bg-slate-300 dark:bg-slate-400 docked border-r-2 border-slate-600 z-50 gap-4">
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Portfolio">
+            <span class="material-symbols-outlined text-black">folder</span>
+        </button>
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Blog">
+            <span class="material-symbols-outlined text-black">description</span>
+        </button>
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Contact">
+            <span class="material-symbols-outlined text-black">mail</span>
+        </button>
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+            title="Settings">
+            <span class="material-symbols-outlined text-black">settings</span>
+        </button>
+    </aside>
+    <!-- BottomNavBar (from JSON) -->
+    <nav
+        class="fixed bottom-0 left-0 w-full z-50 flex items-center px-1 gap-1 bg-slate-300 dark:bg-slate-400 h-12 border-t-2 border-t-white">
+        <!-- Start Button -->
+        <button
+            class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined font-black italic text-blue-900" data-icon="menu">menu</span>
+            <span class="font-headline font-extrabold text-blue-900 italic uppercase text-sm">Start</span>
+        </button>
+        <div class="h-8 w-[2px] bg-white mx-1 opacity-50"></div>
+        <!-- Taskbar Items -->
+        <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold">
+                <span class="material-symbols-outlined text-sm" data-icon="folder_open">folder_open</span>
+                <span class="font-label text-[12px] uppercase">Portfolio</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+                <span class="material-symbols-outlined text-sm" data-icon="edit_note">edit_note</span>
+                <span class="font-label text-[12px] uppercase">Blog</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+                <span class="material-symbols-outlined text-sm" data-icon="alternate_email">alternate_email</span>
+                <span class="font-label text-[12px] uppercase">Contact</span>
+            </button>
+            <button
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+                <span class="material-symbols-outlined text-sm" data-icon="drafts">drafts</span>
+                <span class="font-label text-[12px] uppercase">Mail</span>
+            </button>
+        </div>
+        <button
+            class="ml-auto flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+            <span class="material-symbols-outlined text-sm" data-icon="search">search</span>
+        </button>
+    </nav>
+</body>
+
+</html>
+
+<!-- About Me (System Identity) Webpage -->
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Digital Archivist - System Identity</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e0dfdf",
+                        "surface-tint": "#4b53bc",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-container-low": "#f4f3f3",
+                        "on-tertiary-container": "#e3fffe",
+                        "on-secondary-fixed-variant": "#464747",
+                        "outline-variant": "#bdc9c8",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "primary-container": "#6068d2",
+                        "on-primary": "#ffffff",
+                        "primary": "#474eb7",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#008080",
+                        "background": "#faf9f9",
+                        "secondary": "#5d5e5f",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "surface-variant": "#e3e2e2",
+                        "on-surface-variant": "#3e4949",
+                        "on-primary-fixed": "#00006e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary-fixed": "#002020",
+                        "tertiary-fixed": "#93f2f2",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf9f9",
+                        "surface": "#faf9f9",
+                        "inverse-primary": "#bfc2ff",
+                        "tertiary": "#006565",
+                        "surface-container-highest": "#e3e2e2",
+                        "tertiary-fixed-dim": "#76d6d5",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-secondary-container": "#626363",
+                        "on-surface": "#1a1c1c",
+                        "inverse-on-surface": "#f1f0f0",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "outline": "#6e7979",
+                        "surface-dim": "#dadada",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#fbf8ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        .beveled-out {
+            border-top: 2px solid #ffffff;
+            border-left: 2px solid #ffffff;
+            border-right: 2px solid #5d5e5f;
+            border-bottom: 2px solid #5d5e5f;
+        }
+
+        .beveled-in {
+            border-top: 2px solid #5d5e5f;
+            border-left: 2px solid #5d5e5f;
+            border-right: 2px solid #ffffff;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .crt-effect {
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+            background-size: 100% 2px, 3px 100%;
+        }
+
+        .desktop-canvas {
+            background-color: #008080;
+        }
+    </style>
+</head>
+
+<body class="bg-tertiary-container font-body overflow-hidden h-screen flex flex-col">
+    <!-- TopAppBar from JSON -->
+    <header
+        class="bg-[#474EB7] dark:bg-[#474EB7] text-white docked full-width top-0 border-b-2 border-r-2 border-slate-700 border-t-white border-l-white flex justify-between items-center w-full px-2 py-1 z-50">
+        <div class="flex items-center gap-4">
+            <span class="text-lg font-black text-white">The Digital Archivist</span>
+            <nav class="hidden md:flex gap-3">
+                <a class="font-space-grotesk tracking-tight font-bold uppercase text-sm text-white font-bold hover:bg-[#5D5E5F] px-1 transition-all active:translate-x-[1px] active:translate-y-[1px]"
+                    href="#">File</a>
+                <a class="font-space-grotesk tracking-tight font-bold uppercase text-sm text-slate-200 hover:bg-[#5D5E5F] px-1 transition-all active:translate-x-[1px] active:translate-y-[1px]"
+                    href="#">Edit</a>
+                <a class="font-space-grotesk tracking-tight font-bold uppercase text-sm text-slate-200 hover:bg-[#5D5E5F] px-1 transition-all active:translate-x-[1px] active:translate-y-[1px]"
+                    href="#">View</a>
+                <a class="font-space-grotesk tracking-tight font-bold uppercase text-sm text-slate-200 hover:bg-[#5D5E5F] px-1 transition-all active:translate-x-[1px] active:translate-y-[1px]"
+                    href="#">Go</a>
+                <a class="font-space-grotesk tracking-tight font-bold uppercase text-sm text-slate-200 hover:bg-[#5D5E5F] px-1 transition-all active:translate-x-[1px] active:translate-y-[1px]"
+                    href="#">Favorites</a>
+                <a class="font-space-grotesk tracking-tight font-bold uppercase text-sm text-slate-200 hover:bg-[#5D5E5F] px-1 transition-all active:translate-x-[1px] active:translate-y-[1px]"
+                    href="#">Help</a>
+            </nav>
+        </div>
+        <div class="flex gap-1">
+            <button
+                class="beveled-out bg-surface-dim px-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-on-surface">minimize</span>
+            </button>
+            <button
+                class="beveled-out bg-surface-dim px-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-on-surface">check_box_outline_blank</span>
+            </button>
+            <button
+                class="beveled-out bg-surface-dim px-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-on-surface">close</span>
+            </button>
+        </div>
+    </header>
+    <!-- Main Desktop Workspace -->
+    <main class="flex-grow desktop-canvas p-4 md:p-8 relative flex items-center justify-center">
+        <!-- Application Window -->
+        <section
+            class="beveled-out bg-surface-dim w-full max-w-2xl flex flex-col shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)]">
+            <!-- Window Title Bar -->
+            <div class="bg-gradient-to-r from-primary to-primary-container px-2 py-1 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-white" style="font-size: 16px;">account_circle</span>
+                    <h1 class="font-headline font-bold text-sm text-white tracking-tight">System Identity</h1>
+                </div>
+                <button class="beveled-out bg-surface-dim h-5 w-5 flex items-center justify-center hover:bg-[#FAF9F9]">
+                    <span class="material-symbols-outlined text-black" style="font-size: 14px;">close</span>
+                </button>
+            </div>
+            <!-- Window Content Padding -->
+            <div class="p-3 flex flex-col gap-4">
+                <!-- System Tabs -->
+                <nav class="flex items-end border-b-2 border-white translate-y-[2px]">
+                    <div
+                        class="bg-[#FAF9F9] border-t-2 border-l-2 border-slate-600 border-r-white border-b-white shadow-inner flex items-center gap-2 px-4 py-1 z-10 -mb-[2px] cursor-default">
+                        <span class="font-label text-xs font-bold text-black">User Profile</span>
+                    </div>
+                    <div
+                        class="bg-surface-dim border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-4 py-1 cursor-pointer hover:bg-surface-bright">
+                        <span class="font-label text-xs font-bold text-black opacity-70">Permissions</span>
+                    </div>
+                    <div
+                        class="bg-surface-dim border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-4 py-1 cursor-pointer hover:bg-surface-bright">
+                        <span class="font-label text-xs font-bold text-black opacity-70">Network</span>
+                    </div>
+                </nav>
+                <!-- Active Tab Content Area -->
+                <div
+                    class="bg-surface-dim border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 p-6 flex flex-col md:flex-row gap-8">
+                    <!-- Left Column: Avatar/Profile Identity -->
+                    <div class="flex flex-col items-center gap-4 w-full md:w-1/3">
+                        <div class="beveled-in p-1 bg-black">
+                            <div
+                                class="relative w-32 h-32 crt-effect bg-slate-900 flex items-center justify-center overflow-hidden">
+                                <img alt="System Avatar"
+                                    class="w-full h-full object-cover grayscale opacity-80 mix-blend-screen"
+                                    data-alt="stylized 90s pixel art portrait of a professional creative director with blue lighting and high contrast aesthetic"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq6l0Bbr9f9_JSPoDhpQjRPubtHc8inDFJvKTrrUyGtGmH_ETC-PM2bMlOwBc-fKW2wBjmzIoEJSlTiXPMubthLL7N6TdfsIErw6-dtC2U9E-se94ld7xU5iMzS7OY_OQ7UBPB-QV1X3YuiPxGmI9ohLJXpkH7WHXs0J2jMFdFygnxZ6iEWpboCbA8Q5W41E_RY7hC1-3wwsSFOsFHhsufGHRptO5mUFi76ZNlpEUbMwaJYCibZQYpxPc6Ddx5pEGJGLUJDqSDHg" />
+                                <div class="absolute inset-0 border-4 border-primary/20 pointer-events-none"></div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <h2 class="font-headline font-black text-xl text-primary tracking-tighter">DESIGNER_ADMIN
+                            </h2>
+                            <p class="font-label text-xs text-secondary font-bold uppercase tracking-widest">Access
+                                Level: Root</p>
+                        </div>
+                    </div>
+                    <!-- Right Column: User Details -->
+                    <div class="flex flex-col gap-4 flex-grow">
+                        <div class="grid grid-cols-1 gap-2">
+                            <div class="flex flex-col">
+                                <label class="font-label text-[10px] font-bold text-secondary uppercase px-1">Identity
+                                    Node:</label>
+                                <div class="beveled-in bg-white px-2 py-1 font-body text-sm text-black">
+                                    Creative Director // Archive Division
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <label class="font-label text-[10px] font-bold text-secondary uppercase px-1">System
+                                    Bio:</label>
+                                <div
+                                    class="beveled-in bg-white px-3 py-2 font-body text-xs text-black leading-relaxed min-h-[120px]">
+                                    Specializing in the curation of digital heritage. I architect interfaces that bridge
+                                    the gap between human memory and silicon logic.
+                                    <br /><br />
+                                    Current directive: Reclaiming the tactile rigidity of the early web for the high-end
+                                    editorial era.
+                                    <br /><br />
+                                    <span class="text-primary font-bold"># STATUS: ONLINE</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- System Parameters Bento-ish Subgrid -->
+                        <div class="grid grid-cols-2 gap-2 mt-2">
+                            <div class="beveled-out bg-surface px-2 py-2 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary"
+                                    style="font-size: 16px;">database</span>
+                                <div class="flex flex-col">
+                                    <span class="text-[9px] font-bold text-secondary leading-none uppercase">Data
+                                        Usage</span>
+                                    <span class="text-xs font-black text-on-surface">1.44 MB / 2.0 GB</span>
+                                </div>
+                            </div>
+                            <div class="beveled-out bg-surface px-2 py-2 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary"
+                                    style="font-size: 16px;">lan</span>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-[9px] font-bold text-secondary leading-none uppercase">Bandwidth</span>
+                                    <span class="text-xs font-black text-on-surface">TCP/IP Ready</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Window Actions -->
+                <div class="flex justify-end gap-2 pt-2">
+                    <button
+                        class="beveled-out bg-surface-dim px-6 py-1 text-sm font-bold text-black hover:bg-surface-bright active:translate-x-[1px] active:translate-y-[1px]">
+                        OK
+                    </button>
+                    <button
+                        class="beveled-out bg-surface-dim px-6 py-1 text-sm font-bold text-black hover:bg-surface-bright active:translate-x-[1px] active:translate-y-[1px]">
+                        Cancel
+                    </button>
+                    <button
+                        class="beveled-out bg-surface-dim px-6 py-1 text-sm font-bold text-black opacity-50 cursor-not-allowed">
+                        Apply
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar from JSON -->
+    <footer
+        class="fixed bottom-0 left-0 w-full h-10 flex items-center gap-1 px-1 bg-[#DADADA] dark:bg-[#DADADA] border-t-2 border-white z-50">
+        <!-- Start Button -->
+        <button
+            class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-black" data-weight="fill">menu</span>
+            <span class="font-work-sans text-xs font-bold text-black">Start</span>
+        </button>
+        <div class="h-6 w-[2px] bg-white border-r border-slate-600 mx-1"></div>
+        <!-- Active Tab (Profile) -->
+        <button
+            class="bg-[#FAF9F9] border-t-2 border-l-2 border-slate-600 border-r-white border-b-white shadow-inner flex items-center gap-2 px-3 py-1 active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-black">info</span>
+            <span class="font-work-sans text-xs font-bold text-black">About</span>
+        </button>
+        <!-- Inactive Tabs -->
+        <button
+            class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-black">home</span>
+            <span class="font-work-sans text-xs font-bold text-black hidden sm:inline">Home</span>
+        </button>
+        <button
+            class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-black">folder_special</span>
+            <span class="font-work-sans text-xs font-bold text-black hidden sm:inline">Portfolio</span>
+        </button>
+        <button
+            class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-black">mail</span>
+            <span class="font-work-sans text-xs font-bold text-black hidden sm:inline">Contact</span>
+        </button>
+        <!-- System Clock Tray -->
+        <div class="ml-auto beveled-in bg-surface-dim px-3 py-1 flex items-center gap-2">
+            <span class="material-symbols-outlined text-secondary" style="font-size: 14px;">volume_up</span>
+            <span class="font-label text-[10px] font-bold text-black">12:44 PM</span>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<!-- Contact Me (Mail) Webpage -->
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Digital Archivist - New Message</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Work+Sans:wght@300..700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e0dfdf",
+                        "surface-tint": "#4b53bc",
+                        "primary-fixed": "#e0e0ff",
+                        "surface-container-low": "#f4f3f3",
+                        "on-tertiary-container": "#e3fffe",
+                        "on-secondary-fixed-variant": "#464747",
+                        "outline-variant": "#bdc9c8",
+                        "primary-fixed-dim": "#bfc2ff",
+                        "primary-container": "#6068d2",
+                        "on-primary": "#ffffff",
+                        "primary": "#474eb7",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#008080",
+                        "background": "#faf9f9",
+                        "secondary": "#5d5e5f",
+                        "on-primary-fixed-variant": "#3239a3",
+                        "surface-variant": "#e3e2e2",
+                        "on-surface-variant": "#3e4949",
+                        "on-primary-fixed": "#00006e",
+                        "error-container": "#ffdad6",
+                        "on-background": "#1a1c1c",
+                        "on-tertiary-fixed": "#002020",
+                        "tertiary-fixed": "#93f2f2",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#faf9f9",
+                        "surface": "#faf9f9",
+                        "inverse-primary": "#bfc2ff",
+                        "tertiary": "#006565",
+                        "surface-container-highest": "#e3e2e2",
+                        "tertiary-fixed-dim": "#76d6d5",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-secondary-container": "#626363",
+                        "on-surface": "#1a1c1c",
+                        "inverse-on-surface": "#f1f0f0",
+                        "on-tertiary-fixed-variant": "#004f4f",
+                        "outline": "#6e7979",
+                        "surface-dim": "#dadada",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "surface-container": "#eeeeee",
+                        "secondary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#fbf8ff",
+                        "on-tertiary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        .beveled-out {
+            border-top: 2px solid #FFFFFF;
+            border-left: 2px solid #FFFFFF;
+            border-right: 2px solid #5D5E5F;
+            border-bottom: 2px solid #5D5E5F;
+        }
+
+        .beveled-in {
+            border-top: 2px solid #5D5E5F;
+            border-left: 2px solid #5D5E5F;
+            border-right: 2px solid #FFFFFF;
+            border-bottom: 2px solid #FFFFFF;
+        }
+
+        .title-bar-gradient {
+            background: linear-gradient(90deg, #474EB7 0%, #6068D2 100%);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-tertiary-container font-body text-on-surface overflow-hidden h-screen flex flex-col">
+    <!-- TopAppBar -->
+    <header
+        class="bg-[#474EB7] dark:bg-[#474EB7] text-white font-space-grotesk tracking-tight font-bold uppercase text-sm docked full-width top-0 border-b-2 border-r-2 border-slate-700 border-t-white border-l-white flex justify-between items-center w-full px-2 py-1 z-50">
+        <div class="flex items-center gap-4">
+            <span class="text-lg font-black text-white">The Digital Archivist</span>
+            <nav class="hidden md:flex gap-3">
+                <a class="text-white font-bold hover:bg-[#5D5E5F] px-1" href="#">File</a>
+                <a class="text-slate-200 hover:bg-[#5D5E5F] px-1" href="#">Edit</a>
+                <a class="text-slate-200 hover:bg-[#5D5E5F] px-1" href="#">View</a>
+                <a class="text-slate-200 hover:bg-[#5D5E5F] px-1" href="#">Go</a>
+                <a class="text-slate-200 hover:bg-[#5D5E5F] px-1" href="#">Favorites</a>
+                <a class="text-slate-200 hover:bg-[#5D5E5F] px-1" href="#">Help</a>
+            </nav>
+        </div>
+        <div class="flex gap-1">
+            <button
+                class="beveled-out bg-surface-dim p-0.5 w-6 h-5 flex items-center justify-center hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-black text-sm" data-icon="minimize">minimize</span>
+            </button>
+            <button
+                class="beveled-out bg-surface-dim p-0.5 w-6 h-5 flex items-center justify-center hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-black text-sm"
+                    data-icon="check_box_outline_blank">check_box_outline_blank</span>
+            </button>
+            <button
+                class="beveled-out bg-surface-dim p-0.5 w-6 h-5 flex items-center justify-center hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+                <span class="material-symbols-outlined text-black text-sm" data-icon="close">close</span>
+            </button>
+        </div>
+    </header>
+    <!-- Main Desktop Canvas -->
+    <main class="flex-grow relative p-4 md:p-8 flex items-center justify-center">
+        <!-- Contact Window (Outlook Express Style) -->
+        <div class="beveled-out bg-surface-dim w-full max-w-4xl flex flex-col shadow-xl">
+            <!-- Window Title Bar -->
+            <div class="title-bar-gradient p-1 flex items-center justify-between">
+                <div class="flex items-center gap-2 px-1">
+                    <span class="material-symbols-outlined text-white text-sm" data-icon="mail"
+                        style="font-variation-settings: 'FILL' 1;">mail</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-wide">New Message</span>
+                </div>
+                <div class="flex gap-1">
+                    <button class="beveled-out bg-surface-dim p-0.5 w-5 h-4 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-black text-[10px]" data-icon="close">close</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Toolbar -->
+            <div class="p-1 flex flex-wrap gap-1 bg-surface-dim border-b border-secondary">
+                <button
+                    class="flex flex-col items-center justify-center px-4 py-1 hover:bg-surface-container-low active:beveled-in active:translate-x-[1px] active:translate-y-[1px]">
+                    <span class="material-symbols-outlined text-primary text-3xl" data-icon="send">send</span>
+                    <span class="text-[10px] font-bold uppercase mt-1">Send</span>
+                </button>
+                <div class="w-[2px] bg-secondary self-stretch mx-1"></div>
+                <button
+                    class="flex flex-col items-center justify-center px-4 py-1 hover:bg-surface-container-low active:beveled-in">
+                    <span class="material-symbols-outlined text-secondary text-2xl"
+                        data-icon="attach_file">attach_file</span>
+                    <span class="text-[10px] font-bold uppercase mt-1">Attach</span>
+                </button>
+                <button
+                    class="flex flex-col items-center justify-center px-4 py-1 hover:bg-surface-container-low active:beveled-in">
+                    <span class="material-symbols-outlined text-secondary text-2xl"
+                        data-icon="content_cut">content_cut</span>
+                    <span class="text-[10px] font-bold uppercase mt-1">Cut</span>
+                </button>
+                <button
+                    class="flex flex-col items-center justify-center px-4 py-1 hover:bg-surface-container-low active:beveled-in">
+                    <span class="material-symbols-outlined text-secondary text-2xl"
+                        data-icon="content_copy">content_copy</span>
+                    <span class="text-[10px] font-bold uppercase mt-1">Copy</span>
+                </button>
+                <button
+                    class="flex flex-col items-center justify-center px-4 py-1 hover:bg-surface-container-low active:beveled-in">
+                    <span class="material-symbols-outlined text-secondary text-2xl"
+                        data-icon="content_paste">content_paste</span>
+                    <span class="text-[10px] font-bold uppercase mt-1">Paste</span>
+                </button>
+            </div>
+            <!-- Form Headers -->
+            <div class="bg-surface-dim p-4 flex flex-col gap-3">
+                <div class="flex items-center gap-2">
+                    <label class="w-16 font-label font-bold text-sm text-secondary">To:</label>
+                    <div class="beveled-in bg-surface-container-lowest flex-grow px-2 py-1 flex items-center h-8">
+                        <span class="text-sm">admin@digital-archivist.net</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <label class="w-16 font-label font-bold text-sm text-secondary">Subject:</label>
+                    <input
+                        class="beveled-in bg-surface-container-lowest flex-grow px-2 py-1 h-8 focus:outline-none text-sm font-body"
+                        placeholder="Project Inquiry" type="text" />
+                </div>
+            </div>
+            <!-- Message Area -->
+            <div class="px-4 pb-4 bg-surface-dim flex-grow flex flex-col">
+                <div class="beveled-in bg-surface-container-lowest flex-grow overflow-auto p-4 min-h-[300px]">
+                    <textarea
+                        class="w-full h-full focus:outline-none resize-none font-body text-base leading-relaxed text-on-surface"
+                        placeholder="Type your message here..."></textarea>
+                </div>
+            </div>
+            <!-- Status Bar -->
+            <div class="bg-surface-dim p-1 flex justify-between items-center gap-2">
+                <div class="beveled-in flex-grow px-2 py-0.5 text-[10px] font-bold text-secondary uppercase">
+                    Ready
+                </div>
+                <div class="beveled-in w-32 px-2 py-0.5 text-[10px] font-bold text-secondary uppercase">
+                    Offline
+                </div>
+            </div>
+        </div>
+        <!-- Decorative Floating Image - "Archivist's Tools" -->
+        <div class="hidden lg:block absolute -right-4 top-24 beveled-out bg-surface-dim p-1 rotate-3 shadow-2xl">
+            <div class="beveled-in">
+                <img alt="Vintage computer hardware with stacks of floppy disks and a magnifying glass on a polished wooden desk"
+                    class="w-48 h-48 object-cover"
+                    data-alt="Vintage computer hardware with stacks of floppy disks and a magnifying glass on a polished wooden desk in a dimly lit library"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY43MtwQt98qqCkaTemJHgxzOsscabDl3FxvuFu1BSL6uN1FODcfkoYswqHgc8xTXhRAE0M5gv241dGWqaT0mZSfMXJ8TY8zBdEEld8G-dVlxuDYocUVVngcTTV1RFbtrdup5zuQimjd1EMSn_gWubwOWyV-jLz8bKCKMfTsaFwi-uedXqMTi5X0SQDy062NDXebvSPdjWeMDeoQSk6FTxFsqchv5loO19FKfoqJ6wuBAcuXxusG3j9dcgqJNPb-dlJ_Lwsko9fA" />
+            </div>
+            <p class="text-[10px] font-bold p-1 text-center bg-surface-dim text-secondary">SYSTEM_LOG.JPG</p>
+        </div>
+    </main>
+    <!-- BottomNavBar (Taskbar) -->
+    <footer
+        class="bg-[#DADADA] dark:bg-[#DADADA] text-black font-work-sans text-xs font-bold fixed bottom-0 w-full z-50 border-t-2 border-white fixed bottom-0 left-0 w-full h-10 flex items-center gap-1 px-1">
+        <button
+            class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9] active:translate-x-[1px] active:translate-y-[1px]">
+            <span class="material-symbols-outlined text-sm" data-icon="menu">menu</span>
+            Start
+        </button>
+        <div class="w-[2px] bg-slate-400 h-6 mx-1"></div>
+        <div class="flex gap-1 overflow-x-auto items-center h-full">
+            <button
+                class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9]">
+                <span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+                Home
+            </button>
+            <button
+                class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9]">
+                <span class="material-symbols-outlined text-sm" data-icon="folder_special">folder_special</span>
+                Portfolio
+            </button>
+            <button
+                class="bg-[#DADADA] border-t-2 border-l-2 border-white border-r-slate-600 border-b-slate-600 flex items-center gap-2 px-3 py-1 hover:bg-[#FAF9F9]">
+                <span class="material-symbols-outlined text-sm" data-icon="info">info</span>
+                About
+            </button>
+            <button
+                class="bg-[#FAF9F9] border-t-2 border-l-2 border-slate-600 border-r-white border-b-white shadow-inner flex items-center gap-2 px-3 py-1">
+                <span class="material-symbols-outlined text-sm" data-icon="mail"
+                    style="font-variation-settings: 'FILL' 1;">mail</span>
+                Contact
+            </button>
+        </div>
+        <div class="ml-auto beveled-in px-3 py-1 flex items-center gap-2 bg-[#DADADA]">
+            <span class="material-symbols-outlined text-sm" data-icon="volume_up">volume_up</span>
+            <span class="text-[10px]">10:42 PM</span>
+        </div>
+    </footer>
+</body>
+
+</html>
