@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>MyComputer - System Portfolio</title>
+    <title>Advaith Prabhu — Aspiring Quant</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Work+Sans:wght@400;600;800&amp;display=swap"
         rel="stylesheet" />
@@ -92,6 +92,7 @@
             border-left: 2px solid white;
             border-bottom: 2px solid #5d5e5f;
             border-right: 2px solid #5d5e5f;
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .inset-bevel {
@@ -99,6 +100,7 @@
             border-left: 2px solid #5d5e5f;
             border-bottom: 2px solid white;
             border-right: 2px solid white;
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .title-bar-gradient {
@@ -120,10 +122,17 @@
             border-bottom: 2px solid #5d5e5f;
             min-width: 200px;
             z-index: 1000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
         }
 
         .start-menu.open {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .start-menu-item {
@@ -135,17 +144,57 @@
             align-items: center;
             gap: 8px;
             color: black;
+            transition: all 0.12s ease-out;
         }
 
         .start-menu-item:hover {
             background: #000080;
             color: white;
+            transform: translateX(2px);
         }
 
-        .start-menu-item span {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        button {
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        button:active {
+            transition: all 0.08s ease-out;
+        }
+
+        a {
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* Smooth page transitions */
+        .page-content {
+            animation: fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Window animation */
+        .window-container {
+            animation: windowSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes windowSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
     </style>
 </head>
@@ -159,12 +208,12 @@
             MyComputer
         </div>
         <nav class="flex h-full items-center text-black font-label text-[12px] space-x-4 ml-2">
-            <span class="text-black font-bold hover:bg-blue-800 hover:text-white px-2 cursor-default">File</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Edit</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">View</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Go</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Favorites</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Help</span>
+            <span class="text-black font-bold hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">File</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Edit</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">View</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Go</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Favorites</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Help</span>
         </nav>
         <div class="ml-auto flex items-center gap-1">
             <div class="inset-bevel px-2 py-1 text-[10px] bg-slate-300 mr-2">9:41 AM</div>
@@ -178,19 +227,19 @@
     <main class="relative h-full pt-12 pb-16 px-4 md:px-8">
         <!-- Desktop Icons (Asymmetric Grid) -->
         <div class="absolute left-4 top-16 flex flex-col gap-8">
-            <div class="flex flex-col items-center group cursor-pointer w-16">
+            <div class="flex flex-col items-center group cursor-pointer w-16 transition-transform duration-200 hover:scale-110">
                 <div class="p-2 mb-1">
                     <span class="material-symbols-outlined text-4xl text-white opacity-90">desktop_windows</span>
                 </div>
                 <span class="text-[11px] text-white bg-blue-800 px-1 font-label">My Computer</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer w-16">
+            <div class="flex flex-col items-center group cursor-pointer w-16 transition-transform duration-200 hover:scale-110">
                 <div class="p-2 mb-1">
                     <span class="material-symbols-outlined text-4xl text-white opacity-90">delete</span>
                 </div>
                 <span class="text-[11px] text-white px-1 font-label">Recycle Bin</span>
             </div>
-            <div class="flex flex-col items-center group cursor-pointer w-16">
+            <div class="flex flex-col items-center group cursor-pointer w-16 transition-transform duration-200 hover:scale-110">
                 <div class="p-2 mb-1">
                     <span class="material-symbols-outlined text-4xl text-white opacity-90">folder</span>
                 </div>
@@ -198,7 +247,7 @@
             </div>
         </div>
         <!-- Main "My Portfolio" Window (Cascaded Center) -->
-        <div class="absolute top-[10%] left-[10%] md:left-[25%] w-[90%] md:w-[60%] window-bevel bg-surface-dim z-20">
+        <div class="absolute top-[10%] left-[10%] md:left-[25%] w-[90%] md:w-[60%] window-bevel bg-surface-dim z-20 window-container">
             <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
                 <div class="flex items-center gap-2 px-1">
                     <span class="material-symbols-outlined text-white text-sm">person</span>
@@ -206,22 +255,22 @@
                 </div>
                 <div class="flex gap-1">
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">_</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">_</button>
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">□</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">□</button>
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
                 </div>
             </div>
             <div class="bg-surface-dim p-1 border-b border-secondary">
                 <div class="flex gap-4 text-[11px] px-2 py-1">
-                    <button class="flex items-center gap-1 hover:brightness-110">
+                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
                         <span class="material-symbols-outlined text-base">arrow_back</span> Back
                     </button>
-                    <button class="flex items-center gap-1 hover:brightness-110">
+                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
                         <span class="material-symbols-outlined text-base">arrow_forward</span> Forward
                     </button>
-                    <button class="flex items-center gap-1 hover:brightness-110">
+                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
                         <span class="material-symbols-outlined text-base">home</span> Home
                     </button>
                     <div class="h-4 w-[1px] bg-secondary-fixed"></div>
@@ -230,109 +279,106 @@
                 </div>
             </div>
             <div
-                class="bg-surface-container-lowest p-8 flex flex-col md:flex-row gap-8 items-center md:items-start min-h-[300px]">
+                class="bg-surface-container-lowest p-8 flex flex-col md:flex-row gap-8 items-center md:items-start min-h-[300px] page-content">
                 <div class="flex-shrink-0">
-                    <div class="w-32 h-32 window-bevel p-1 bg-surface-dim">
+                    <div class="w-32 h-32 window-bevel p-1 bg-surface-dim transition-transform duration-300 hover:scale-105">
                         <img alt="User Profile" class="w-full h-full object-cover"
-                            data-alt="Close up portrait of a creative professional with a friendly smile, clean minimalist lighting, high-end editorial photography style"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBShsEsSKSa-0nC6LCKGUj--CAD-GMWoYVLq9ao3sCY1T4IfMF5Hx5lE9aSXvOZpgG2FJL9rJ3MqX4JQnoxXaKiNYTyv5lwMzaYKuyV9dmMMRtLoKsKIgiCSatdmliInL-xAxDngextTm4h654j7Fqz-zFIcIExPREctYDcKg8SL0kR3qBcpXXN8E4c_JSnuQnEirQjZx-dzQuw9KtR1tCXZAd8xwaA6uAdwF_s22u9fgOJ5Z6ENEr9pvGwTcgCA9ZzLUvO7mNPUg" />
+                            src="copy.png" />
                     </div>
                 </div>
                 <div class="flex-grow text-center md:text-left">
-                    <h1 class="font-headline text-4xl font-extrabold text-primary mb-4 tracking-tighter">Welcome to my
-                        OS</h1>
-                    <p class="font-body text-secondary text-lg leading-relaxed max-w-lg">
-                        I am a Digital Archivist and Interface Architect specializing in retro-modern experiences. By
-                        blending the constraints of legacy computing with modern performance, I build digital
-                        environments that feel both nostalgic and authoritative.
+                    <h1 class="font-headline text-4xl font-extrabold text-primary mb-4 tracking-tighter">Advaith Prabhu</h1>
+                    <p class="text-sm text-secondary mb-2 font-bold">ASPIRING QUANT</p>
+                    <p class="font-body text-secondary text-base leading-relaxed max-w-lg mb-4">
+                        Passionate about quantitative finance and data-driven research. Building tools at the intersection of math, markets, and code.
+                    </p>
+                    <p class="font-body text-on-surface-variant text-sm leading-relaxed max-w-lg mb-4">
+                        2 years of coding experience · Singapore
                     </p>
                     <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
                         <button
-                            class="window-bevel bg-primary text-white px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px]">Hire
-                            Me</button>
+                            class="window-bevel bg-primary text-white px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110">Hire Me</button>
                         <button
-                            class="window-bevel bg-surface-dim text-black px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px]">Download
-                            CV</button>
+                            class="window-bevel bg-surface-dim text-black px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110">Download CV</button>
                     </div>
                 </div>
             </div>
         </div>
         <!-- "Projects" Window (Lower Right) -->
-        <div class="hidden md:block absolute bottom-[15%] right-[5%] w-[350px] window-bevel bg-surface-dim z-30">
+        <div class="hidden md:block absolute bottom-[15%] right-[5%] w-[350px] window-bevel bg-surface-dim z-30 window-container">
             <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
                 <div class="flex items-center gap-2 px-1">
                     <span class="material-symbols-outlined text-white text-sm">folder_open</span>
-                    <span class="text-white font-headline font-bold text-sm tracking-tight">Projects</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-tight">Recent Projects</span>
                 </div>
                 <div class="flex gap-1">
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
                 </div>
             </div>
             <div class="bg-surface-dim p-4">
-                <div class="inset-bevel bg-white p-4 grid grid-cols-2 gap-4 h-48 overflow-y-auto">
-                    <div class="flex flex-col items-center group cursor-pointer">
-                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
-                        <span class="text-[10px] font-label text-center">Design_2024</span>
-                    </div>
-                    <div class="flex flex-col items-center group cursor-pointer">
-                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
-                        <span class="text-[10px] font-label text-center">Source_Code</span>
-                    </div>
-                    <div class="flex flex-col items-center group cursor-pointer">
-                        <span class="material-symbols-outlined text-4xl text-tertiary">folder</span>
-                        <span class="text-[10px] font-label text-center">Art_Assets</span>
-                    </div>
-                    <div class="flex flex-col items-center group cursor-pointer">
-                        <span class="material-symbols-outlined text-4xl text-primary">description</span>
-                        <span class="text-[10px] font-label text-center">readme.txt</span>
-                    </div>
+                <div class="inset-bevel bg-white p-4 grid grid-cols-2 gap-4 h-auto overflow-y-auto max-h-48">
+                    <a href="https://github.com/advaithprabhudev/Market-Microstructure-Analysis-using-Shannon-Entropy" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
+                        <span class="material-symbols-outlined text-4xl text-primary">folder_open</span>
+                        <span class="text-[10px] font-label text-center mt-1">Shannon Entropy</span>
+                    </a>
+                    <a href="https://github.com/advaithprabhudev/Momentum-Research-Project" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
+                        <span class="material-symbols-outlined text-4xl text-primary">folder_open</span>
+                        <span class="text-[10px] font-label text-center mt-1">Momentum Strategies</span>
+                    </a>
+                    <a href="https://github.com/advaithprabhudev/Finance-Automation-Tracker" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
+                        <span class="material-symbols-outlined text-4xl text-primary">folder_open</span>
+                        <span class="text-[10px] font-label text-center mt-1">Finance Tracker</span>
+                    </a>
+                    <a href="https://github.com/advaithprabhudev" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
+                        <span class="material-symbols-outlined text-4xl text-tertiary">description</span>
+                        <span class="text-[10px] font-label text-center mt-1">View All</span>
+                    </a>
                 </div>
                 <div class="mt-2 text-[10px] text-on-surface-variant flex justify-between">
-                    <span>4 items selected</span>
-                    <span>1.2 MB</span>
+                    <span>3 projects</span>
+                    <span>Active</span>
                 </div>
             </div>
         </div>
         <!-- "System Identity" Window (Floating) -->
-        <div class="absolute top-[40%] right-[10%] w-[280px] window-bevel bg-surface-dim z-40 shadow-lg">
+        <div class="absolute top-[40%] right-[10%] w-[280px] window-bevel bg-surface-dim z-40 shadow-lg window-container">
             <div class="bg-secondary-fixed h-8 flex items-center px-1 justify-between">
                 <div class="flex items-center gap-2 px-1">
                     <span class="material-symbols-outlined text-on-surface text-sm">info</span>
-                    <span class="text-on-surface font-headline font-bold text-sm tracking-tight">Identity</span>
+                    <span class="text-on-surface font-headline font-bold text-sm tracking-tight">System Status</span>
                 </div>
-                <button class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                <button class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
             </div>
             <div class="p-4 flex gap-4">
-                <div class="w-16 h-16 window-bevel bg-white flex-shrink-0">
-                    <img alt="System Badge" class="w-full h-full object-cover grayscale brightness-125"
-                        data-alt="Abstract pixel art pattern of a computer chip with neon blue and cyan accents on a dark background"
+                <div class="w-16 h-16 window-bevel bg-white flex-shrink-0 overflow-hidden">
+                    <img alt="System Badge" class="w-full h-full object-cover"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKKfwQuBHmB25nXKN-dR_moPZfSoDJTT1KK6cLYqSp6JMyE-SZE3qAmDiejdqmH7EpBQO2tmWr5GDO-lkL8IKz_jaN0DLwe2bmQ62p8z47V5UpAKHkBE7jyG2wZce1jlTqWJs-ANkr4VSeW2iGfbj0LSmRRiIqr-31gpheF0foucfEgS2VF46gS5M-pV2AeFAe_pu8_UDOirTh_CPzfgdvZ8uUa3QrJuEP16R_jY7ZJT0cULnFjVibVt_VPb-82r5yVR1iDw9gwQ" />
                 </div>
-                <div class="flex flex-col">
-                    <span class="text-[12px] font-bold">System User: v.1.0.98</span>
-                    <span class="text-[10px] text-secondary-container mt-1">Status: Online</span>
-                    <p class="text-[10px] mt-2 leading-tight">Identity verified. Accessing portfolio archives...</p>
+                <div class="flex flex-col justify-center">
+                    <span class="text-[12px] font-bold">Aspiring Quant</span>
+                    <span class="text-[10px] text-secondary-container mt-1">Status: Ready</span>
+                    <p class="text-[10px] mt-2 leading-tight">Available for projects...</p>
                 </div>
             </div>
             <div class="bg-surface-container-low px-4 py-2 border-t border-secondary flex justify-end">
                 <button
-                    class="window-bevel bg-surface-dim px-4 py-1 text-[11px] font-bold active:translate-x-[1px] active:translate-y-[1px]">OK</button>
+                    class="window-bevel bg-surface-dim px-4 py-1 text-[11px] font-bold active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110">OK</button>
             </div>
         </div>
     </main>
-    <!-- SideNavBar (Mobile Hidden) -->
+    <!-- SideNavBar -->
     <aside
         class="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 h-auto flex flex-col w-12 p-2 bg-slate-300 dark:bg-slate-400 docked border-r-2 border-slate-600 z-50 gap-4">
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
             title="Portfolio">
             <span class="material-symbols-outlined text-black">folder</span>
         </button>
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
             title="Contact">
             <span class="material-symbols-outlined text-black">mail</span>
         </button>
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
             title="Settings">
             <span class="material-symbols-outlined text-black">settings</span>
         </button>
@@ -343,7 +389,7 @@
         <!-- Start Button -->
         <div class="relative">
             <button id="startBtn"
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px]">
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px] transition-all duration-150">
                 <span class="material-symbols-outlined font-black italic text-blue-900">menu</span>
                 <span class="font-headline font-extrabold text-blue-900 italic uppercase text-sm">Start</span>
             </button>
@@ -366,26 +412,26 @@
         <!-- Taskbar Items -->
         <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
             <button id="portfolioBtn"
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold"
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold transition-all duration-150"
                 onclick="window.location.href='index.html'">
                 <span class="material-symbols-outlined text-sm">folder_open</span>
                 <span class="font-label text-[12px] uppercase">Portfolio</span>
             </button>
             <button
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200"
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 transition-all duration-150"
                 onclick="window.location.href='about.html'">
                 <span class="material-symbols-outlined text-sm">person</span>
                 <span class="font-label text-[12px] uppercase">About</span>
             </button>
             <button
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200"
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 transition-all duration-150"
                 onclick="window.location.href='contact.html'">
                 <span class="material-symbols-outlined text-sm">mail</span>
                 <span class="font-label text-[12px] uppercase">Contact</span>
             </button>
         </div>
         <button
-            class="ml-auto flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+            class="ml-auto flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 transition-all duration-150">
             <span class="material-symbols-outlined text-sm">search</span>
         </button>
     </nav>
@@ -405,17 +451,6 @@
                 startMenu.classList.remove('open');
             }
         });
-
-        // Highlight current page in taskbar
-        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const portfolioBtn = document.getElementById('portfolioBtn');
-        if (currentPage === 'index.html' || currentPage === '') {
-            portfolioBtn.style.borderTop = '2px solid #1f2937';
-            portfolioBtn.style.borderLeft = '2px solid #1f2937';
-            portfolioBtn.style.borderBottom = '2px solid white';
-            portfolioBtn.style.borderRight = '2px solid white';
-            portfolioBtn.style.backgroundColor = '#cbd5e1';
-        }
     </script>
 </body>
 

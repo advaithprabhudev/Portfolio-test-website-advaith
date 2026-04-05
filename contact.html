@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Contact Me - System Portfolio</title>
+    <title>Contact Me - Advaith Prabhu</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Work+Sans:wght@400;600;800&amp;display=swap"
         rel="stylesheet" />
@@ -92,6 +92,7 @@
             border-left: 2px solid white;
             border-bottom: 2px solid #5d5e5f;
             border-right: 2px solid #5d5e5f;
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .inset-bevel {
@@ -99,6 +100,7 @@
             border-left: 2px solid #5d5e5f;
             border-bottom: 2px solid white;
             border-right: 2px solid white;
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
         .title-bar-gradient {
@@ -120,10 +122,17 @@
             border-bottom: 2px solid #5d5e5f;
             min-width: 200px;
             z-index: 1000;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
         }
 
         .start-menu.open {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .start-menu-item {
@@ -135,21 +144,82 @@
             align-items: center;
             gap: 8px;
             color: black;
+            transition: all 0.12s ease-out;
         }
 
         .start-menu-item:hover {
             background: #000080;
             color: white;
+            transform: translateX(2px);
+        }
+
+        button {
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        button:active {
+            transition: all 0.08s ease-out;
         }
 
         input, textarea {
             font-family: 'Work Sans', sans-serif;
+            transition: box-shadow 0.15s ease-out, background-color 0.15s ease-out;
         }
 
         input:focus, textarea:focus {
             outline: none;
             box-shadow: inset 1px 1px 0 #5d5e5f, inset -1px -1px 0 white;
         }
+
+        .page-content {
+            animation: fadeIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .window-container {
+            animation: windowSlideIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes windowSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .form-group {
+            animation: slideInUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.15s; }
+        .form-group:nth-child(3) { animation-delay: 0.2s; }
+        .form-group:nth-child(4) { animation-delay: 0.25s; }
     </style>
 </head>
 
@@ -162,12 +232,12 @@
             MyComputer
         </div>
         <nav class="flex h-full items-center text-black font-label text-[12px] space-x-4 ml-2">
-            <span class="text-black font-bold hover:bg-blue-800 hover:text-white px-2 cursor-default">File</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Edit</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">View</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Go</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Favorites</span>
-            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default">Help</span>
+            <span class="text-black font-bold hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">File</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Edit</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">View</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Go</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Favorites</span>
+            <span class="text-black hover:bg-blue-800 hover:text-white px-2 cursor-default transition-colors duration-150">Help</span>
         </nav>
         <div class="ml-auto flex items-center gap-1">
             <div class="inset-bevel px-2 py-1 text-[10px] bg-slate-300 mr-2">9:41 AM</div>
@@ -180,7 +250,7 @@
     <!-- Main Desktop Canvas -->
     <main class="relative h-full pt-12 pb-16 px-4 md:px-8">
         <!-- Main "Contact Me" Window -->
-        <div class="absolute top-[10%] left-[10%] md:left-[15%] w-[90%] md:w-[70%] window-bevel bg-surface-dim z-20">
+        <div class="absolute top-[10%] left-[10%] md:left-[15%] w-[90%] md:w-[70%] window-bevel bg-surface-dim z-20 window-container">
             <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
                 <div class="flex items-center gap-2 px-1">
                     <span class="material-symbols-outlined text-white text-sm">mail</span>
@@ -188,22 +258,22 @@
                 </div>
                 <div class="flex gap-1">
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">_</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">_</button>
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">□</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">□</button>
                     <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs">×</button>
+                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
                 </div>
             </div>
             <div class="bg-surface-dim p-1 border-b border-secondary">
                 <div class="flex gap-4 text-[11px] px-2 py-1">
-                    <button class="flex items-center gap-1 hover:brightness-110">
+                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
                         <span class="material-symbols-outlined text-base">arrow_back</span> Back
                     </button>
-                    <button class="flex items-center gap-1 hover:brightness-110">
+                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
                         <span class="material-symbols-outlined text-base">arrow_forward</span> Forward
                     </button>
-                    <button class="flex items-center gap-1 hover:brightness-110">
+                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
                         <span class="material-symbols-outlined text-base">home</span> Home
                     </button>
                     <div class="h-4 w-[1px] bg-secondary-fixed"></div>
@@ -211,55 +281,74 @@
                         C:\WINDOWS\Desktop\Portfolio\contact.html</div>
                 </div>
             </div>
-            <div class="bg-surface-container-lowest p-8 overflow-y-auto" style="max-height: calc(100vh - 200px);">
-                <h1 class="font-headline text-3xl font-extrabold text-primary mb-2 tracking-tighter">Contact Me</h1>
+            <div class="bg-surface-container-lowest p-8 overflow-y-auto page-content" style="max-height: calc(100vh - 200px);">
+                <h1 class="font-headline text-3xl font-extrabold text-primary mb-2 tracking-tighter">Get In Touch</h1>
                 <p class="font-body text-on-surface-variant text-sm mb-6">
-                    Have a project in mind? Get in touch using the form below or reach out directly.
+                    Have questions about my work or want to collaborate? Let's connect!
                 </p>
 
-                <form class="space-y-4 max-w-lg">
-                    <div>
-                        <label class="block text-sm font-bold text-on-surface mb-1">Your Name</label>
-                        <input type="text" placeholder="Enter your name"
+                <form class="space-y-4 max-w-lg mb-8">
+                    <div class="form-group">
+                        <label class="block text-sm font-bold text-on-surface mb-1">Name</label>
+                        <input type="text" placeholder="Your name"
                             class="w-full inset-bevel bg-white px-2 py-1 text-sm text-on-surface" />
                     </div>
 
-                    <div>
-                        <label class="block text-sm font-bold text-on-surface mb-1">Email Address</label>
+                    <div class="form-group">
+                        <label class="block text-sm font-bold text-on-surface mb-1">Email</label>
                         <input type="email" placeholder="your@email.com"
                             class="w-full inset-bevel bg-white px-2 py-1 text-sm text-on-surface" />
                     </div>
 
-                    <div>
+                    <div class="form-group">
                         <label class="block text-sm font-bold text-on-surface mb-1">Subject</label>
                         <input type="text" placeholder="What is this about?"
                             class="w-full inset-bevel bg-white px-2 py-1 text-sm text-on-surface" />
                     </div>
 
-                    <div>
+                    <div class="form-group">
                         <label class="block text-sm font-bold text-on-surface mb-1">Message</label>
-                        <textarea placeholder="Your message here..." rows="5"
+                        <textarea placeholder="Your message..." rows="5"
                             class="w-full inset-bevel bg-white px-2 py-1 text-sm text-on-surface"></textarea>
                     </div>
 
                     <div class="pt-4 flex gap-2">
                         <button type="submit"
-                            class="window-bevel bg-primary text-white px-4 py-2 font-bold text-sm active:translate-x-[1px] active:translate-y-[1px]">
-                            Send
+                            class="window-bevel bg-primary text-white px-4 py-2 font-bold text-sm active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110 transition-all duration-150">
+                            Send Message
                         </button>
                         <button type="reset"
-                            class="window-bevel bg-surface-dim text-black px-4 py-2 font-bold text-sm active:translate-x-[1px] active:translate-y-[1px]">
+                            class="window-bevel bg-surface-dim text-black px-4 py-2 font-bold text-sm active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110 transition-all duration-150">
                             Clear
                         </button>
                     </div>
                 </form>
 
-                <div class="mt-8 pt-6 border-t border-secondary">
-                    <h2 class="font-headline text-lg font-bold text-primary mb-3">Other Ways to Connect</h2>
-                    <div class="space-y-2 text-sm">
-                        <p class="text-on-surface"><strong>Email:</strong> hello@example.com</p>
-                        <p class="text-on-surface"><strong>Location:</strong> San Francisco, CA</p>
-                        <p class="text-on-surface"><strong>Availability:</strong> Open to opportunities</p>
+                <div class="border-t border-secondary pt-6">
+                    <h2 class="font-headline text-lg font-bold text-primary mb-4">Connect With Me</h2>
+                    <div class="space-y-3 text-sm">
+                        <div>
+                            <p class="font-bold text-on-surface mb-1">📧 Email</p>
+                            <a href="mailto:advaith@example.com" class="text-primary hover:text-primary-container transition-colors duration-150">
+                                advaith.prabhu@example.com
+                            </a>
+                        </div>
+                        <div>
+                            <p class="font-bold text-on-surface mb-1">💼 LinkedIn</p>
+                            <a href="https://www.linkedin.com/in/advaith-prabhu" target="_blank" rel="noopener" class="text-primary hover:text-primary-container transition-colors duration-150">
+                                linkedin.com/in/advaith-prabhu
+                            </a>
+                        </div>
+                        <div>
+                            <p class="font-bold text-on-surface mb-1">💻 GitHub</p>
+                            <a href="https://github.com/advaithprabhudev" target="_blank" rel="noopener" class="text-primary hover:text-primary-container transition-colors duration-150">
+                                github.com/advaithprabhudev
+                            </a>
+                        </div>
+                        <div>
+                            <p class="font-bold text-on-surface mb-1">📍 Location</p>
+                            <p class="text-on-surface-variant">Singapore</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -268,15 +357,15 @@
     <!-- SideNavBar -->
     <aside
         class="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 h-auto flex flex-col w-12 p-2 bg-slate-300 dark:bg-slate-400 docked border-r-2 border-slate-600 z-50 gap-4">
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
             title="Portfolio">
             <span class="material-symbols-outlined text-black">folder</span>
         </button>
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
             title="Contact">
             <span class="material-symbols-outlined text-black">mail</span>
         </button>
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110"
+        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
             title="Settings">
             <span class="material-symbols-outlined text-black">settings</span>
         </button>
@@ -287,7 +376,7 @@
         <!-- Start Button -->
         <div class="relative">
             <button id="startBtn"
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px]">
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px] transition-all duration-150">
                 <span class="material-symbols-outlined font-black italic text-blue-900">menu</span>
                 <span class="font-headline font-extrabold text-blue-900 italic uppercase text-sm">Start</span>
             </button>
@@ -310,26 +399,26 @@
         <!-- Taskbar Items -->
         <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
             <button
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200"
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 transition-all duration-150"
                 onclick="window.location.href='index.html'">
                 <span class="material-symbols-outlined text-sm">folder_open</span>
                 <span class="font-label text-[12px] uppercase">Portfolio</span>
             </button>
             <button
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200"
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 transition-all duration-150"
                 onclick="window.location.href='about.html'">
                 <span class="material-symbols-outlined text-sm">person</span>
                 <span class="font-label text-[12px] uppercase">About</span>
             </button>
             <button id="contactBtn"
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold"
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold transition-all duration-150"
                 onclick="window.location.href='contact.html'">
                 <span class="material-symbols-outlined text-sm">mail</span>
                 <span class="font-label text-[12px] uppercase">Contact</span>
             </button>
         </div>
         <button
-            class="ml-auto flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200">
+            class="ml-auto flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 transition-all duration-150">
             <span class="material-symbols-outlined text-sm">search</span>
         </button>
     </nav>
