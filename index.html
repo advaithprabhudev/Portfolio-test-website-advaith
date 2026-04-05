@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html class="h-full" lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Advaith Prabhu — Aspiring Quant</title>
+    <title>Applications — Advaith Prabhu</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&amp;family=Work+Sans:wght@400;600;800&amp;display=swap"
         rel="stylesheet" />
@@ -196,6 +195,28 @@
                 transform: scale(1) translateY(0);
             }
         }
+
+        /* App card hover effects */
+        .app-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .app-card:hover {
+            transform: scale(1.05);
+        }
+
+        .app-card:active {
+            transform: scale(0.98);
+        }
+
+        .app-icon {
+            animation: fadeIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation-fill-mode: backwards;
+        }
+
+        .app-icon:nth-child(1) { animation-delay: 0.1s; }
+        .app-icon:nth-child(2) { animation-delay: 0.2s; }
+        .app-icon:nth-child(3) { animation-delay: 0.3s; }
     </style>
 </head>
 
@@ -223,35 +244,15 @@
             </button>
         </div>
     </header>
+
     <!-- Main Desktop Canvas -->
     <main class="relative h-full pt-12 pb-16 px-4 md:px-8">
-        <!-- Desktop Icons (Asymmetric Grid) -->
-        <div class="absolute left-4 top-16 flex flex-col gap-8">
-            <div class="flex flex-col items-center group cursor-pointer w-16 transition-transform duration-200 hover:scale-110">
-                <div class="p-2 mb-1">
-                    <span class="material-symbols-outlined text-4xl text-white opacity-90">desktop_windows</span>
-                </div>
-                <span class="text-[11px] text-white bg-blue-800 px-1 font-label">My Computer</span>
-            </div>
-            <div class="flex flex-col items-center group cursor-pointer w-16 transition-transform duration-200 hover:scale-110">
-                <div class="p-2 mb-1">
-                    <span class="material-symbols-outlined text-4xl text-white opacity-90">delete</span>
-                </div>
-                <span class="text-[11px] text-white px-1 font-label">Recycle Bin</span>
-            </div>
-            <div class="flex flex-col items-center group cursor-pointer w-16 transition-transform duration-200 hover:scale-110">
-                <div class="p-2 mb-1">
-                    <span class="material-symbols-outlined text-4xl text-white opacity-90">folder</span>
-                </div>
-                <span class="text-[11px] text-white px-1 font-label">Documents</span>
-            </div>
-        </div>
-        <!-- Main "My Portfolio" Window (Cascaded Center) -->
-        <div class="absolute top-[10%] left-[10%] md:left-[25%] w-[90%] md:w-[60%] window-bevel bg-surface-dim z-20 window-container">
+        <!-- Main "Applications" Window (Center) -->
+        <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[90%] md:w-[700px] window-bevel bg-surface-dim z-20 window-container">
             <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
                 <div class="flex items-center gap-2 px-1">
-                    <span class="material-symbols-outlined text-white text-sm">person</span>
-                    <span class="text-white font-headline font-bold text-sm tracking-tight">My Portfolio</span>
+                    <span class="material-symbols-outlined text-white text-sm">dashboard</span>
+                    <span class="text-white font-headline font-bold text-sm tracking-tight">Applications</span>
                 </div>
                 <div class="flex gap-1">
                     <button
@@ -262,158 +263,69 @@
                         class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
                 </div>
             </div>
-            <div class="bg-surface-dim p-1 border-b border-secondary">
-                <div class="flex gap-4 text-[11px] px-2 py-1">
-                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
-                        <span class="material-symbols-outlined text-base">arrow_back</span> Back
-                    </button>
-                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
-                        <span class="material-symbols-outlined text-base">arrow_forward</span> Forward
-                    </button>
-                    <button class="flex items-center gap-1 hover:brightness-110 transition-all duration-150">
-                        <span class="material-symbols-outlined text-base">home</span> Home
-                    </button>
-                    <div class="h-4 w-[1px] bg-secondary-fixed"></div>
-                    <div class="flex-grow bg-white inset-bevel px-2 py-[1px] text-gray-500 truncate">
-                        C:\WINDOWS\Desktop\Portfolio\index.html</div>
-                </div>
-            </div>
-            <div
-                class="bg-surface-container-lowest p-8 flex flex-col md:flex-row gap-8 items-center md:items-start min-h-[300px] page-content">
-                <div class="flex-shrink-0">
-                    <div class="w-32 h-32 window-bevel p-1 bg-surface-dim transition-transform duration-300 hover:scale-105">
-                        <img alt="User Profile" class="w-full h-full object-cover"
-                            src="copy.png" />
+
+            <!-- Content Area -->
+            <div class="bg-surface-container-lowest p-12 page-content">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Portfolio Card -->
+                    <div class="app-card app-icon cursor-pointer group" onclick="window.location.href='portfolio.html'">
+                        <div class="window-bevel p-6 bg-surface-dim h-full flex flex-col items-center justify-center gap-4 hover:brightness-110">
+                            <div class="p-4 bg-gradient-to-br from-primary to-primary-container rounded-full">
+                                <span class="material-symbols-outlined text-white text-6xl">folder_open</span>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="font-headline font-bold text-lg mb-2">Portfolio</h3>
+                                <p class="text-xs text-secondary max-w-xs">Showcase of my projects and professional background</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- About Card -->
+                    <div class="app-card app-icon cursor-pointer group" onclick="window.location.href='about.html'">
+                        <div class="window-bevel p-6 bg-surface-dim h-full flex flex-col items-center justify-center gap-4 hover:brightness-110">
+                            <div class="p-4 bg-gradient-to-br from-tertiary-fixed to-tertiary rounded-full">
+                                <span class="material-symbols-outlined text-white text-6xl">person</span>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="font-headline font-bold text-lg mb-2">About Me</h3>
+                                <p class="text-xs text-secondary max-w-xs">Learn about my experience, skills, and journey</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Card -->
+                    <div class="app-card app-icon cursor-pointer group" onclick="window.location.href='contact.html'">
+                        <div class="window-bevel p-6 bg-surface-dim h-full flex flex-col items-center justify-center gap-4 hover:brightness-110">
+                            <div class="p-4 bg-gradient-to-br from-tertiary to-primary rounded-full">
+                                <span class="material-symbols-outlined text-white text-6xl">mail</span>
+                            </div>
+                            <div class="text-center">
+                                <h3 class="font-headline font-bold text-lg mb-2">Contact</h3>
+                                <p class="text-xs text-secondary max-w-xs">Get in touch and let's work together</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex-grow text-center md:text-left">
-                    <h1 class="font-headline text-4xl font-extrabold text-primary mb-4 tracking-tighter">Advaith Prabhu</h1>
-                    <p class="text-sm text-secondary mb-2 font-bold">ASPIRING QUANT</p>
-                    <p class="font-body text-secondary text-base leading-relaxed max-w-lg mb-4">
-                        Passionate about quantitative finance and data-driven research. Building tools at the intersection of math, markets, and code.
-                    </p>
-                    <p class="font-body text-on-surface-variant text-sm leading-relaxed max-w-lg mb-4">
-                        2 years of coding experience · Singapore
-                    </p>
-                    <div class="mt-8 flex flex-wrap justify-center md:justify-start gap-4">
-                        <a href="https://linkedin.com/in/advaith-prabhu" target="_blank" rel="noopener"
-                            class="window-bevel bg-primary text-white px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110 inline-block">Hire Me</a>
-                        <a href="f8b3939f-db9d-462d-af42-1f7faa499d85.pdf" download
-                            class="window-bevel bg-surface-dim text-black px-6 py-2 font-bold active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110 inline-block">Download CV</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- "Projects" Window (Lower Right) -->
-        <div class="hidden md:block absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[350px] window-bevel bg-surface-dim z-30 window-container">
-            <div class="title-bar-gradient h-8 flex items-center px-1 justify-between">
-                <div class="flex items-center gap-2 px-1">
-                    <span class="material-symbols-outlined text-white text-sm">folder_open</span>
-                    <span class="text-white font-headline font-bold text-sm tracking-tight">Recent Projects</span>
-                </div>
-                <div class="flex gap-1">
-                    <button
-                        class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
-                </div>
-            </div>
-            <div class="bg-surface-dim p-4">
-                <div class="inset-bevel bg-white p-4 grid grid-cols-2 gap-4 h-auto overflow-y-auto max-h-48">
-                    <a href="https://github.com/advaithprabhudev/Market-Microstructure-Analysis-using-Shannon-Entropy" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
-                        <span class="material-symbols-outlined text-4xl text-primary">folder_open</span>
-                        <span class="text-[10px] font-label text-center mt-1">Shannon Entropy</span>
-                    </a>
-                    <a href="https://github.com/advaithprabhudev/Momentum-Research-Project" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
-                        <span class="material-symbols-outlined text-4xl text-primary">folder_open</span>
-                        <span class="text-[10px] font-label text-center mt-1">Momentum Strategies</span>
-                    </a>
-                    <a href="https://github.com/advaithprabhudev/Finance-Automation-Tracker" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
-                        <span class="material-symbols-outlined text-4xl text-primary">folder_open</span>
-                        <span class="text-[10px] font-label text-center mt-1">Finance Tracker</span>
-                    </a>
-                    <a href="https://github.com/advaithprabhudev" target="_blank" rel="noopener" class="flex flex-col items-center group cursor-pointer transition-transform duration-200 hover:scale-110">
-                        <span class="material-symbols-outlined text-4xl text-tertiary">description</span>
-                        <span class="text-[10px] font-label text-center mt-1">View All</span>
-                    </a>
-                </div>
-                <div class="mt-2 text-[10px] text-on-surface-variant flex justify-between">
-                    <span>3 projects</span>
-                    <span>Active</span>
-                </div>
-            </div>
-        </div>
-        <!-- "System Identity" Window (Floating) -->
-        <div class="absolute top-[40%] right-[10%] w-[280px] window-bevel bg-surface-dim z-40 shadow-lg window-container">
-            <div class="bg-secondary-fixed h-8 flex items-center px-1 justify-between">
-                <div class="flex items-center gap-2 px-1">
-                    <span class="material-symbols-outlined text-on-surface text-sm">info</span>
-                    <span class="text-on-surface font-headline font-bold text-sm tracking-tight">System Status</span>
-                </div>
-                <button class="window-bevel bg-surface-dim w-5 h-5 flex items-center justify-center text-xs hover:brightness-110 active:translate-x-[1px] active:translate-y-[1px]">×</button>
-            </div>
-            <div class="p-4 flex gap-4">
-                <div class="w-16 h-16 window-bevel bg-white flex-shrink-0 overflow-hidden">
-                    <img alt="System Badge" class="w-full h-full object-cover"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKKfwQuBHmB25nXKN-dR_moPZfSoDJTT1KK6cLYqSp6JMyE-SZE3qAmDiejdqmH7EpBQO2tmWr5GDO-lkL8IKz_jaN0DLwe2bmQ62p8z47V5UpAKHkBE7jyG2wZce1jlTqWJs-ANkr4VSeW2iGfbj0LSmRRiIqr-31gpheF0foucfEgS2VF46gS5M-pV2AeFAe_pu8_UDOirTh_CPzfgdvZ8uUa3QrJuEP16R_jY7ZJT0cULnFjVibVt_VPb-82r5yVR1iDw9gwQ" />
-                </div>
-                <div class="flex flex-col justify-center">
-                    <span class="text-[12px] font-bold">Aspiring Quant</span>
-                    <span class="text-[10px] text-secondary-container mt-1">Status: Ready</span>
-                    <p class="text-[10px] mt-2 leading-tight">Available for projects...</p>
-                </div>
-            </div>
-            <div class="bg-surface-container-low px-4 py-2 border-t border-secondary flex justify-end">
-                <button
-                    class="window-bevel bg-surface-dim px-4 py-1 text-[11px] font-bold active:translate-x-[1px] active:translate-y-[1px] hover:brightness-110">OK</button>
             </div>
         </div>
     </main>
-    <!-- SideNavBar -->
-    <aside
-        class="hidden md:flex fixed left-0 top-1/2 -translate-y-1/2 h-auto flex flex-col w-12 p-2 bg-slate-300 dark:bg-slate-400 docked border-r-2 border-slate-600 z-50 gap-4">
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
-            title="Portfolio">
-            <span class="material-symbols-outlined text-black">folder</span>
-        </button>
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
-            title="Contact">
-            <span class="material-symbols-outlined text-black">mail</span>
-        </button>
-        <button class="window-bevel bg-slate-300 w-8 h-8 flex items-center justify-center hover:brightness-110 transition-all duration-150"
-            title="Settings">
-            <span class="material-symbols-outlined text-black">settings</span>
-        </button>
-    </aside>
+
     <!-- BottomNavBar -->
     <nav
         class="fixed bottom-0 left-0 w-full z-50 flex items-center px-1 gap-1 bg-slate-300 dark:bg-slate-400 h-12 border-t-2 border-t-white">
         <!-- Start Button -->
-        <div class="relative">
-            <button id="startBtn"
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px] transition-all duration-150">
-                <span class="material-symbols-outlined font-black italic text-blue-900">menu</span>
-                <span class="font-headline font-extrabold text-blue-900 italic uppercase text-sm">Start</span>
-            </button>
-            <div id="startMenu" class="start-menu">
-                <div class="start-menu-item" onclick="window.location.href='start.html'">
-                    <span class="material-symbols-outlined text-sm">dashboard</span>
-                    Applications
-                </div>
-                <div class="start-menu-item" onclick="alert('Not implemented')">
-                    <span class="material-symbols-outlined text-sm">settings</span>
-                    Settings
-                </div>
-                <div class="start-menu-item" onclick="alert('Not implemented')">
-                    <span class="material-symbols-outlined text-sm">info</span>
-                    Help
-                </div>
-            </div>
-        </div>
+        <button id="startBtn"
+            class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 active:border-t-slate-800 active:border-l-slate-800 active:border-b-white active:border-r-white active:translate-x-[1px] active:translate-y-[1px] transition-all duration-150"
+            onclick="window.location.href='index.html'">
+            <span class="material-symbols-outlined font-black italic text-blue-900">menu</span>
+            <span class="font-headline font-extrabold text-blue-900 italic uppercase text-sm">Start</span>
+        </button>
         <div class="h-8 w-[2px] bg-white mx-1 opacity-50"></div>
         <!-- Taskbar Items -->
         <div class="flex items-center gap-1 overflow-x-auto no-scrollbar">
             <button id="portfolioBtn"
-                class="flex items-center gap-2 px-3 h-10 border-2 border-t-slate-800 border-l-slate-800 border-b-white border-r-white bg-slate-400 font-bold transition-all duration-150"
-                onclick="window.location.href='index.html'">
+                class="flex items-center gap-2 px-3 h-10 border-2 border-t-white border-l-white border-b-slate-800 border-r-slate-800 bg-slate-300 hover:bg-slate-200 font-bold transition-all duration-150"
+                onclick="window.location.href='portfolio.html'">
                 <span class="material-symbols-outlined text-sm">folder_open</span>
                 <span class="font-label text-[12px] uppercase">Portfolio</span>
             </button>
@@ -436,22 +348,6 @@
         </button>
     </nav>
 
-    <script>
-        // Start button menu toggle
-        const startBtn = document.getElementById('startBtn');
-        const startMenu = document.getElementById('startMenu');
-
-        startBtn.addEventListener('click', () => {
-            startMenu.classList.toggle('open');
-        });
-
-        // Close menu when clicking elsewhere
-        document.addEventListener('click', (e) => {
-            if (!startBtn.contains(e.target) && !startMenu.contains(e.target)) {
-                startMenu.classList.remove('open');
-            }
-        });
-    </script>
 </body>
 
 </html>
