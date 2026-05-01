@@ -1,856 +1,1862 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Advaith Prabhu — Portfolio OS</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=VT323&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{overflow:hidden;font-family:'Work Sans',sans-serif;user-select:none;cursor:default;}
-.material-symbols-outlined{
-  font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
-  font-feature-settings:'liga';
-  -webkit-font-feature-settings:'liga';
-  text-rendering:optimizeLegibility;
-  font-family:'Material Symbols Outlined';
-  display:inline-block;
-}
-
-/* ── BOOT ── */
-.boot{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity .7s ease;}
-.boot.fade{opacity:0;pointer-events:none;}
-.win-flag{display:grid;grid-template-columns:1fr 1fr;gap:3px;width:56px;height:56px;}
-.win-flag div{border-radius:2px;}
-.boot-bar-wrap{width:300px;height:22px;background:#0a0a1a;border:1px solid #222;border-radius:11px;overflow:hidden;margin:28px 0 10px;}
-.boot-bar{height:100%;border-radius:11px;background:linear-gradient(90deg,#1e5fd4,#3a8eed,#7ec8ff);transition:width .4s ease-out;box-shadow:0 0 16px rgba(100,181,246,.7);}
-
-/* ── DESKTOP & WALLPAPER ── */
-.desktop{position:fixed;inset:0;overflow:hidden;}
-.wallpaper{position:absolute;inset:0;overflow:hidden;}
-.sky{position:absolute;inset:0;background:linear-gradient(180deg,#0d4f8c 0%,#1a6db8 15%,#2e8fd6 30%,#5aadea 45%,#8fccf0 58%,#c5e8f8 67%,#d8f0c8 68%,#90d060 76%,#5ab835 85%,#3a9020 93%,#2a7018 100%);animation:skyPulse 12s ease-in-out infinite alternate;}
-@keyframes skyPulse{0%{filter:brightness(1) saturate(1);}100%{filter:brightness(1.06) saturate(1.08);}}
-.sun{position:absolute;top:8%;right:18%;width:220px;height:220px;background:radial-gradient(circle,rgba(255,255,200,.65) 0%,rgba(255,220,80,.25) 35%,transparent 70%);border-radius:50%;animation:sunPulse 6s ease-in-out infinite alternate;}
-@keyframes sunPulse{0%{transform:scale(1);opacity:.8;}100%{transform:scale(1.08);opacity:1;}}
-.cloud{position:absolute;border-radius:50px;background:rgba(255,255,255,.92);}
-.cloud::before,.cloud::after{content:'';position:absolute;background:rgba(255,255,255,.92);border-radius:50%;}
-.cloud1{top:12%;width:180px;height:55px;animation:float1 50s linear -5s infinite;}
-.cloud1::before{width:80px;height:70px;top:-30px;left:30px;}
-.cloud1::after{width:70px;height:60px;top:-20px;left:90px;}
-.cloud2{top:20%;width:120px;height:38px;animation:float2 70s linear -25s infinite;}
-.cloud2::before{width:55px;height:50px;top:-22px;left:18px;}
-.cloud2::after{width:50px;height:42px;top:-14px;left:60px;}
-.cloud3{top:6%;width:240px;height:70px;animation:float3 90s linear -40s infinite;}
-.cloud3::before{width:110px;height:90px;top:-40px;left:40px;}
-.cloud3::after{width:90px;height:76px;top:-28px;left:120px;}
-@keyframes float1{from{transform:translateX(-250px);}to{transform:translateX(110vw);}}
-@keyframes float2{from{transform:translateX(-180px);}to{transform:translateX(110vw);}}
-@keyframes float3{from{transform:translateX(-300px);}to{transform:translateX(110vw);}}
-
-/* ── DESKTOP ICONS ── */
-.desk-icon{display:flex;flex-direction:column;align-items:center;gap:4px;padding:7px;width:76px;cursor:pointer;transition:transform .28s cubic-bezier(.34,1.56,.64,1),filter .15s;border:1px solid transparent;}
-.desk-icon:hover{transform:perspective(450px) rotateY(10deg) rotateX(-6deg) translateY(-5px) scale(1.1);filter:drop-shadow(0 8px 12px rgba(0,0,0,.35));}
-.desk-icon.sel{background:rgba(0,0,128,.25);border:1px dotted rgba(255,255,255,.6);}
-.desk-icon.sel .icon-lbl{background:#000080;color:#fff;}
-.icon-lbl{font-family:'Work Sans',sans-serif;font-size:11px;color:#fff;text-align:center;padding:1px 4px;max-width:74px;line-height:1.3;word-break:break-word;text-shadow:1px 1px 3px rgba(0,0,0,.9),0 0 6px rgba(0,0,0,.6);}
-
-/* ── WINDOW FRAME ── */
-.win-frame{position:fixed;display:flex;flex-direction:column;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #666;border-right:2px solid #666;background:#c0c0c0;box-shadow:6px 6px 0 rgba(0,0,0,.35),12px 12px 0 rgba(0,0,0,.12);}
-.win-open{animation:winOpen .45s cubic-bezier(.34,1.56,.64,1) both;}
-.win-close{animation:winClose .32s cubic-bezier(.25,.46,.45,.94) both;}
-@keyframes winOpen{from{opacity:0;transform:perspective(1100px) rotateX(14deg) scale(.82) translateY(28px);filter:blur(3px);}to{opacity:1;transform:perspective(1100px) rotateX(0deg) scale(1) translateY(0);filter:blur(0);}}
-@keyframes winClose{from{opacity:1;transform:perspective(1100px) scale(1);}to{opacity:0;transform:perspective(1100px) rotateX(-12deg) scale(.7) translateY(36px);filter:blur(4px);}}
-
-.win-tbar{height:30px;flex-shrink:0;background:var(--tbar-bg,linear-gradient(90deg,#004040 0%,#006565 50%,#008888 100%));display:flex;align-items:center;padding:0 4px;position:relative;overflow:hidden;}
-.win-tbar::after{content:'';position:absolute;top:0;left:0;right:0;height:50%;background:linear-gradient(180deg,rgba(255,255,255,.22) 0%,transparent 100%);pointer-events:none;}
-.wctrl{width:22px;height:22px;display:flex;align-items:center;justify-content:center;border-radius:3px;font-size:11px;font-weight:700;cursor:pointer;color:#fff;font-family:'Work Sans',sans-serif;border:1px solid rgba(0,0,0,.4);transition:filter .1s,transform .1s;position:relative;z-index:1;}
-.wctrl:hover{filter:brightness(1.4);transform:scale(1.08);}
-.wctrl:active{filter:brightness(.9);transform:scale(.94);}
-.wctrl.cl{background:linear-gradient(135deg,#e84848,#b81820);}
-.wctrl.mn{background:linear-gradient(135deg,#4070d8,#2848b0);}
-.wctrl.mx{background:linear-gradient(135deg,#4070d8,#2848b0);}
-
-.addr{background:#c0c0c0;padding:3px 5px;display:flex;align-items:center;gap:5px;border-bottom:1px solid #999;flex-shrink:0;}
-.addr-btn{background:#c0c0c0;border:2px solid;border-color:#fff #666 #666 #fff;padding:2px 4px;cursor:pointer;display:flex;align-items:center;}
-.addr-btn:active{border-color:#666 #fff #fff #666;transform:translate(1px,1px);}
-.addr-path{flex:1;background:#fff;border:2px solid;border-color:#666 #fff #fff #666;padding:1px 7px;height:22px;display:flex;align-items:center;font-family:'Work Sans',sans-serif;font-size:11px;color:#555;overflow:hidden;}
-.win-status{height:22px;background:#c0c0c0;border-top:1px solid #999;display:flex;align-items:center;padding:0 8px;flex-shrink:0;font-family:'Work Sans',sans-serif;font-size:11px;color:#444;gap:12px;}
-.status-panel{border:1px solid;border-color:#666 #fff #fff #666;padding:1px 8px;font-size:10px;}
-
-/* ── TASKBAR ── */
-.taskbar{position:fixed;bottom:0;left:0;right:0;height:40px;z-index:5000;background:linear-gradient(180deg,#e4e4e4 0%,#ccc 30%,#b8b8b8 100%);border-top:2px solid #fff;display:flex;align-items:center;padding:0 4px;gap:3px;box-shadow:0 -2px 10px rgba(0,0,0,.25);}
-.start-btn{display:flex;align-items:center;gap:6px;height:33px;padding:0 14px;background:linear-gradient(180deg,#58b030 0%,#3c9010 50%,#2a6c08 100%);border-top:2px solid #a8e068;border-left:2px solid #a8e068;border-bottom:2px solid #184008;border-right:2px solid #184008;border-radius:0 15px 15px 0;color:#fff;font-weight:700;font-family:'Space Grotesk',sans-serif;font-size:14px;cursor:pointer;letter-spacing:.3px;box-shadow:2px 2px 4px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.2);margin-left:-4px;transition:filter .1s,transform .1s;}
-.start-btn:hover{filter:brightness(1.1);transform:translateY(-1px);}
-.start-btn:active{transform:translateY(1px);filter:brightness(.92);}
-.start-btn.active{border-top:2px solid #184008;border-left:2px solid #184008;border-bottom:2px solid #a8e068;border-right:2px solid #a8e068;transform:translateY(1px);}
-.task-btn{display:flex;align-items:center;gap:6px;height:28px;padding:0 9px;min-width:130px;max-width:170px;font-family:'Work Sans',sans-serif;font-size:11px;cursor:pointer;border:2px solid;border-color:#fff #666 #666 #fff;background:linear-gradient(180deg,#ddd 0%,#c8c8c8 100%);overflow:hidden;transition:filter .1s;}
-.task-btn.on{border-color:#666 #fff #fff #666;background:linear-gradient(180deg,#aaa 0%,#bbb 100%);transform:translateY(1px);}
-.task-btn:hover:not(.on){filter:brightness(1.05);}
-.sys-tray{margin-left:auto;height:100%;display:flex;align-items:center;gap:8px;padding:0 10px;background:linear-gradient(180deg,#c4c4c4,#b0b0b0);border:2px solid;border-color:#666 #fff #fff #666;}
-
-/* ── START MENU ── */
-.start-menu{position:fixed;bottom:40px;left:0;width:330px;background:#fff;border:2px solid #666;border-bottom:none;box-shadow:4px 0 16px rgba(0,0,0,.35);z-index:8000;animation:menuUp .22s cubic-bezier(.34,1.56,.64,1) both;}
-@keyframes menuUp{from{opacity:0;transform:translateY(14px) scale(.97);}to{opacity:1;transform:translateY(0) scale(1);}}
-.menu-hdr{background:linear-gradient(90deg,#0a2070,#1a60d0 60%,#3890f0 100%);padding:12px 16px;display:flex;align-items:center;gap:14px;}
-.menu-item{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:13px;border-left:3px solid transparent;transition:background .1s,border-color .1s;}
-.menu-item:hover{background:#0a2070;color:#fff;border-left-color:#90c8ff;}
-.menu-item:hover span.material-symbols-outlined{color:#fff!important;}
-.menu-divider{height:1px;background:#ddd;margin:4px 0;}
-
-/* ── DIALOG ── */
-.dialog-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:9500;display:flex;align-items:center;justify-content:center;animation:fadeIn .15s ease;}
-@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-.dialog{background:#c0c0c0;width:320px;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #666;border-right:2px solid #666;box-shadow:6px 6px 0 rgba(0,0,0,.4);animation:winOpen .3s cubic-bezier(.34,1.56,.64,1) both;}
-.dialog-tbar{background:linear-gradient(90deg,#082080,#2878e8);height:26px;display:flex;align-items:center;padding:0 8px;gap:8px;}
-
-/* ── CRT OVERLAY ── */
-.crt{position:fixed;inset:0;pointer-events:none;z-index:9000;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.07) 2px,rgba(0,0,0,.07) 3px),repeating-linear-gradient(90deg,rgba(255,0,0,.015),rgba(0,255,0,.01),rgba(0,0,255,.015));background-size:100% 3px,3px 100%;}
-
-/* ── TWEAKS PANEL ── */
-.tweaks-panel{position:fixed;bottom:50px;right:16px;width:220px;background:#c0c0c0;z-index:8500;border-top:2px solid #fff;border-left:2px solid #fff;border-bottom:2px solid #666;border-right:2px solid #666;box-shadow:4px 4px 0 rgba(0,0,0,.3);animation:winOpen .3s cubic-bezier(.34,1.56,.64,1) both;}
-.tweaks-panel .win-tbar{height:26px;}
-
-/* ── KEYFRAMES ── */
-@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
-@keyframes statusPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.3);opacity:.7;}}
-</style>
-</head>
-<body>
-<div id="root"></div>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
-<script type="text/babel">
-const { useState, useEffect, useRef, useCallback } = React;
-
-/* ── shared micro-styles ── */
-const tag = (bg, color) => ({
-  background: bg, color, padding: '3px 10px', fontSize: 11,
-  fontWeight: 700, fontFamily: "'Work Sans', sans-serif",
-  border: `1px solid ${color}22`, display: 'inline-block', letterSpacing: 0.3,
-});
-const sectionTitle = {
-  fontFamily: "'Space Grotesk', sans-serif", fontSize: 11, fontWeight: 700,
-  textTransform: 'uppercase', letterSpacing: 2, color: '#474eb7',
-  marginBottom: 10, paddingBottom: 5, borderBottom: '1px solid #e8eaff',
-};
-const insetField = {
-  width: '100%', padding: '6px 8px', fontSize: 12,
-  fontFamily: "'Work Sans', sans-serif",
-  border: '2px solid', borderColor: '#5d5e5f #ddd #ddd #5d5e5f',
-  outline: 'none', background: 'white',
-};
-
-/* ══════════════════════
-   PORTFOLIO CONTENT
-══════════════════════ */
-function PortfolioContent() {
-  const projects = [
-    {
-      name: 'Shannon Entropy Analysis',
-      desc: 'Market microstructure analysis using Shannon Entropy to measure information flow and market efficiency.',
-      tags: ['Python', 'QuantLib', 'Pandas'],
-      url: 'https://github.com/advaithprabhudev/Market-Microstructure-Analysis-using-Shannon-Entropy',
-      icon: 'analytics', color: '#474eb7',
-    },
-    {
-      name: 'Momentum Research',
-      desc: 'ML-filtered momentum strategy evaluation with backtesting, performance metrics, and Streamlit dashboard.',
-      tags: ['PyTorch', 'NumPy', 'Streamlit'],
-      url: 'https://github.com/advaithprabhudev/Momentum-Research-Project',
-      icon: 'trending_up', color: '#006565',
-    },
-    {
-      name: 'Finance Automation',
-      desc: 'Automated financial tracker and operations dashboard using yfinance and live market data feeds.',
-      tags: ['Python', 'yfinance', 'Git'],
-      url: 'https://github.com/advaithprabhudev/Finance-Automation-Tracker',
-      icon: 'account_balance', color: '#5d5e5f',
-    },
-  ];
-  const [hovered, setHovered] = useState(null);
-  return (
-    <div style={{background:'#fff',height:'100%',overflowY:'auto',fontFamily:"'Work Sans',sans-serif"}}>
-      {/* Hero */}
-      <div style={{background:'linear-gradient(135deg,#0a246a 0%,#474eb7 45%,#006565 100%)',padding:'28px 28px 24px',color:'white',position:'relative',overflow:'hidden'}}>
-        <div style={{position:'absolute',inset:0,pointerEvents:'none',backgroundImage:'repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.08) 3px,rgba(0,0,0,0.08) 4px)'}}/>
-        <div style={{position:'absolute',top:0,left:0,right:0,height:'50%',background:'linear-gradient(180deg,rgba(255,255,255,0.08) 0%,transparent 100%)',pointerEvents:'none'}}/>
-        <div style={{display:'flex',gap:20,alignItems:'center',position:'relative'}}>
-          <div style={{width:80,height:80,flexShrink:0,border:'3px solid rgba(255,255,255,0.4)',background:'rgba(255,255,255,0.1)',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'4px 4px 0 rgba(0,0,0,0.3)'}}>
-            <span className="material-symbols-outlined" style={{fontSize:44,color:'rgba(255,255,255,0.9)'}}>person</span>
-          </div>
-          <div>
-            <h1 style={{fontFamily:"'Space Grotesk'",fontSize:30,fontWeight:700,letterSpacing:'-0.02em',margin:0,lineHeight:1}}>Advaith Prabhu</h1>
-            <p style={{fontFamily:"'VT323',monospace",fontSize:16,margin:'5px 0 8px',color:'rgba(255,255,255,0.75)',letterSpacing:2}}>ASPIRING QUANTITATIVE ANALYST</p>
-            <p style={{fontSize:12,color:'rgba(255,255,255,0.6)',margin:0}}>📍 Singapore &nbsp;·&nbsp; Python · QuantLib · PyTorch &nbsp;·&nbsp; 2 yrs exp</p>
-          </div>
-        </div>
-        <div style={{marginTop:18,display:'flex',gap:8,position:'relative',flexWrap:'wrap'}}>
-          {[
-            {label:'Hire Me',href:'https://linkedin.com/in/advaith-prabhu',primary:true},
-            {label:'Download CV',href:'f8b3939f-db9d-462d-af42-1f7faa499d85.pdf',primary:false,download:true},
-            {label:'GitHub',href:'https://github.com/advaithprabhudev',primary:false},
-          ].map(b=>(
-            <a key={b.label} href={b.href} target={b.download?undefined:'_blank'} rel="noopener" download={b.download||undefined}
-              style={{padding:'6px 18px',fontSize:12,fontWeight:700,fontFamily:"'Space Grotesk'",textDecoration:'none',letterSpacing:0.5,cursor:'pointer',display:'inline-block',background:b.primary?'white':'rgba(255,255,255,0.12)',color:b.primary?'#474eb7':'white',border:'1px solid '+(b.primary?'white':'rgba(255,255,255,0.3)'),boxShadow:b.primary?'2px 2px 0 rgba(0,0,0,0.2)':'none'}}>
-              {b.label}
-            </a>
-          ))}
-        </div>
-      </div>
-      {/* Bio */}
-      <div style={{padding:'16px 24px',borderBottom:'1px solid #eee',background:'#fafafa'}}>
-        <p style={{fontSize:13,lineHeight:1.75,color:'#333',margin:0}}>
-          Passionate about the intersection of <strong>mathematics, finance, and code</strong>. I build quantitative tools to analyze market behavior and develop algorithmic trading strategies. Currently at GIIS Punggol studying CS, Mathematics, and Economics.
-        </p>
-      </div>
-      {/* Skills */}
-      <div style={{padding:'14px 24px',borderBottom:'1px solid #eee'}}>
-        <div style={sectionTitle}>Technical Stack</div>
-        <div style={{display:'flex',flexWrap:'wrap',gap:5}}>
-          {[['Python','#474eb7'],['C++','#006565'],['JavaScript','#5d5e5f'],['QuantLib','#474eb7'],['NumPy','#474eb7'],['Pandas','#474eb7'],['PyTorch','#006565'],['Streamlit','#006565'],['yfinance','#5d5e5f'],['Git','#5d5e5f'],['HTML/CSS','#5d5e5f'],['Tailwind','#5d5e5f']].map(([s,c])=>(
-            <span key={s} style={tag(c+'14',c)}>{s}</span>
-          ))}
-        </div>
-      </div>
-      {/* Projects */}
-      <div style={{padding:'14px 24px 24px'}}>
-        <div style={sectionTitle}>Projects</div>
-        <div style={{display:'grid',gridTemplateColumns:'repeat(3,1fr)',gap:12}}>
-          {projects.map((p,i)=>(
-            <a key={p.name} href={p.url} target="_blank" rel="noopener"
-              onMouseEnter={()=>setHovered(i)} onMouseLeave={()=>setHovered(null)}
-              style={{display:'flex',flexDirection:'column',padding:14,border:`2px solid ${hovered===i?p.color:'#e0e0e0'}`,background:hovered===i?p.color+'08':'#fafafa',textDecoration:'none',transform:hovered===i?'perspective(600px) rotateX(-3deg) translateY(-4px)':'none',transition:'all 0.25s cubic-bezier(0.34,1.56,0.64,1)',boxShadow:hovered===i?`4px 6px 0 ${p.color}30`:'none'}}>
-              <span className="material-symbols-outlined" style={{fontSize:28,color:p.color,marginBottom:8}}>{p.icon}</span>
-              <div style={{fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:12,marginBottom:6,color:'#1a1c1c'}}>{p.name}</div>
-              <div style={{fontSize:11,color:'#666',lineHeight:1.55,flexGrow:1}}>{p.desc}</div>
-              <div style={{marginTop:10,display:'flex',flexWrap:'wrap',gap:4}}>
-                {p.tags.map(t=><span key={t} style={{fontSize:10,background:p.color+'18',color:p.color,padding:'2px 6px',fontWeight:600}}>{t}</span>)}
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ══════════════════════
-   ABOUT CONTENT
-══════════════════════ */
-function AboutContent() {
-  const experiences = [
-    {year:'2025–2026',role:'Student Researcher',org:'GIIS Punggol',detail:'Developed ML-filtered momentum strategy evaluation app with backtesting engine'},
-    {year:'2024',role:'FedEx JA ITC — Top 5 Nationally',org:'Junior Achievement',detail:'Created International Market Entry Strategy, advanced to National Finals'},
-    {year:'2024',role:'International Business Olympiad',org:'Higher Distinction',detail:'Scored 256/300 on business and organizational techniques assessment'},
-    {year:'2023–',role:'Director of Logistics',org:'MedVet RedCross',detail:'Oversee financial operations and project funding for the organization'},
-  ];
-  return (
-    <div style={{background:'#fff',height:'100%',overflowY:'auto',fontFamily:"'Work Sans',sans-serif"}}>
-      {/* Terminal header */}
-      <div style={{background:'#1a1c1c',padding:'14px 18px',fontFamily:"'VT323',monospace",fontSize:15,color:'#7dff7d',lineHeight:1.8}}>
-        {[
-          ['> ','NAME','Advaith Prabhu'],
-          ['> ','ROLE','Aspiring Quantitative Analyst'],
-          ['> ','LOCATION','Singapore, SG'],
-          ['> ','SCHOOL','GIIS Punggol (CS · Math · Economics)'],
-          ['> ','STATUS','<span style="color:#ffff00">Available for opportunities</span>'],
-        ].map(([prefix,key,val],i)=>(
-          <div key={i} dangerouslySetInnerHTML={{__html:`<span style="color:#888">${prefix}</span><span style="color:#5dd">${key}:</span> ${val}`}}/>
-        ))}
-        <div style={{marginTop:4}}>
-          <span style={{color:'#888'}}>&gt; </span>
-          <span style={{color:'#aaa'}}>Loading profile</span>
-          <span style={{animation:'blink 1s step-end infinite'}}>█</span>
-        </div>
-      </div>
-      <div style={{padding:'20px 24px'}}>
-        <section style={{marginBottom:20}}>
-          <div style={sectionTitle}>About</div>
-          <p style={{fontSize:13,lineHeight:1.75,color:'#333',marginBottom:10}}>
-            I'm an aspiring quantitative analyst and software developer from Singapore. My passion lies at the intersection of <strong>mathematics, finance, and coding</strong> — where I build tools to analyze market behavior and develop trading strategies.
-          </p>
-          <p style={{fontSize:13,lineHeight:1.75,color:'#555',margin:0}}>
-            With 2 years of coding experience, I've built a strong foundation in Python, quantitative libraries like QuantLib, and data visualization with Streamlit. Particularly interested in quantitative research, market microstructure, and algorithmic trading.
-          </p>
-        </section>
-        <section style={{marginBottom:20}}>
-          <div style={sectionTitle}>Experience</div>
-          <div style={{position:'relative',paddingLeft:24}}>
-            <div style={{position:'absolute',left:7,top:6,bottom:0,width:2,background:'linear-gradient(180deg,#474eb7,#e0e0e0)'}}/>
-            {experiences.map((e,i)=>(
-              <div key={i} style={{position:'relative',marginBottom:18}}>
-                <div style={{position:'absolute',left:-21,top:4,width:11,height:11,background:'#474eb7',border:'2px solid white',outline:'2px solid #474eb7',boxShadow:'0 0 0 3px rgba(71,78,183,0.15)'}}/>
-                <div style={{fontFamily:"'VT323',monospace",fontSize:12,color:'#888',letterSpacing:1}}>{e.year}</div>
-                <div style={{fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:13,color:'#1a1c1c',margin:'2px 0 1px'}}>{e.role}</div>
-                <div style={{fontSize:11,color:'#474eb7',fontWeight:600,marginBottom:2}}>{e.org}</div>
-                <div style={{fontSize:12,color:'#666',lineHeight:1.5}}>{e.detail}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-        <section>
-          <div style={sectionTitle}>Skills</div>
-          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:10}}>
-            {[
-              {label:'Programming',items:'Python, C++, JavaScript, HTML/CSS'},
-              {label:'Quant Finance',items:'QuantLib, NumPy, Pandas, PyTorch'},
-              {label:'Frameworks',items:'Streamlit, Tailwind CSS, Git'},
-              {label:'Data & Markets',items:'yfinance, Data Analysis, Trading Strategies'},
-            ].map(s=>(
-              <div key={s.label} style={{border:'1px solid #e8eaff',padding:'10px 12px',background:'#fafbff'}}>
-                <div style={{fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:10,color:'#474eb7',textTransform:'uppercase',letterSpacing:1,marginBottom:4}}>{s.label}</div>
-                <div style={{fontSize:12,color:'#555',lineHeight:1.5}}>{s.items}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
-  );
-}
-
-/* ══════════════════════
-   CONTACT CONTENT
-══════════════════════ */
-function ContactContent() {
-  const [form, setForm] = useState({name:'',email:'',subject:'',message:''});
-  const [errors, setErrors] = useState({});
-  const [sent, setSent] = useState(false);
-  const [focused, setFocused] = useState(null);
-
-  const validate = () => {
-    const e = {};
-    if (!form.name.trim()) e.name = 'Required';
-    if (!form.email.trim() || !form.email.includes('@')) e.email = 'Valid email needed';
-    if (!form.subject.trim()) e.subject = 'Required';
-    if (!form.message.trim()) e.message = 'Required';
-    return e;
-  };
-
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length) { setErrors(errs); return; }
-    setSent(true);
-  };
-
-  if (sent) {
-    return (
-      <div style={{background:'#fff',height:'100%',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',padding:40,gap:12}}>
-        <div style={{width:72,height:72,background:'linear-gradient(135deg,#474eb7,#6068d2)',display:'flex',alignItems:'center',justifyContent:'center',boxShadow:'4px 4px 0 rgba(71,78,183,0.3)'}}>
-          <span className="material-symbols-outlined" style={{fontSize:40,color:'white'}}>check</span>
-        </div>
-        <h2 style={{fontFamily:"'Space Grotesk'",fontSize:20,fontWeight:700,color:'#474eb7',margin:0}}>Message Sent!</h2>
-        <p style={{fontSize:13,color:'#666',textAlign:'center',maxWidth:280,lineHeight:1.6,margin:0}}>Thanks for reaching out. Advaith will respond as soon as possible.</p>
-        <button onClick={()=>{setSent(false);setForm({name:'',email:'',subject:'',message:''});}}
-          style={{marginTop:8,padding:'7px 22px',background:'#474eb7',color:'white',border:'none',cursor:'pointer',fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:12,letterSpacing:0.5}}>
-          Send Another
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <div style={{background:'#fff',height:'100%',overflowY:'auto',display:'grid',gridTemplateColumns:'1fr 1fr',fontFamily:"'Work Sans',sans-serif"}}>
-      {/* Form */}
-      <div style={{padding:'20px 22px',borderRight:'1px solid #e8e8e8'}}>
-        <h2 style={{fontFamily:"'Space Grotesk'",fontSize:17,fontWeight:700,color:'#474eb7',margin:'0 0 4px'}}>Get In Touch</h2>
-        <p style={{fontSize:11,color:'#888',marginBottom:18}}>Have a question or want to collaborate?</p>
-        <form onSubmit={handleSubmit} style={{display:'flex',flexDirection:'column',gap:12}}>
-          {[
-            {id:'name',label:'Name',type:'text',ph:'Your name'},
-            {id:'email',label:'Email',type:'email',ph:'your@email.com'},
-            {id:'subject',label:'Subject',type:'text',ph:'What is this about?'},
-          ].map(f=>(
-            <div key={f.id}>
-              <label style={{fontSize:10,fontWeight:700,color:'#444',display:'block',marginBottom:3,textTransform:'uppercase',letterSpacing:0.8}}>{f.label}</label>
-              <input type={f.type} placeholder={f.ph} value={form[f.id]}
-                onChange={e=>{setForm(p=>({...p,[f.id]:e.target.value}));setErrors(p=>({...p,[f.id]:undefined}));}}
-                onFocus={()=>setFocused(f.id)} onBlur={()=>setFocused(null)}
-                style={{...insetField,outline:focused===f.id?'2px solid #474eb7':'none',borderColor:errors[f.id]?'#ba1a1a #ddd #ddd #ba1a1a':'#5d5e5f #ddd #ddd #5d5e5f'}}
-              />
-              {errors[f.id]&&<span style={{fontSize:10,color:'#ba1a1a'}}>{errors[f.id]}</span>}
-            </div>
-          ))}
-          <div>
-            <label style={{fontSize:10,fontWeight:700,color:'#444',display:'block',marginBottom:3,textTransform:'uppercase',letterSpacing:0.8}}>Message</label>
-            <textarea rows={4} placeholder="Your message..." value={form.message}
-              onChange={e=>{setForm(p=>({...p,message:e.target.value}));setErrors(p=>({...p,message:undefined}));}}
-              onFocus={()=>setFocused('message')} onBlur={()=>setFocused(null)}
-              style={{...insetField,resize:'vertical',outline:focused==='message'?'2px solid #474eb7':'none',borderColor:errors.message?'#ba1a1a #ddd #ddd #ba1a1a':'#5d5e5f #ddd #ddd #5d5e5f'}}
-            />
-            {errors.message&&<span style={{fontSize:10,color:'#ba1a1a'}}>{errors.message}</span>}
-          </div>
-          <div style={{display:'flex',gap:8,marginTop:4}}>
-            <button type="submit" style={{padding:'7px 20px',background:'#474eb7',color:'white',border:'none',cursor:'pointer',fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:12,boxShadow:'2px 2px 0 rgba(0,0,0,0.2)'}}>Send Message</button>
-            <button type="button" onClick={()=>setForm({name:'',email:'',subject:'',message:''})}
-              style={{padding:'7px 14px',background:'#dadada',color:'#333',border:'2px solid',borderColor:'white white #5d5e5f #5d5e5f',cursor:'pointer',fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:12}}>Clear</button>
-          </div>
-        </form>
-      </div>
-      {/* Contact info */}
-      <div style={{padding:'20px 22px',background:'#f9f9fb'}}>
-        <h2 style={{fontFamily:"'Space Grotesk'",fontSize:12,fontWeight:700,color:'#474eb7',marginBottom:18,textTransform:'uppercase',letterSpacing:1.5}}>Connect</h2>
-        <div style={{display:'flex',flexDirection:'column',gap:14,marginBottom:22}}>
-          {[
-            {icon:'business',label:'LinkedIn',val:'linkedin.com/in/advaith-prabhu',href:'https://linkedin.com/in/advaith-prabhu'},
-            {icon:'code',label:'GitHub',val:'github.com/advaithprabhudev',href:'https://github.com/advaithprabhudev'},
-            {icon:'location_on',label:'Location',val:'Singapore, SG',href:null},
-          ].map(c=>(
-            <div key={c.label} style={{display:'flex',gap:10,alignItems:'flex-start'}}>
-              <div style={{width:30,height:30,background:'#474eb714',display:'flex',alignItems:'center',justifyContent:'center',flexShrink:0,border:'1px solid #e8eaff'}}>
-                <span className="material-symbols-outlined" style={{fontSize:15,color:'#474eb7'}}>{c.icon}</span>
-              </div>
-              <div>
-                <div style={{fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:10,color:'#666',textTransform:'uppercase',letterSpacing:0.8}}>{c.label}</div>
-                {c.href
-                  ? <a href={c.href} target="_blank" rel="noopener" style={{fontSize:12,color:'#474eb7',textDecoration:'none'}}>{c.val}</a>
-                  : <div style={{fontSize:12,color:'#555'}}>{c.val}</div>}
-              </div>
-            </div>
-          ))}
-        </div>
-        {/* Status badge */}
-        <div style={{padding:'12px 14px',background:'#e8f5e9',border:'1px solid #a5d6a7'}}>
-          <div style={{display:'flex',alignItems:'center',gap:8,marginBottom:5}}>
-            <div style={{width:8,height:8,background:'#4caf50',borderRadius:'50%',animation:'statusPulse 2s ease-in-out infinite'}}/>
-            <span style={{fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:10,color:'#2e7d32',textTransform:'uppercase',letterSpacing:0.8}}>Available</span>
-          </div>
-          <p style={{fontSize:11,color:'#555',lineHeight:1.55,margin:0}}>Open to internships, research collaborations, and quantitative finance roles.</p>
-        </div>
-        {/* Terminal signature */}
-        <div style={{marginTop:18,fontFamily:"'VT323',monospace",fontSize:13,color:'#aaa',lineHeight:1.8}}>
-          <div><span style={{color:'#474eb7'}}>advaith@portfolio</span><span style={{color:'#888'}}>:~$</span> ping me</div>
-          <div style={{color:'#7dff7d'}}>64 bytes from advaith: response_time=fast</div>
-          <div style={{animation:'blink 1s step-end infinite',color:'#888'}}>█</div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ══════════════════════
-   BOOT SCREEN
-══════════════════════ */
-function BootScreen({ onDone }) {
-  const [prog, setProg] = useState(0);
-  const [fading, setFading] = useState(false);
-  useEffect(() => {
-    const steps = [[200,14],[600,36],[1000,58],[1500,76],[2000,90],[2400,100]];
-    const timers = steps.map(([d,v]) => setTimeout(() => setProg(v), d));
-    const done = setTimeout(() => { setFading(true); setTimeout(onDone, 700); }, 2900);
-    return () => { timers.forEach(clearTimeout); clearTimeout(done); };
-  }, []);
-  return (
-    <div className={`boot${fading?' fade':''}`}>
-      <div style={{display:'flex',alignItems:'center',gap:20,marginBottom:44}}>
-        <div className="win-flag" style={{filter:'drop-shadow(0 0 20px rgba(100,181,246,.5))'}}>
-          <div style={{background:'#e83838',transform:'perspective(30px) rotateY(8deg) rotateX(-4deg)'}}/>
-          <div style={{background:'#48c840',transform:'perspective(30px) rotateY(-8deg) rotateX(-4deg)'}}/>
-          <div style={{background:'#1c70f0',transform:'perspective(30px) rotateY(8deg) rotateX(4deg)'}}/>
-          <div style={{background:'#f0b010',transform:'perspective(30px) rotateY(-8deg) rotateX(4deg)'}}/>
-        </div>
-        <div>
-          <div style={{fontFamily:"'Work Sans'",color:'#fff',fontSize:44,fontWeight:200,letterSpacing:-2,lineHeight:1}}>Windows</div>
-          <div style={{fontFamily:"'Space Grotesk'",color:'#7ab8e8',fontSize:22,letterSpacing:4,fontWeight:400}}>Portfolio OS</div>
-        </div>
-      </div>
-      <div style={{width:300}}>
-        <div className="boot-bar-wrap">
-          <div className="boot-bar" style={{width:`${prog}%`}}/>
-        </div>
-        <div style={{fontFamily:"'VT323',monospace",color:'#444',fontSize:14,textAlign:'center',letterSpacing:2}}>
-          {prog<30?'INITIALIZING SYSTEM...':prog<60?'LOADING PORTFOLIO...':prog<90?'PREPARING DESKTOP...':'WELCOME'}
-        </div>
-      </div>
-      <div style={{position:'absolute',bottom:28,fontFamily:"'VT323',monospace",color:'#2a2a2a',fontSize:12,letterSpacing:1,textAlign:'center'}}>
-        Copyright © 2025 Advaith Prabhu · Singapore
-      </div>
-    </div>
-  );
-}
-
-/* ══════════════════════
-   WALLPAPER
-══════════════════════ */
-function Wallpaper() {
-  return (
-    <div className="wallpaper">
-      <div className="sky"/>
-      <div className="sun"/>
-      <div className="cloud cloud1"/>
-      <div className="cloud cloud2"/>
-      <div className="cloud cloud3"/>
-      <svg style={{position:'absolute',bottom:40,left:0,width:'100%',height:'45%'}} viewBox="0 0 1440 400" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="hill1" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#3a8820"/><stop offset="100%" stopColor="#2a6a14"/>
-          </linearGradient>
-          <linearGradient id="hill2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#5ab830"/><stop offset="100%" stopColor="#3a8e18"/>
-          </linearGradient>
-        </defs>
-        <path d="M0,200 C180,120 320,170 500,140 C680,110 820,160 1000,120 C1140,95 1290,140 1440,100 L1440,400 L0,400Z" fill="url(#hill1)" opacity=".85"/>
-        <path d="M0,290 C120,250 260,272 420,245 C580,218 720,258 920,225 C1070,202 1240,245 1440,215 L1440,400 L0,400Z" fill="url(#hill2)"/>
-        <path d="M0,290 C120,250 260,272 420,245 C580,218 720,258 920,225 C1070,202 1240,245 1440,215 L1440,232 C1240,262 1070,219 920,242 C720,275 580,235 420,262 C260,289 120,267 0,307Z" fill="rgba(160,255,80,.22)"/>
-      </svg>
-    </div>
-  );
-}
-
-/* ══════════════════════
-   DESKTOP ICON
-══════════════════════ */
-function DesktopIcon({ icon, label, selected, onSelect, onOpen, color='white' }) {
-  const timer = useRef(null);
-  const clicks = useRef(0);
-  const handleClick = (e) => {
-    onSelect(e);
-    clicks.current++;
-    if (clicks.current === 1) {
-      timer.current = setTimeout(() => { clicks.current = 0; }, 400);
-    } else {
-      clearTimeout(timer.current);
-      clicks.current = 0;
-      onOpen();
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>advaith@arch</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-  };
-  return (
-    <div className={`desk-icon${selected?' sel':''}`} onClick={handleClick}>
-      <span className="material-symbols-outlined" style={{fontSize:40,color,filter:'drop-shadow(1px 2px 4px rgba(0,0,0,.7))'}}>{icon}</span>
-      <span className="icon-lbl">{label}</span>
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    :root {
+      --bg: #000000;
+      --bg1: #0d0d0d;
+      --bg2: #111111;
+      --bg3: #1a1a1a;
+      --bg4: #222222;
+      --border: #2a2a2a;
+      --border2: #333333;
+      --text: #cdd6f4;
+      --text2: #a6adc8;
+      --text3: #585b70;
+      --accent: #2dd4bf;
+      /* teal */
+      --accent2: #89b4fa;
+      /* blue */
+      --green: #a6e3a1;
+      --red: #f38ba8;
+      --yellow: #f9e2af;
+      --mauve: #cba6f7;
+      --pink: #f5c2e7;
+      --mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+      --bar-h: 26px;
+      --taskbar-h: 40px;
+      --title-h: 26px;
+    }
+
+    body {
+      font-family: var(--mono);
+      color: var(--text);
+    }
+
+    /* ══ THREE.JS CANVAS ══════════════════════════════════════ */
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    /* ══ TOP BAR (i3bar style) ════════════════════════════════ */
+    #topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--bar-h);
+      background: rgba(0, 0, 0, 0.88);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(8px);
+      user-select: none;
+    }
+
+    /* Workspaces */
+    #ws-list {
+      display: flex;
+      height: 100%;
+      flex-shrink: 0;
+    }
+
+    .ws-item {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 11px;
+      color: var(--text3);
+      cursor: pointer;
+      border-right: 1px solid var(--border);
+      transition: background 100ms, color 100ms;
+      letter-spacing: 0.03em;
+    }
+
+    .ws-item:first-child {
+      border-left: 1px solid var(--border);
+    }
+
+    .ws-item:hover {
+      background: var(--bg3);
+      color: var(--text2);
+    }
+
+    .ws-item.ws-active {
+      background: var(--bg2);
+      color: var(--accent);
+    }
+
+    .ws-item.ws-occupied {
+      color: var(--text2);
+    }
+
+    /* Centered clock */
+    #bar-center {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--text2);
+      letter-spacing: 0.04em;
+      gap: 16px;
+    }
+
+    #bar-date {
+      color: var(--text3);
+    }
+
+    #bar-time {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* System tray */
+    #bar-tray {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      gap: 0;
+      flex-shrink: 0;
+    }
+
+    .tray-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 0 10px;
+      height: 100%;
+      font-size: 11px;
+      color: var(--text2);
+      border-left: 1px solid var(--border);
+      cursor: default;
+      white-space: nowrap;
+    }
+
+    .tray-icon {
+      font-size: 12px;
+    }
+
+    .tray-warn {
+      color: var(--yellow);
+    }
+
+    .tray-alert {
+      color: var(--red);
+    }
+
+    /* ══ DESKTOP ══════════════════════════════════════════════ */
+    #desktop {
+      position: fixed;
+      top: var(--bar-h);
+      left: 0;
+      right: 0;
+      bottom: var(--taskbar-h);
+      z-index: 1;
+    }
+
+    /* ══ WINDOWS ══════════════════════════════════════════════ */
+    .win {
+      position: absolute;
+      display: none;
+      flex-direction: column;
+      background: var(--bg1);
+      border: 1px solid var(--border);
+      border-radius: 0;
+      overflow: hidden;
+      z-index: 100;
+      min-width: 300px;
+      min-height: 180px;
+    }
+
+    .win.win-focused {
+      border-color: var(--border2);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+    }
+
+    /* Titlebar */
+    .win-titlebar {
+      height: var(--title-h);
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-shrink: 0;
+      cursor: grab;
+      border-bottom: 1px solid var(--border);
+      padding: 0;
+    }
+
+    .win-titlebar:active {
+      cursor: grabbing;
+    }
+
+    /* Traffic lights — left side */
+    .win-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 10px;
+      flex-shrink: 0;
+    }
+
+    .wc-btn {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      transition: filter 100ms;
+      outline: none;
+      flex-shrink: 0;
+    }
+
+    .wc-btn:hover {
+      filter: brightness(1.4);
+    }
+
+    .wc-close {
+      background: #f38ba8;
+    }
+
+    .wc-min {
+      background: #f9e2af;
+    }
+
+    .wc-max {
+      background: #a6e3a1;
+    }
+
+    /* Tab-style title */
+    .win-title-tab {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 14px;
+      font-size: 11px;
+      color: var(--text2);
+      border-right: 1px solid var(--border);
+      gap: 6px;
+      letter-spacing: 0.02em;
+    }
+
+    .win-title-tab .tab-icon {
+      color: var(--text3);
+      font-size: 10px;
+    }
+
+    .win-title-tab.active-tab {
+      background: var(--bg2);
+      color: var(--text);
+      border-bottom: 1px solid var(--accent);
+      margin-bottom: -1px;
+    }
+
+    .win-title-spacer {
+      flex: 1;
+    }
+
+    /* Body */
+    .win-body {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .win-body-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .win-body-scroll::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .win-body-scroll::-webkit-scrollbar-thumb {
+      background: var(--border2);
+    }
+
+    /* Resize handle */
+    .win-resize-handle {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 10px;
+      height: 10px;
+      cursor: se-resize;
+      z-index: 10;
+    }
+
+    /* ══ STATUS BAR (bottom of window, like vim) ═════════════ */
+    .win-statusbar {
+      height: 20px;
+      background: var(--accent2);
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      gap: 12px;
+      font-size: 10px;
+      color: var(--bg);
+      flex-shrink: 0;
+    }
+
+    .win-statusbar.green {
+      background: var(--green);
+    }
+
+    .win-statusbar.mauve {
+      background: var(--mauve);
+    }
+
+    .ws-sep {
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    /* ══ TERMINAL WINDOW ═════════════════════════════════════ */
+    .term-body {
+      background: #000;
+      flex: 1;
+      padding: 8px 12px;
+      font-size: 12px;
+      line-height: 1.55;
+      overflow-y: auto;
+      cursor: text;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .t-output {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .t-line {
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .t-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-top: 2px;
+    }
+
+    .t-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: var(--text);
+      font-family: var(--mono);
+      font-size: 12px;
+      flex: 1;
+      caret-color: var(--accent);
+    }
+
+    .t-ps1 {
+      white-space: nowrap;
+    }
+
+    .t-user {
+      color: var(--green);
+    }
+
+    .t-at {
+      color: var(--text3);
+    }
+
+    .t-host {
+      color: var(--accent2);
+    }
+
+    .t-sep {
+      color: var(--text3);
+    }
+
+    .t-path {
+      color: var(--accent2);
+    }
+
+    .t-git {
+      color: var(--mauve);
+    }
+
+    .t-dollar {
+      color: var(--text);
+    }
+
+    .t-c {
+      color: var(--accent);
+    }
+
+    .t-link {
+      color: var(--accent2);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .t-dim {
+      color: var(--text3);
+    }
+
+    .nf-arch {
+      color: var(--accent);
+    }
+
+    .nf-key {
+      color: var(--accent2);
+    }
+
+    .nf-val {
+      color: var(--text);
+    }
+
+    /* ══ NEOFETCH OUTPUT ═════════════════════════════════════ */
+    .neofetch-wrap {
+      display: flex;
+      gap: 24px;
+      padding: 6px 0;
+    }
+
+    .nf-ascii {
+      color: var(--accent);
+      font-size: 11px;
+      line-height: 1.45;
+      flex-shrink: 0;
+      white-space: pre;
+    }
+
+    .nf-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .nf-info-row {
+      display: flex;
+      gap: 0;
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .nf-info-key {
+      color: var(--accent2);
+      font-weight: 600;
+      min-width: 100px;
+    }
+
+    .nf-info-val {
+      color: var(--text);
+    }
+
+    .nf-colors {
+      display: flex;
+      gap: 2px;
+      margin-top: 6px;
+    }
+
+    .nf-color-swatch {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ══ FILE TREE ═══════════════════════════════════════════ */
+    .filetree-body {
+      background: var(--bg1);
+      flex: 1;
+      overflow-y: auto;
+      padding: 4px 0;
+      font-size: 12px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .ft-row {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px 2px 0;
+      cursor: pointer;
+      color: var(--text2);
+      white-space: nowrap;
+      transition: background 80ms;
+    }
+
+    .ft-row:hover {
+      background: var(--bg3);
+    }
+
+    .ft-row.ft-active {
+      background: var(--bg4);
+      color: var(--text);
+    }
+
+    .ft-row.ft-dir {
+      color: var(--accent2);
+    }
+
+    .ft-indent {
+      display: inline-block;
+    }
+
+    .ft-icon {
+      color: var(--text3);
+      font-size: 11px;
+      width: 14px;
+      text-align: center;
+    }
+
+    .ft-icon.dir {
+      color: var(--accent2);
+    }
+
+    .ft-icon.py {
+      color: var(--yellow);
+    }
+
+    .ft-icon.git {
+      color: var(--red);
+    }
+
+    .ft-icon.md {
+      color: var(--text2);
+    }
+
+    .ft-icon.pdf {
+      color: var(--red);
+    }
+
+    /* ══ PROJECTS / EDITOR STYLE ════════════════════════════ */
+    .editor-body {
+      flex: 1;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .editor-gutter {
+      width: 36px;
+      background: var(--bg1);
+      border-right: 1px solid var(--border);
+      padding: 8px 0;
+      font-size: 11px;
+      color: var(--text3);
+      text-align: right;
+      padding-right: 6px;
+      line-height: 1.6;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .editor-content {
+      flex: 1;
+      padding: 8px 16px;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+      color: var(--text);
+    }
+
+    .e-comment {
+      color: var(--text3);
+    }
+
+    .e-kw {
+      color: var(--mauve);
+    }
+
+    .e-fn {
+      color: var(--accent2);
+    }
+
+    .e-str {
+      color: var(--green);
+    }
+
+    .e-num {
+      color: var(--yellow);
+    }
+
+    .e-op {
+      color: var(--text2);
+    }
+
+    .e-cls {
+      color: var(--yellow);
+    }
+
+    .e-dec {
+      color: var(--accent);
+    }
+
+    .e-h1 {
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .e-h2 {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .e-h3 {
+      color: var(--mauve);
+      font-weight: 600;
+    }
+
+    .e-link {
+      color: var(--accent2);
+      text-decoration: underline;
+    }
+
+    .e-bold {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ══ CONTACT / SKILLS WINDOW ════════════════════════════ */
+    .info-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      overflow-y: auto;
+      flex: 1;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border2) transparent;
+    }
+
+    .info-section-title {
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 6px;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+
+    .skill-label-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text2);
+    }
+
+    .skill-track {
+      height: 2px;
+      background: var(--bg3);
+      border-radius: 1px;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 1px;
+      width: 0;
+      transition: width 900ms cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 120ms, background 120ms;
+    }
+
+    .contact-row:hover {
+      border-color: var(--accent);
+      background: var(--bg3);
+    }
+
+    .contact-platform {
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .contact-url {
+      font-size: 10px;
+      color: var(--text3);
+      margin-top: 1px;
+    }
+
+    .contact-arrow {
+      margin-left: auto;
+      color: var(--text3);
+      font-size: 12px;
+    }
+
+    /* chips */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      font-size: 10px;
+      color: var(--text2);
+      border: 1px solid var(--border2);
+      padding: 3px 10px;
+      background: var(--bg2);
+      transition: border-color 120ms, color 120ms;
+    }
+
+    .chip:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ══ RESUME ══════════════════════════════════════════════ */
+    .resume-toolbar {
+      height: 28px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 12px;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    .resume-label {
+      color: var(--text3);
+      flex: 1;
+    }
+
+    .resume-dl {
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border2);
+      padding: 2px 10px;
+      font-size: 10px;
+      transition: border-color 120ms;
+    }
+
+    .resume-dl:hover {
+      border-color: var(--accent);
+    }
+
+    .resume-inner {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .resume-inner iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+
+    /* ══ ABOUT (neofetch style) ══════════════════════════════ */
+    .about-term {
+      background: #000;
+      flex: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    /* ══ TASKBAR ═════════════════════════════════════════════ */
+    #taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--taskbar-h);
+      background: rgba(10, 10, 10, 0.95);
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      z-index: 9999;
+      backdrop-filter: blur(12px);
+      gap: 2px;
+      padding: 0 8px;
+    }
+
+    .tb-start {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--accent);
+      margin-right: 4px;
+      transition: background 100ms;
+      flex-shrink: 0;
+    }
+
+    .tb-start:hover {
+      background: var(--bg4);
+    }
+
+    .tb-divider {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+      margin: 0 4px;
+      flex-shrink: 0;
+    }
+
+    .tb-apps {
+      display: flex;
+      gap: 2px;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .tb-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 10px;
+      height: 30px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      color: var(--text2);
+      font-family: var(--mono);
+      font-size: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 100ms, color 100ms, border-color 100ms;
+      border-radius: 0;
+    }
+
+    .tb-btn:hover {
+      background: var(--bg3);
+      color: var(--text);
+      border-color: var(--border2);
+    }
+
+    .tb-btn.tb-active {
+      background: var(--bg3);
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .tb-btn-icon {
+      width: 14px;
+      height: 14px;
+      background: var(--bg4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: var(--text3);
+    }
+
+    .tb-tray {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .tb-tray-item {
+      padding: 0 8px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      color: var(--text2);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      white-space: nowrap;
+      cursor: default;
+    }
+
+    .tb-clock {
+      color: var(--text);
+      min-width: 70px;
+      text-align: center;
+    }
+
+    /* ══ BOOT ════════════════════════════════════════════════ */
+    #boot {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      gap: 20px;
+    }
+
+    .boot-ascii {
+      color: var(--accent);
+      font-size: 13px;
+      line-height: 1.4;
+      white-space: pre;
+      text-align: center;
+    }
+
+    .boot-text {
+      font-size: 11px;
+      color: var(--text3);
+    }
+
+    .boot-log {
+      width: 420px;
+      height: 100px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .boot-log-line {
+      font-size: 10px;
+      color: var(--text3);
+    }
+
+    .boot-log-line .ok {
+      color: var(--green);
+    }
+
+    .boot-log-line .started {
+      color: var(--accent2);
+    }
+
+    /* ══ SPLIT LAYOUT HELPER ════════════════════════════════ */
+    .split-h {
+      display: flex;
+      height: 100%;
+    }
+
+    .split-v {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .split-pane {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .split-divider-v {
+      width: 1px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .split-divider-h {
+      height: 1px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .pane-titlebar {
+      height: 20px;
+      background: var(--bg3);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      padding: 0 8px;
+      gap: 8px;
+      font-size: 10px;
+      color: var(--text3);
+      flex-shrink: 0;
+    }
+
+    .pane-tb-name {
+      color: var(--text2);
+    }
+
+    .pane-tb-git {
+      color: var(--mauve);
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- ══ TOP BAR ══════════════════════════════════════════════ -->
+  <div id="topbar">
+    <div id="ws-list">
+      <div class="ws-item ws-active" onclick="switchWS(1)">A 1</div>
+      <div class="ws-item ws-occupied" onclick="switchWS(2)">2</div>
+      <div class="ws-item" onclick="switchWS(3)">3</div>
+      <div class="ws-item" onclick="switchWS(4)">4</div>
     </div>
-  );
-}
+    <div id="bar-center">
+      <span id="bar-date"></span>
+      <span id="bar-time"></span>
+    </div>
+    <div id="bar-tray">
+      <div class="tray-item"><span class="tray-icon">󰍛</span><span id="tray-ram">1.2GB</span></div>
+      <div class="tray-item tray-warn"><span class="tray-icon">󰁹</span><span>46%</span></div>
+      <div class="tray-item"><span class="tray-icon">󰖩</span><span>arch</span></div>
+    </div>
+  </div>
 
-/* ══════════════════════
-   WINDOW
-══════════════════════ */
-function Window({ id, title, icon, path, children, state, onClose, onMinimize, onMaximize, onFocus, defW=680, defH=500 }) {
-  const [pos, setPos] = useState(state.pos || {x:100,y:60});
-  const [dragging, setDragging] = useState(false);
-  const [dragOff, setDragOff] = useState({x:0,y:0});
-  const [closing, setClosing] = useState(false);
-  const [animKey, setAnimKey] = useState(0);
+  <!-- ══ DESKTOP ══════════════════════════════════════════════ -->
+  <div id="desktop">
 
-  useEffect(() => { setAnimKey(k => k+1); }, []);
-
-  const doClose = () => {
-    setClosing(true);
-    setTimeout(() => { setClosing(false); onClose(); }, 320);
-  };
-
-  const onTitleDown = (e) => {
-    if (e.target.closest('.wctrl') || state.maximized) return;
-    onFocus();
-    setDragging(true);
-    setDragOff({x: e.clientX - pos.x, y: e.clientY - pos.y});
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    if (!dragging) return;
-    const mv = e => setPos({
-      x: Math.max(0, Math.min(window.innerWidth - defW, e.clientX - dragOff.x)),
-      y: Math.max(32, Math.min(window.innerHeight - 100, e.clientY - dragOff.y)),
-    });
-    const up = () => setDragging(false);
-    document.addEventListener('mousemove', mv);
-    document.addEventListener('mouseup', up);
-    return () => { document.removeEventListener('mousemove', mv); document.removeEventListener('mouseup', up); };
-  }, [dragging, dragOff, defW]);
-
-  if (!state.open) return null;
-
-  const maxStyle = state.maximized
-    ? {left:0,top:32,width:'100vw',height:'calc(100vh - 72px)'}
-    : {left:pos.x,top:pos.y,width:defW,height:defH};
-
-  return (
-    <div key={animKey} className={`win-frame ${closing?'win-close':'win-open'}`}
-      style={{...maxStyle,zIndex:state.z,display:state.minimized?'none':'flex'}}
-      onMouseDown={onFocus}>
-      <div className="win-tbar" onMouseDown={onTitleDown} style={{cursor:state.maximized?'default':'move'}}>
-        <span className="material-symbols-outlined" style={{color:'#fff',fontSize:15,marginRight:5,flexShrink:0}}>{icon}</span>
-        <span style={{color:'#fff',fontFamily:"'Space Grotesk'",fontWeight:600,fontSize:13,flex:1,pointerEvents:'none',textShadow:'1px 1px 2px rgba(0,0,0,.5)',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>
-          {title}
-        </span>
-        <div style={{display:'flex',gap:3,position:'relative',zIndex:1}}>
-          <div className="wctrl mn" onClick={onMinimize} title="Minimize"><span style={{fontSize:14,lineHeight:1}}>─</span></div>
-          <div className="wctrl mx" onClick={onMaximize} title={state.maximized?'Restore':'Maximize'}><span style={{fontSize:11}}>{state.maximized?'❐':'□'}</span></div>
-          <div className="wctrl cl" onClick={doClose} title="Close"><span style={{fontSize:13}}>✕</span></div>
+    <!-- ══ TERMINAL / NEOFETCH WINDOW ══ -->
+    <div class="win" id="win-terminal" data-title="zsh" style="left:20px; top:20px; width:620px; height:420px;">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="wc-btn wc-close" onclick="WM.close('terminal')"></button>
+          <button class="wc-btn wc-min" onclick="WM.minimize('terminal')"></button>
+          <button class="wc-btn wc-max" onclick="WM.maximize('terminal')"></button>
+        </div>
+        <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>zsh</div>
+        <div class="win-title-spacer"></div>
+      </div>
+      <div class="win-body">
+        <div class="term-body" id="term-container">
+          <!-- Prompt line 1 -->
+          <div class="t-line">
+            <span class="t-user">advaith</span><span class="t-at">@</span><span class="t-host">archlinux</span>
+            <span class="t-sep"> in </span><span class="t-path">~/.config</span>
+            <span class="t-sep"> in </span><span class="t-git">master✔ 26-04-21 · 14:18:43</span>
+          </div>
+          <div class="t-line t-dim">❯ neofetch</div>
+          <div class="neofetch-wrap">
+            <div class="nf-ascii"> .+
+              .ooo/
+              +oooo:
+              +oooooo:
+              -+oooooo+:
+              -/++++++:
+              -/++oooooooo+
+              -/+++oooooooo+
+              ./oossssso++osssss+
+              ./ossssssso- osssss+
+              /ossssssso: osssss+
+              +sssssssso: +ssssso
+              .ssssssso: +ssssso
+              /sssssso: -osssso/
+              -/+oso+-:/-+ossso/
+              -:+/ -/+osso/-
+              -:/+oso/-
+              -/- </div>
+            <div class="nf-info">
+              <div class="nf-info-row"><span class="nf-key"
+                  style="color:var(--accent2);font-weight:700;">advaith</span><span class="nf-val"
+                  style="color:var(--text3);">@</span><span class="nf-key"
+                  style="color:var(--accent2);font-weight:700;">archlinux</span></div>
+              <div class="nf-info-row" style="color:var(--text3);">─────────────────────</div>
+              <div class="nf-info-row"><span class="nf-info-key">OS</span><span class="nf-info-val">Arch Linux
+                  x86_64</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Host</span><span class="nf-info-val">Portfolio
+                  1.0</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Kernel</span><span
+                  class="nf-info-val">6.8.0-arch1-1</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Uptime</span><span class="nf-info-val">4 hours, 12
+                  mins</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Shell</span><span class="nf-info-val">zsh 5.9</span>
+              </div>
+              <div class="nf-info-row"><span class="nf-info-key">Resolution</span><span
+                  class="nf-info-val">1920×1080</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">WM</span><span class="nf-info-val">i3</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Theme</span><span class="nf-info-val">Catppuccin
+                  Mocha</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Terminal Font</span><span class="nf-info-val">JetBrains
+                  Mono 12</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">CPU</span><span class="nf-info-val">AMD Ryzen 9 5900X @
+                  3.7GHz</span></div>
+              <div class="nf-info-row"><span class="nf-info-key">Memory</span><span class="nf-info-val">1.2GB /
+                  16GB</span></div>
+              <div class="nf-colors">
+                <div class="nf-color-swatch" style="background:#1e1e2e;border:1px solid #333;"></div>
+                <div class="nf-color-swatch" style="background:#f38ba8;"></div>
+                <div class="nf-color-swatch" style="background:#a6e3a1;"></div>
+                <div class="nf-color-swatch" style="background:#f9e2af;"></div>
+                <div class="nf-color-swatch" style="background:#89b4fa;"></div>
+                <div class="nf-color-swatch" style="background:#cba6f7;"></div>
+                <div class="nf-color-swatch" style="background:#2dd4bf;"></div>
+                <div class="nf-color-swatch" style="background:#cdd6f4;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- Second prompt + interactive input -->
+          <div class="t-line" style="margin-top:4px;">
+            <span class="t-user">advaith</span><span class="t-at">@</span><span class="t-host">archlinux</span>
+            <span class="t-sep"> in </span><span class="t-path">~/.config</span>
+            <span class="t-sep"> in </span><span class="t-git">master✔ 26-04-21 · 14:19:54</span>
+          </div>
+          <div class="t-output" id="term-output"></div>
+          <div class="t-input-wrap" id="term-input-wrap">
+            <span class="t-ps1"><span class="t-dollar">❯ </span></span>
+            <input class="t-input" id="term-input" type="text" autocomplete="off" spellcheck="false" />
+          </div>
         </div>
       </div>
-      <div className="addr">
-        <button className="addr-btn"><span className="material-symbols-outlined" style={{fontSize:14}}>arrow_back</span></button>
-        <button className="addr-btn"><span className="material-symbols-outlined" style={{fontSize:14}}>arrow_forward</span></button>
-        <button className="addr-btn"><span className="material-symbols-outlined" style={{fontSize:14}}>home</span></button>
-        <div className="addr-path">C:\Desktop\Portfolio\{path}</div>
-        <button className="addr-btn"><span className="material-symbols-outlined" style={{fontSize:14}}>search</span></button>
-      </div>
-      <div style={{flex:1,overflow:'hidden',display:'flex',flexDirection:'column',background:'#fff'}}>
-        {children}
-      </div>
-      <div className="win-status">
-        <div className="status-panel">Ready</div>
-        <div className="status-panel">{title}</div>
-        <div style={{marginLeft:'auto',fontSize:10,color:'#666'}}>advaith@portfolio</div>
+      <div class="win-statusbar green">
+        <span>NORMAL</span><span class="ws-sep"> │ </span>
+        <span>zsh</span><span class="ws-sep"> │ </span>
+        <span>advaith@archlinux</span>
       </div>
     </div>
-  );
-}
 
-/* ══════════════════════
-   CLOCK
-══════════════════════ */
-function Clock() {
-  const [t, setT] = useState(new Date());
-  useEffect(() => {
-    const i = setInterval(() => setT(new Date()), 1000);
-    return () => clearInterval(i);
-  }, []);
-  const fmt = t.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  const date = t.toLocaleDateString('en-US',{month:'short',day:'numeric'});
-  return (
-    <div title={date} style={{textAlign:'center',cursor:'default'}}>
-      <div style={{fontFamily:"'Work Sans'",fontSize:12,fontWeight:700,color:'#111',lineHeight:1.2}}>{fmt}</div>
-      <div style={{fontFamily:"'Work Sans'",fontSize:9,color:'#444'}}>{date}</div>
+    <!-- ══ PROJECTS WINDOW (NvimTree + Editor split) ══ -->
+    <div class="win" id="win-projects" data-title="projects" style="left:20px; top:20px; width:820px; height:500px;">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="wc-btn wc-close" onclick="WM.close('projects')"></button>
+          <button class="wc-btn wc-min" onclick="WM.minimize('projects')"></button>
+          <button class="wc-btn wc-max" onclick="WM.maximize('projects')"></button>
+        </div>
+        <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>projects/ — nvim</div>
+        <div class="win-title-spacer"></div>
+      </div>
+      <div class="win-body">
+        <div class="split-h" style="height:100%;">
+          <!-- File tree -->
+          <div class="split-pane" style="width:200px; flex-shrink:0;">
+            <div class="pane-titlebar">
+              <span class="pane-tb-name">NvimTree_1</span>
+              <span class="pane-tb-git" style="margin-left:auto;">master✔</span>
+            </div>
+            <div class="filetree-body">
+              <div class="ft-row ft-dir" style="padding-left:8px;"><span class="ft-icon dir">▼</span>~/projects</div>
+              <div class="ft-row ft-active" style="padding-left:20px;" onclick="showProject(0)"><span
+                  class="ft-icon py">▷</span>momentum-ml</div>
+              <div class="ft-row" style="padding-left:20px;" onclick="showProject(1)"><span
+                  class="ft-icon py">▷</span>shannon-entropy</div>
+              <div class="ft-row" style="padding-left:20px;" onclick="showProject(2)"><span
+                  class="ft-icon py">▷</span>finance-tracker</div>
+              <div class="ft-row ft-dir" style="padding-left:8px; margin-top:4px;"><span
+                  class="ft-icon dir">▼</span>~/config</div>
+              <div class="ft-row" style="padding-left:20px;"><span class="ft-icon git">.git</span></div>
+              <div class="ft-row" style="padding-left:20px;"><span class="ft-icon md">README.md</span></div>
+              <div class="ft-row" style="padding-left:20px;"><span class="ft-icon py">requirements.txt</span></div>
+            </div>
+          </div>
+          <div class="split-divider-v"></div>
+          <!-- Editor -->
+          <div class="split-pane" style="flex:1;">
+            <div class="pane-titlebar" id="proj-tab-bar">
+              <span class="tab-icon" style="color:var(--text3);">◆</span>
+              <span class="pane-tb-name" id="proj-filename">momentum-ml/README.md</span>
+              <span class="pane-tb-git" style="margin-left:auto; color:var(--text3);">utf-8 · md</span>
+            </div>
+            <div class="editor-body">
+              <div class="editor-gutter" id="proj-gutter"></div>
+              <div class="editor-content win-body-scroll" id="proj-content"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="win-statusbar mauve">
+        <span>NORMAL</span><span class="ws-sep"> │ </span>
+        <span id="proj-status-name">momentum-ml</span><span class="ws-sep"> │ </span>
+        <span>master✔</span><span class="ws-sep"> │ </span>
+        <span>github.com/advaithprabhudev</span>
+      </div>
     </div>
-  );
-}
 
-/* ══════════════════════
-   MAIN APP
-══════════════════════ */
-const TBAR_THEMES = {
-  'xp-blue': 'linear-gradient(90deg,#082080 0%,#1750c8 30%,#2878e8 55%,#509cee 80%,#78b8f4 100%)',
-  'dark':    'linear-gradient(90deg,#111 0%,#333 50%,#666 100%)',
-  'teal':    'linear-gradient(90deg,#004040 0%,#006565 50%,#008888 100%)',
-};
+    <!-- ══ SKILLS WINDOW ══ -->
+    <div class="win" id="win-skills" data-title="skills" style="left:60px; top:60px; width:500px; height:480px;">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="wc-btn wc-close" onclick="WM.close('skills')"></button>
+          <button class="wc-btn wc-min" onclick="WM.minimize('skills')"></button>
+          <button class="wc-btn wc-max" onclick="WM.maximize('skills')"></button>
+        </div>
+        <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>skills.py — python</div>
+        <div class="win-title-spacer"></div>
+      </div>
+      <div class="win-body">
+        <div class="info-body">
+          <div>
+            <div class="info-section-title">Languages</div>
+            <div class="chips">
+              <div class="chip">Python</div>
+              <div class="chip">R</div>
+              <div class="chip">SQL</div>
+            </div>
+          </div>
+          <div>
+            <div class="info-section-title">Data Science &amp; Finance</div>
+            <div class="chips">
+              <div class="chip">NumPy</div>
+              <div class="chip">Pandas</div>
+              <div class="chip">YFinance</div>
+              <div class="chip">QuantLib</div>
+              <div class="chip">Matplotlib</div>
+              <div class="chip">Plotly</div>
+              <div class="chip">Streamlit</div>
+            </div>
+          </div>
+          <div>
+            <div class="info-section-title">Machine Learning</div>
+            <div class="chips">
+              <div class="chip">Scikit-Learn</div>
+              <div class="chip">PyTorch</div>
+            </div>
+          </div>
+          <div>
+            <div class="info-section-title">Databases &amp; Tools</div>
+            <div class="chips">
+              <div class="chip">MongoDB</div>
+              <div class="chip">MySQL</div>
+              <div class="chip">Git</div>
+              <div class="chip">GitHub</div>
+            </div>
+          </div>
+          <div>
+            <div class="info-section-title">Proficiency</div>
+            <div id="skill-bars">
+              <div class="skill-row">
+                <div class="skill-label-row"><span>Python</span><span>95%</span></div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-w="95"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label-row"><span>Data Analysis</span><span>88%</span></div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-w="88"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label-row"><span>Quantitative Finance</span><span>82%</span></div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-w="82"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label-row"><span>Machine Learning</span><span>78%</span></div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-w="78"></div>
+                </div>
+              </div>
+              <div class="skill-row">
+                <div class="skill-label-row"><span>R</span><span>65%</span></div>
+                <div class="skill-track">
+                  <div class="skill-fill" data-w="65"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="win-statusbar">
+        <span>NORMAL</span><span class="ws-sep"> │ </span>
+        <span>skills.py</span><span class="ws-sep"> │ </span>
+        <span>python3</span>
+      </div>
+    </div>
 
-const WIN_CFG = {
-  portfolio: {title:'My Portfolio',icon:'folder_open',path:'portfolio.html',pos:{x:90,y:55},defW:720,defH:520},
-  about:     {title:'About Me',    icon:'person',     path:'about.html',    pos:{x:160,y:85},defW:660,defH:540},
-  contact:   {title:'Contact Me',  icon:'mail',       path:'contact.html',  pos:{x:230,y:115},defW:700,defH:500},
-};
+    <!-- ══ ABOUT WINDOW ══ -->
+    <div class="win" id="win-about" data-title="about" style="left:80px; top:80px; width:560px; height:380px;">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="wc-btn wc-close" onclick="WM.close('about')"></button>
+          <button class="wc-btn wc-min" onclick="WM.minimize('about')"></button>
+          <button class="wc-btn wc-max" onclick="WM.maximize('about')"></button>
+        </div>
+        <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>about.md — nvim</div>
+        <div class="win-title-spacer"></div>
+      </div>
+      <div class="win-body">
+        <div class="split-h" style="height:100%;">
+          <div class="editor-gutter">
+            1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18
+          </div>
+          <div class="editor-content win-body-scroll" style="display:flex; gap:24px;">
+            <div style="flex:1;">
+              <div class="e-h1"># Advaith Prabhu</div>
+              <br>
+              <div class="e-h2">## About</div>
+              <br>
+              <div>I'm a student at <span class="e-str">GIIS</span> with a passion for building</div>
+              <div>models that solve real-world problems in finance.</div>
+              <div>I love exploring how data can tell stories and</div>
+              <div>predict outcomes.</div>
+              <br>
+              <div class="e-h2">## Focus</div>
+              <br>
+              <div><span class="e-kw">- </span>Quantitative Finance</div>
+              <div><span class="e-kw">- </span>Machine Learning</div>
+              <div><span class="e-kw">- </span>Statistical Modelling</div>
+              <div><span class="e-kw">- </span>Algorithmic Trading</div>
+              <br>
+              <div class="e-h2">## Contact</div>
+              <br>
+              <div><span class="e-kw">- </span>GitHub: <span class="e-link">advaithprabhudev</span></div>
+              <div><span class="e-kw">- </span>LinkedIn: <span class="e-link">advaith-prabhu</span></div>
+            </div>
+            <div
+              style="flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:10px; padding-top:8px;">
+              <img src="uploads/avatar-1777620007227.png" alt="Advaith"
+                style="width:72px;height:72px;border-radius:50%;border:1px solid var(--border2);object-fit:cover;" />
+              <div style="font-size:10px;color:var(--text3);text-align:center;">advaith@arch</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="win-statusbar">
+        <span>NORMAL</span><span class="ws-sep"> │ </span>
+        <span>about.md</span><span class="ws-sep"> │ </span>
+        <span>markdown</span><span class="ws-sep"> │ </span>
+        <span>utf-8</span>
+      </div>
+    </div>
 
-function App() {
-  const [booted, setBooted] = useState(false);
-  const [startOpen, setStartOpen] = useState(false);
-  const [selIcon, setSelIcon] = useState(null);
-  const [topZ, setTopZ] = useState(100);
-  const [dialog, setDialog] = useState(null);
-  const [tweaks, setTweaks] = useState({crtEffect:true,titleTheme:'teal'});
-  const [tweakOpen, setTweakOpen] = useState(false);
+    <!-- ══ CONTACT WINDOW ══ -->
+    <div class="win" id="win-contact" data-title="contact" style="left:100px; top:100px; width:440px; height:300px;">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="wc-btn wc-close" onclick="WM.close('contact')"></button>
+          <button class="wc-btn wc-min" onclick="WM.minimize('contact')"></button>
+          <button class="wc-btn wc-max" onclick="WM.maximize('contact')"></button>
+        </div>
+        <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>contact.sh</div>
+        <div class="win-title-spacer"></div>
+      </div>
+      <div class="win-body">
+        <div class="info-body">
+          <div class="info-section-title">Links</div>
+          <a class="contact-row" href="https://github.com/advaithprabhudev" target="_blank">
+            <div>
+              <div class="contact-platform">GitHub</div>
+              <div class="contact-url">github.com/advaithprabhudev</div>
+            </div>
+            <div class="contact-arrow">↗</div>
+          </a>
+          <a class="contact-row" href="https://www.linkedin.com/in/advaith-prabhu/" target="_blank">
+            <div>
+              <div class="contact-platform">LinkedIn</div>
+              <div class="contact-url">linkedin.com/in/advaith-prabhu</div>
+            </div>
+            <div class="contact-arrow">↗</div>
+          </a>
+        </div>
+      </div>
+      <div class="win-statusbar">
+        <span>NORMAL</span><span class="ws-sep"> │ </span><span>contact.sh</span>
+      </div>
+    </div>
 
-  const initWin = id => ({open:false,minimized:false,maximized:false,pos:WIN_CFG[id].pos,z:100});
-  const [wins, setWins] = useState({
-    portfolio: initWin('portfolio'),
-    about:     initWin('about'),
-    contact:   initWin('contact'),
-  });
+    <!-- ══ RESUME WINDOW ══ -->
+    <div class="win" id="win-resume" data-title="resume" style="left:120px; top:40px; width:700px; height:540px;">
+      <div class="win-titlebar">
+        <div class="win-controls">
+          <button class="wc-btn wc-close" onclick="WM.close('resume')"></button>
+          <button class="wc-btn wc-min" onclick="WM.minimize('resume')"></button>
+          <button class="wc-btn wc-max" onclick="WM.maximize('resume')"></button>
+        </div>
+        <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>resume.pdf</div>
+        <div class="win-title-spacer"></div>
+      </div>
+      <div class="win-body">
+        <div class="resume-inner">
+          <div class="resume-toolbar">
+            <span class="resume-label">Advaith_Prabhu_Resume.pdf</span>
+            <a class="resume-dl" href="uploads/resume-1777620021379.pdf" download="Advaith_Prabhu_Resume.pdf">↓
+              Download</a>
+          </div>
+          <iframe src="uploads/resume-1777620021379.pdf" title="Resume"></iframe>
+        </div>
+      </div>
+      <div class="win-statusbar">
+        <span>VIEW</span><span class="ws-sep"> │ </span><span>resume.pdf</span><span class="ws-sep"> │ </span><span>PDF
+          Viewer</span>
+      </div>
+    </div>
 
-  useEffect(() => {
-    document.documentElement.style.setProperty('--tbar-bg', TBAR_THEMES[tweaks.titleTheme] || TBAR_THEMES.teal);
-  }, [tweaks.titleTheme]);
+  </div><!-- /desktop -->
 
-  useEffect(() => {
-    if (!startOpen) return;
-    const h = e => {
-      if (!e.target.closest('.start-menu') && !e.target.closest('.start-btn')) setStartOpen(false);
+  <!-- ══ TASKBAR ══════════════════════════════════════════════ -->
+  <div id="taskbar">
+    <div class="tb-start" onclick="WM.open('terminal')" title="Terminal">❯</div>
+    <div class="tb-divider"></div>
+    <div class="tb-apps" id="tb-apps"></div>
+    <div class="tb-tray">
+      <div class="tb-tray-item"><span>󰖩</span> arch</div>
+      <div class="tb-tray-item tb-clock" id="tb-clock"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="js/three-scene.js"></script>
+
+  <script>
+    // ══ WINDOW MANAGER ══════════════════════════════════════════
+    let zTop = 100;
+    const WM = {
+      open(id) {
+        const win = document.getElementById('win-' + id);
+        if (!win) return;
+        win.style.display = 'flex';
+        win.classList.remove('minimized');
+        this.focus(win);
+        win.style.opacity = '0';
+        win.style.transform = 'scale(0.96)';
+        requestAnimationFrame(() => {
+          win.style.transition = 'opacity 140ms ease, transform 140ms ease';
+          win.style.opacity = '1';
+          win.style.transform = 'scale(1)';
+          setTimeout(() => { win.style.transition = ''; }, 150);
+        });
+        this.addTaskbarBtn(id);
+        // Side effects
+        if (id === 'skills') setTimeout(() => {
+          document.querySelectorAll('.skill-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+        }, 200);
+        if (id === 'projects') setTimeout(() => renderProject(currentProject), 100);
+      },
+      close(id) {
+        const win = document.getElementById('win-' + id);
+        if (!win) return;
+        win.style.transition = 'opacity 120ms ease, transform 120ms ease';
+        win.style.opacity = '0';
+        win.style.transform = 'scale(0.96)';
+        setTimeout(() => {
+          win.style.display = 'none';
+          win.style.transition = win.style.transform = win.style.opacity = '';
+        }, 130);
+        this.removeTaskbarBtn(id);
+      },
+      minimize(id) {
+        const win = document.getElementById('win-' + id);
+        if (!win) return;
+        win.style.transition = 'opacity 120ms ease, transform 120ms ease';
+        win.style.opacity = '0';
+        win.style.transform = 'scale(0.9) translateY(20px)';
+        setTimeout(() => {
+          win.style.display = 'none';
+          win.classList.add('minimized');
+          win.style.transition = win.style.transform = win.style.opacity = '';
+        }, 130);
+        const btn = document.getElementById('tbbtn-' + id);
+        if (btn) btn.classList.remove('tb-active');
+      },
+      maximize(id) {
+        const win = document.getElementById('win-' + id);
+        if (!win) return;
+        if (win.dataset.max === '1') {
+          win.style.left = win.dataset.pl || '100px';
+          win.style.top = win.dataset.pt || '40px';
+          win.style.width = win.dataset.pw || '600px';
+          win.style.height = win.dataset.ph || '440px';
+          win.dataset.max = '0';
+        } else {
+          win.dataset.pl = win.style.left;
+          win.dataset.pt = win.style.top;
+          win.dataset.pw = win.style.width;
+          win.dataset.ph = win.style.height;
+          win.style.left = '0'; win.style.top = '0';
+          win.style.width = '100vw';
+          win.style.height = 'calc(100vh - ' + (26 + 40) + 'px)';
+          win.dataset.max = '1';
+        }
+      },
+      focus(win) {
+        document.querySelectorAll('.win').forEach(w => w.classList.remove('win-focused'));
+        win.classList.add('win-focused');
+        win.style.zIndex = ++zTop;
+      },
+      addTaskbarBtn(id) {
+        if (document.getElementById('tbbtn-' + id)) {
+          document.getElementById('tbbtn-' + id).classList.add('tb-active');
+          return;
+        }
+        const win = document.getElementById('win-' + id);
+        const title = win?.dataset.title || id;
+        const btn = document.createElement('div');
+        btn.className = 'tb-btn tb-active';
+        btn.id = 'tbbtn-' + id;
+        btn.innerHTML = `<span class="tb-btn-icon">❯</span>${title}`;
+        btn.onclick = () => {
+          const w = document.getElementById('win-' + id);
+          if (!w) return;
+          if (w.style.display === 'none' || w.classList.contains('minimized')) {
+            WM.open(id);
+          } else {
+            WM.minimize(id);
+          }
+        };
+        document.getElementById('tb-apps').appendChild(btn);
+      },
+      removeTaskbarBtn(id) {
+        document.getElementById('tbbtn-' + id)?.remove();
+      },
+      initDrag(win) {
+        const tb = win.querySelector('.win-titlebar');
+        if (!tb) return;
+        let drag = false, ox = 0, oy = 0;
+        tb.addEventListener('mousedown', e => {
+          if (e.target.closest('.win-controls')) return;
+          if (win.dataset.max === '1') return;
+          drag = true; ox = e.clientX - win.offsetLeft; oy = e.clientY - win.offsetTop;
+          WM.focus(win); e.preventDefault();
+        });
+        document.addEventListener('mousemove', e => {
+          if (!drag) return;
+          win.style.left = Math.max(0, Math.min(window.innerWidth - 80, e.clientX - ox)) + 'px';
+          win.style.top = Math.max(0, Math.min(window.innerHeight - 60, e.clientY - oy)) + 'px';
+        });
+        document.addEventListener('mouseup', () => { drag = false; });
+      },
+      initResize(win) {
+        const h = document.createElement('div');
+        h.className = 'win-resize-handle';
+        win.appendChild(h);
+        let r = false, sx, sy, sw, sh;
+        h.addEventListener('mousedown', e => {
+          r = true; sx = e.clientX; sy = e.clientY;
+          sw = win.offsetWidth; sh = win.offsetHeight; e.preventDefault();
+        });
+        document.addEventListener('mousemove', e => {
+          if (!r) return;
+          win.style.width = Math.max(300, sw + e.clientX - sx) + 'px';
+          win.style.height = Math.max(180, sh + e.clientY - sy) + 'px';
+        });
+        document.addEventListener('mouseup', () => { r = false; });
+      },
+      init() {
+        document.querySelectorAll('.win').forEach(win => {
+          this.initDrag(win);
+          this.initResize(win);
+          win.addEventListener('mousedown', () => this.focus(win));
+        });
+      }
     };
-    document.addEventListener('mousedown', h);
-    return () => document.removeEventListener('mousedown', h);
-  }, [startOpen]);
+    WM.init();
 
-  const getZ = () => { const z = topZ+1; setTopZ(z); return z; };
-  const openWin = id => { setWins(w=>({...w,[id]:{...w[id],open:true,minimized:false,z:getZ()}})); setStartOpen(false); };
-  const closeWin = id => setWins(w=>({...w,[id]:{...w[id],open:false}}));
-  const minWin   = id => setWins(w=>({...w,[id]:{...w[id],minimized:true}}));
-  const maxWin   = id => setWins(w=>({...w,[id]:{...w[id],maximized:!w[id].maximized}}));
-  const focusWin = id => setWins(w=>({...w,[id]:{...w[id],z:getZ()}}));
-  const toggleTaskWin = id => {
-    if (!wins[id].open) { openWin(id); return; }
-    if (wins[id].minimized) { setWins(w=>({...w,[id]:{...w[id],minimized:false,z:getZ()}})); }
-    else { minWin(id); }
-  };
-  const setTweak = (k, v) => setTweaks(t => ({...t,[k]:v}));
+    // ══ CLOCK ════════════════════════════════════════════════════
+    function updateClock() {
+      const now = new Date();
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      document.getElementById('bar-date').textContent =
+        days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      const h = String(now.getHours()).padStart(2, '0');
+      const m = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('bar-time').textContent = h + ':' + m;
+      document.getElementById('tb-clock').textContent = h + ':' + m;
+    }
+    updateClock(); setInterval(updateClock, 10000);
 
-  if (!booted) return <BootScreen onDone={() => setBooted(true)}/>;
+    // ══ WORKSPACE SWITCHER ════════════════════════════════════════
+    function switchWS(n) {
+      document.querySelectorAll('.ws-item').forEach((el, i) => {
+        el.classList.toggle('ws-active', i + 1 === n);
+      });
+    }
 
-  return (
-    <div style={{position:'fixed',inset:0,overflow:'hidden'}} onClick={()=>setSelIcon(null)}>
-      <Wallpaper/>
-      {tweaks.crtEffect && <div className="crt"/>}
+    // ══ PROJECT EDITOR ══════════════════════════════════════════
+    const PROJECTS = [
+      {
+        name: 'momentum-ml',
+        file: 'README.md',
+        lang: 'md',
+        lines: [
+          '<span class="e-h1"># Momentum Strategies with Machine Learning</span>',
+          '',
+          '<span class="e-h2">## Overview</span>',
+          '',
+          'Research applying <span class="e-str">machine learning</span> to momentum-based',
+          'trading strategies across multiple market regimes.',
+          '',
+          '<span class="e-h2">## Stack</span>',
+          '',
+          '<span class="e-kw">- </span>Python, Pandas, YFinance',
+          '<span class="e-kw">- </span>Scikit-Learn, PyTorch',
+          '<span class="e-kw">- </span>Matplotlib, Plotly',
+          '',
+          '<span class="e-h2">## Key Results</span>',
+          '',
+          'Backtested signals across <span class="e-num">5+</span> market regimes.',
+          'Sharpe ratio improvement of <span class="e-num">~0.4</span> vs baseline.',
+          '',
+          '<span class="e-link">[View on GitHub →](https://github.com/advaithprabhudev/Momentum-Research-Project)</span>',
+        ]
+      },
+      {
+        name: 'shannon-entropy',
+        file: 'analysis.py',
+        lang: 'python',
+        lines: [
+          '<span class="e-comment"># Shannon Entropy — Market Microstructure Analysis</span>',
+          '<span class="e-comment"># github.com/advaithprabhudev</span>',
+          '',
+          '<span class="e-kw">import</span> numpy <span class="e-kw">as</span> <span class="e-fn">np</span>',
+          '<span class="e-kw">import</span> pandas <span class="e-kw">as</span> <span class="e-fn">pd</span>',
+          '<span class="e-kw">from</span> scipy.stats <span class="e-kw">import</span> <span class="e-fn">entropy</span>',
+          '',
+          '<span class="e-kw">def</span> <span class="e-fn">shannon_entropy</span>(prices: <span class="e-cls">pd.Series</span>) -> <span class="e-cls">float</span>:',
+          '    <span class="e-str">"""Compute information entropy of price distribution."""</span>',
+          '    returns = prices.<span class="e-fn">pct_change</span>().<span class="e-fn">dropna</span>()',
+          '    hist, _ = np.<span class="e-fn">histogram</span>(returns, bins=<span class="e-num">50</span>, density=<span class="e-kw">True</span>)',
+          '    <span class="e-kw">return</span> <span class="e-fn">entropy</span>(hist + <span class="e-num">1e-10</span>)',
+          '',
+          '<span class="e-kw">def</span> <span class="e-fn">rolling_entropy</span>(prices, window=<span class="e-num">252</span>):',
+          '    <span class="e-kw">return</span> prices.<span class="e-fn">rolling</span>(window).<span class="e-fn">apply</span>(shannon_entropy)',
+        ]
+      },
+      {
+        name: 'finance-tracker',
+        file: 'tracker.py',
+        lang: 'python',
+        lines: [
+          '<span class="e-comment"># Automated Finance Tracker</span>',
+          '<span class="e-comment"># Streamlit + MongoDB + Plotly pipeline</span>',
+          '',
+          '<span class="e-kw">import</span> streamlit <span class="e-kw">as</span> <span class="e-fn">st</span>',
+          '<span class="e-kw">import</span> plotly.express <span class="e-kw">as</span> <span class="e-fn">px</span>',
+          '<span class="e-kw">from</span> pymongo <span class="e-kw">import</span> <span class="e-fn">MongoClient</span>',
+          '',
+          'client = <span class="e-fn">MongoClient</span>(<span class="e-str">"mongodb://localhost:27017"</span>)',
+          'db = client[<span class="e-str">"finance"</span>]',
+          '',
+          'st.<span class="e-fn">title</span>(<span class="e-str">"💹 Finance Dashboard"</span>)',
+          '',
+          'transactions = list(db.transactions.<span class="e-fn">find</span>())',
+          'df = pd.<span class="e-fn">DataFrame</span>(transactions)',
+          '',
+          'fig = px.<span class="e-fn">line</span>(df, x=<span class="e-str">"date"</span>, y=<span class="e-str">"amount"</span>,',
+          '           title=<span class="e-str">"Portfolio Over Time"</span>)',
+          'st.<span class="e-fn">plotly_chart</span>(fig)',
+        ]
+      }
+    ];
 
-      {/* Desktop icons */}
-      <div style={{position:'absolute',top:44,left:12,display:'flex',flexDirection:'column',gap:6,zIndex:10}}>
-        {[
-          {id:'portfolio',icon:'folder_open',label:'Portfolio',  action:()=>openWin('portfolio')},
-          {id:'about',    icon:'person',     label:'About Me',   action:()=>openWin('about')},
-          {id:'contact',  icon:'mail',       label:'Contact',    action:()=>openWin('contact')},
-          {id:'github',   icon:'code',       label:'GitHub',     action:()=>window.open('https://github.com/advaithprabhudev','_blank')},
-          {id:'linkedin', icon:'business',   label:'LinkedIn',   action:()=>window.open('https://linkedin.com/in/advaith-prabhu','_blank')},
-          {id:'recycle',  icon:'delete',     label:'Recycle Bin',action:()=>setDialog('The Recycle Bin is empty.')},
-        ].map(it=>(
-          <DesktopIcon key={it.id} icon={it.icon} label={it.label}
-            selected={selIcon===it.id}
-            onSelect={e=>{e.stopPropagation();setSelIcon(it.id);}}
-            onOpen={it.action}
-          />
-        ))}
-      </div>
+    let currentProject = 0;
+    function renderProject(idx) {
+      currentProject = idx;
+      const p = PROJECTS[idx];
+      document.getElementById('proj-filename').textContent = p.name + '/' + p.file;
+      document.getElementById('proj-status-name').textContent = p.name;
+      // Gutter
+      const gutter = document.getElementById('proj-gutter');
+      gutter.innerHTML = p.lines.map((_, i) => i + 1).join('<br>');
+      // Content
+      const content = document.getElementById('proj-content');
+      content.innerHTML = p.lines.map(l => `<div>${l || '&nbsp;'}</div>`).join('');
+      // File tree highlight
+      document.querySelectorAll('.filetree-body .ft-row:not(.ft-dir)').forEach((row, i) => {
+        row.classList.toggle('ft-active', i === idx);
+      });
+    }
+    function showProject(idx) { renderProject(idx); }
+    renderProject(0);
 
-      {/* Windows */}
-      {Object.entries(WIN_CFG).map(([id,cfg])=>(
-        <Window key={id} id={id} title={cfg.title} icon={cfg.icon} path={cfg.path}
-          state={wins[id]} onClose={()=>closeWin(id)} onMinimize={()=>minWin(id)}
-          onMaximize={()=>maxWin(id)} onFocus={()=>focusWin(id)}
-          defW={cfg.defW} defH={cfg.defH}>
-          {id==='portfolio'&&<PortfolioContent/>}
-          {id==='about'    &&<AboutContent/>}
-          {id==='contact'  &&<ContactContent/>}
-        </Window>
-      ))}
+    // ══ TERMINAL ════════════════════════════════════════════════
+    const CMDS = {
+      help: () => `Available commands:
+  <span class="t-c">whoami</span>       — about me
+  <span class="t-c">ls</span>          — list projects
+  <span class="t-c">skills</span>      — tech stack
+  <span class="t-c">contact</span>     — links
+  <span class="t-c">open &lt;win&gt;</span> — open window (about|projects|skills|contact|resume)
+  <span class="t-c">clear</span>       — clear screen
+  <span class="t-c">uname -a</span>    — system info
+  <span class="t-c">date</span>        — current date`,
 
-      {/* Alert dialog */}
-      {dialog&&(
-        <div className="dialog-overlay" onClick={()=>setDialog(null)}>
-          <div className="dialog" onClick={e=>e.stopPropagation()}>
-            <div className="dialog-tbar">
-              <span className="material-symbols-outlined" style={{color:'#fff',fontSize:14}}>info</span>
-              <span style={{color:'#fff',fontFamily:"'Space Grotesk'",fontWeight:600,fontSize:12}}>System Message</span>
-            </div>
-            <div style={{padding:20,display:'flex',gap:14,alignItems:'center'}}>
-              <span className="material-symbols-outlined" style={{fontSize:40,color:'#474eb7',flexShrink:0}}>info</span>
-              <p style={{fontFamily:"'Work Sans'",fontSize:13,lineHeight:1.5}}>{dialog}</p>
-            </div>
-            <div style={{padding:'8px 14px',borderTop:'1px solid #aaa',display:'flex',justifyContent:'flex-end'}}>
-              <button onClick={()=>setDialog(null)} style={{padding:'4px 22px',background:'#c0c0c0',cursor:'pointer',fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:12,border:'2px solid',borderColor:'#fff #666 #666 #fff'}}>OK</button>
-            </div>
-          </div>
-        </div>
-      )}
+      whoami: () => `advaith — Aspiring Quant, Student @ GIIS
+Passion: quantitative finance, ML, statistical modelling.`,
 
-      {/* Start menu */}
-      {startOpen&&(
-        <div className="start-menu">
-          <div className="menu-hdr">
-            <div style={{width:44,height:44,background:'rgba(255,255,255,.15)',border:'2px solid rgba(255,255,255,.3)',display:'flex',alignItems:'center',justifyContent:'center'}}>
-              <span className="material-symbols-outlined" style={{fontSize:28,color:'#fff'}}>person</span>
-            </div>
-            <div>
-              <div style={{color:'#fff',fontFamily:"'Space Grotesk'",fontWeight:700,fontSize:15}}>Advaith Prabhu</div>
-              <div style={{color:'rgba(255,255,255,.65)',fontFamily:"'VT323'",fontSize:14,letterSpacing:1.5}}>ASPIRING QUANT</div>
-            </div>
-          </div>
-          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr'}}>
-            <div style={{borderRight:'1px solid #e0e0e0',padding:'6px 0'}}>
-              <div style={{padding:'4px 14px 2px',fontSize:10,fontWeight:700,color:'#888',textTransform:'uppercase',letterSpacing:1}}>Applications</div>
-              {[
-                {icon:'folder_open',label:'Portfolio',action:()=>openWin('portfolio')},
-                {icon:'person',     label:'About Me', action:()=>openWin('about')},
-                {icon:'mail',       label:'Contact',  action:()=>openWin('contact')},
-              ].map(it=>(
-                <div key={it.label} className="menu-item" onClick={it.action}>
-                  <span className="material-symbols-outlined" style={{fontSize:18,color:'#474eb7'}}>{it.icon}</span>
-                  <span style={{fontWeight:600}}>{it.label}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{background:'#f4f4f4',padding:'6px 0'}}>
-              <div style={{padding:'4px 14px 2px',fontSize:10,fontWeight:700,color:'#888',textTransform:'uppercase',letterSpacing:1}}>Links</div>
-              {[
-                {icon:'code',    label:'GitHub',  action:()=>window.open('https://github.com/advaithprabhudev','_blank')},
-                {icon:'business',label:'LinkedIn',action:()=>window.open('https://linkedin.com/in/advaith-prabhu','_blank')},
-              ].map(it=>(
-                <div key={it.label} className="menu-item" onClick={it.action}>
-                  <span className="material-symbols-outlined" style={{fontSize:18,color:'#474eb7'}}>{it.icon}</span>
-                  <span>{it.label}</span>
-                </div>
-              ))}
-              <div className="menu-divider"/>
-              <div className="menu-item" onClick={()=>{setTweakOpen(t=>!t);setStartOpen(false);}}>
-                <span className="material-symbols-outlined" style={{fontSize:18,color:'#474eb7'}}>settings</span>
-                <span>Tweaks</span>
-              </div>
-            </div>
-          </div>
-          <div style={{borderTop:'1px solid #ccc',background:'#e4e4e4',padding:'5px 10px',display:'flex',justifyContent:'flex-end',gap:8}}>
-            <div className="menu-item" style={{padding:'3px 12px',border:'1px solid #aaa',background:'#c0c0c0',fontSize:12}}
-              onClick={()=>setDialog('Shut down is disabled in Portfolio OS.\n\nPlease enjoy the experience!')}>
-              <span className="material-symbols-outlined" style={{fontSize:14,color:'#444'}}>power_settings_new</span>
-              <span>Shut Down</span>
-            </div>
-          </div>
-        </div>
-      )}
+      ls: () => `total 3
+drwxr-xr-x  <span class="t-c">Momentum-Research-Project</span>
+drwxr-xr-x  <span class="t-c">Market-Microstructure-Analysis-using-Shannon-Entropy</span>
+drwxr-xr-x  <span class="t-c">Finance-Automation-Tracker</span>`,
 
-      {/* Tweaks panel */}
-      {tweakOpen&&(
-        <div className="tweaks-panel">
-          <div className="win-tbar" style={{cursor:'default'}}>
-            <span className="material-symbols-outlined" style={{color:'#fff',fontSize:13,marginRight:4}}>settings</span>
-            <span style={{color:'#fff',fontFamily:"'Space Grotesk'",fontWeight:600,fontSize:12,flex:1}}>Tweaks</span>
-            <div className="wctrl cl" style={{width:18,height:18}} onClick={()=>setTweakOpen(false)}>✕</div>
-          </div>
-          <div style={{padding:12,display:'flex',flexDirection:'column',gap:10}}>
-            <div style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-              <span style={{fontFamily:"'Work Sans'",fontSize:12,fontWeight:600}}>CRT Scanlines</span>
-              <button onClick={()=>setTweak('crtEffect',!tweaks.crtEffect)} style={{width:40,height:20,background:tweaks.crtEffect?'#474eb7':'#ccc',border:'2px solid',borderColor:tweaks.crtEffect?'#2a2e8a #6068d2 #6068d2 #2a2e8a':'#666 #fff #fff #666',cursor:'pointer',display:'flex',alignItems:'center',padding:'0 2px',transition:'background .2s'}}>
-                <div style={{width:14,height:14,background:'#fff',transform:`translateX(${tweaks.crtEffect?18:0}px)`,transition:'transform .2s'}}/>
-              </button>
-            </div>
-            <div>
-              <div style={{fontFamily:"'Work Sans'",fontSize:12,fontWeight:600,marginBottom:6}}>Title Bar Theme</div>
-              <div style={{display:'flex',gap:6}}>
-                {[
-                  {k:'xp-blue',bg:'linear-gradient(90deg,#082080,#2878e8,#78b8f4)'},
-                  {k:'dark',   bg:'linear-gradient(90deg,#111,#333,#666)'},
-                  {k:'teal',   bg:'linear-gradient(90deg,#004040,#006565,#008888)'},
-                ].map(opt=>(
-                  <div key={opt.k} onClick={()=>setTweak('titleTheme',opt.k)}
-                    style={{width:60,height:22,background:opt.bg,cursor:'pointer',border:`2px solid ${tweaks.titleTheme===opt.k?'#fff':'#666'}`,outline:tweaks.titleTheme===opt.k?'2px solid #474eb7':'none'}}/>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      skills: () => `Python  NumPy  Pandas  YFinance  Matplotlib  Plotly
+R  Scikit-Learn  PyTorch  QuantLib
+MongoDB  MySQL  Streamlit  Git  GitHub`,
 
-      {/* Taskbar */}
-      <div className="taskbar">
-        <button className={`start-btn${startOpen?' active':''}`} onClick={()=>setStartOpen(s=>!s)}>
-          <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:1.5,width:18,height:18}}>
-            <div style={{background:'#f8d840',borderRadius:'1px 0 0 0'}}/>
-            <div style={{background:'#f8d840',borderRadius:'0 1px 0 0'}}/>
-            <div style={{background:'#f8d840',borderRadius:'0 0 0 1px'}}/>
-            <div style={{background:'#f8d840',borderRadius:'0 0 1px 0'}}/>
-          </div>
-          <span style={{fontStyle:'italic'}}>Start</span>
-        </button>
-        <div style={{width:2,height:28,background:'linear-gradient(180deg,#999,#fff,#999)',margin:'0 2px'}}/>
-        {Object.entries(WIN_CFG).map(([id,cfg])=>
-          wins[id].open&&(
-            <button key={id} className={`task-btn${!wins[id].minimized?' on':''}`} onClick={()=>toggleTaskWin(id)}>
-              <span className="material-symbols-outlined" style={{fontSize:13,flexShrink:0}}>{cfg.icon}</span>
-              <span style={{overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{cfg.title}</span>
-            </button>
-          )
-        )}
-        <div className="sys-tray">
-          <span className="material-symbols-outlined" style={{fontSize:15,color:'#333'}}>wifi</span>
-          <span className="material-symbols-outlined" style={{fontSize:15,color:'#333'}}>volume_up</span>
-          <Clock/>
-        </div>
-      </div>
-    </div>
-  );
-}
+      contact: () => `GitHub   → <a href="https://github.com/advaithprabhudev" target="_blank" class="t-link">github.com/advaithprabhudev</a>
+LinkedIn → <a href="https://www.linkedin.com/in/advaith-prabhu/" target="_blank" class="t-link">linkedin.com/in/advaith-prabhu</a>`,
 
-ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
-</script>
+      'uname -a': () => `Linux archlinux 6.8.0-arch1-1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux`,
+      uname: () => `Linux archlinux 6.8.0-arch1-1 #1 SMP x86_64 GNU/Linux`,
+
+      date: () => new Date().toString(),
+      clear: () => '__CLEAR__',
+
+      open: (args) => {
+        const n = args[0];
+        if (['about', 'projects', 'skills', 'contact', 'resume', 'terminal'].includes(n)) {
+          setTimeout(() => WM.open(n), 80);
+          return `Opening <span class="t-c">${n}</span>...`;
+        }
+        return `open: unknown: '${n}'`;
+      },
+    };
+
+    let termHistory = [], termHistIdx = -1;
+    let termInit = false;
+
+    function initTerminal() {
+      if (termInit) return; termInit = true;
+      const input = document.getElementById('term-input');
+      const output = document.getElementById('term-output');
+      const container = document.getElementById('term-container');
+
+      function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+      function appendLine(html) {
+        const d = document.createElement('div');
+        d.className = 't-line'; d.innerHTML = html;
+        output.appendChild(d);
+        container.scrollTop = container.scrollHeight;
+      }
+
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          const val = input.value.trim();
+          input.value = '';
+          if (!val) return;
+          termHistory.unshift(val); termHistIdx = -1;
+          // Echo prompt
+          appendLine(`<span class="t-dollar">❯ </span>${esc(val)}`);
+          // Run
+          const parts = val.split(/\s+/);
+          const cmd = parts[0]; const args = parts.slice(1);
+          const full = val;
+          const handler = CMDS[full] || CMDS[cmd];
+          if (handler) {
+            const r = handler(args);
+            if (r === '__CLEAR__') { output.innerHTML = ''; }
+            else if (r) appendLine(r);
+          } else {
+            appendLine(`<span style="color:var(--red)">zsh: command not found: ${esc(cmd)}</span>`);
+          }
+        } else if (e.key === 'ArrowUp') {
+          termHistIdx = Math.min(termHistIdx + 1, termHistory.length - 1);
+          input.value = termHistory[termHistIdx] || '';
+          e.preventDefault();
+        } else if (e.key === 'ArrowDown') {
+          termHistIdx = Math.max(termHistIdx - 1, -1);
+          input.value = termHistIdx >= 0 ? termHistory[termHistIdx] : '';
+          e.preventDefault();
+        }
+      });
+      document.getElementById('term-container').addEventListener('click', () => input.focus());
+    }
+
+    // ══ BOOT SEQUENCE ════════════════════════════════════════════
+    (function boot() {
+      const b = document.createElement('div');
+      b.id = 'boot';
+      b.innerHTML = `
+    <div class="boot-ascii">         .+          
+        .ooo/         
+      +oooo:          
+     +oooooo:         
+     -+oooooo+:       
+      -/++++++:       
+   -/++oooooooo+      
+  -/+++oooooooo+      
+ ./oossssso++osssss+  
+./ossssssso-  osssss+ 
+/ossssssso:    osssss+
++sssssssso:    +ssssso
+.ssssssso:     +ssssso
+ /sssssso:    -osssso/
+  -/+oso+-:/-+ossso/  
+   -:+/  -/+osso/-    
+      -:/+oso/-        </div>
+    <div class="boot-text" id="boot-msg">Initializing advaith@arch...</div>
+    <div class="boot-log" id="boot-log"></div>`;
+      b.style.cssText = 'position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;gap:16px;font-family:var(--mono);';
+      document.body.appendChild(b);
+
+      const msgs = [
+        '[ <span style="color:var(--green)">OK</span> ] Started udev Kernel Device Manager',
+        '[ <span style="color:var(--green)">OK</span> ] Started Network Manager',
+        '[ <span style="color:var(--green)">OK</span> ] Reached target Graphical Interface',
+        '[ <span style="color:var(--accent2)">  </span>] Starting advaith-portfolio.service...',
+        '[ <span style="color:var(--green)">OK</span> ] Started advaith-portfolio.service',
+      ];
+      const log = document.getElementById('boot-log');
+      msgs.forEach((m, i) => {
+        setTimeout(() => {
+          const d = document.createElement('div');
+          d.className = 'boot-log-line'; d.innerHTML = m;
+          log.appendChild(d);
+        }, 300 + i * 280);
+      });
+
+      setTimeout(() => {
+        b.style.transition = 'opacity 500ms ease';
+        b.style.opacity = '0';
+        setTimeout(() => {
+          b.remove();
+          WM.open('terminal');
+          WM.open('about');
+          setTimeout(() => { WM.open('projects'); }, 200);
+        }, 520);
+      }, 2200);
+    })();
+
+    // Open skills bars when window shown
+    document.getElementById('win-skills').addEventListener('mousedown', () => {
+      document.querySelectorAll('.skill-fill').forEach(el => {
+        if (!el.style.width || el.style.width === '0px') el.style.width = el.dataset.w + '%';
+      });
+    });
+
+    // Init terminal on open
+    const _origOpen = WM.open.bind(WM);
+    WM.open = function (id) {
+      _origOpen(id);
+      if (id === 'terminal') setTimeout(initTerminal, 150);
+    };
+  </script>
 </body>
+
 </html>
