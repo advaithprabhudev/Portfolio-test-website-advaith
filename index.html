@@ -1,913 +1,2305 @@
 <!DOCTYPE html>
-<html class="h-full" lang="en">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>MyComputer — Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "surface-container-highest": "#e3e2e2",
-            "outline-variant": "#bdc9c8",
-            "inverse-surface": "#2f3131",
-            "surface-dim": "#dadada",
-            "surface-container": "#eeeeee",
-            "secondary-fixed": "#e3e2e2",
-            "on-tertiary-fixed-variant": "#004f4f",
-            "on-surface-variant": "#3e4949",
-            "on-secondary-fixed": "#1a1c1c",
-            "on-primary-fixed": "#00006e",
-            "secondary-container": "#e0dfdf",
-            "on-secondary-container": "#626363",
-            "error": "#ba1a1a",
-            "on-primary": "#ffffff",
-            "background": "#faf9f9",
-            "surface-variant": "#e3e2e2",
-            "on-tertiary": "#ffffff",
-            "inverse-on-surface": "#f1f0f0",
-            "tertiary-fixed": "#93f2f2",
-            "primary-fixed-dim": "#bfc2ff",
-            "surface-container-high": "#e8e8e8",
-            "on-surface": "#1a1c1c",
-            "tertiary-fixed-dim": "#76d6d5",
-            "on-primary-container": "#fbf8ff",
-            "on-tertiary-container": "#e3fffe",
-            "on-error": "#ffffff",
-            "surface-container-lowest": "#ffffff",
-            "inverse-primary": "#bfc2ff",
-            "secondary-fixed-dim": "#c6c6c6",
-            "on-tertiary-fixed": "#002020",
-            "error-container": "#ffdad6",
-            "primary": "#474eb7",
-            "tertiary": "#006565",
-            "on-error-container": "#93000a",
-            "surface-tint": "#4b53bc",
-            "on-primary-fixed-variant": "#3239a3",
-            "surface": "#faf9f9",
-            "tertiary-container": "#008080",
-            "primary-container": "#6068d2",
-            "on-background": "#1a1c1c",
-            "primary-fixed": "#e0e0ff",
-            "secondary": "#5d5e5f",
-            "surface-container-low": "#f4f3f3",
-            "surface-bright": "#faf9f9",
-            "outline": "#6e7979",
-            "on-secondary-fixed-variant": "#464747",
-            "on-secondary": "#ffffff"
-          },
-          borderRadius: {
-            "DEFAULT": "0rem",
-            "lg": "0rem",
-            "xl": "0rem",
-            "full": "9999px"
-          },
-          fontFamily: {
-            "headline": ["Space Grotesk"],
-            "body": ["Work Sans"],
-            "label": ["Work Sans"]
-          }
-        }
-      }
-    }
-  </script>
-  <style>
-    * { box-sizing: border-box; }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>advaith@arch</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }
 
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
+:root {
+  --bg:       #000000;
+  --bg1:      #0d0d0d;
+  --bg2:      #111111;
+  --bg3:      #1a1a1a;
+  --bg4:      #222222;
+  --border:   #2a2a2a;
+  --border2:  #333333;
+  --text:     #cdd6f4;
+  --text2:    #a6adc8;
+  --text3:    #585b70;
+  --accent:   #2dd4bf;   /* teal */
+  --accent2:  #89b4fa;   /* blue */
+  --green:    #a6e3a1;
+  --red:      #f38ba8;
+  --yellow:   #f9e2af;
+  --mauve:    #cba6f7;
+  --pink:     #f5c2e7;
+  --mono:     'JetBrains Mono', 'Fira Code', 'Cascadia Code', monospace;
+  --bar-h:    26px;
+  --taskbar-h: 40px;
+  --title-h:  26px;
+}
 
-    .bevel-out {
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-bottom: 2px solid #5d5e5f;
-      border-right: 2px solid #5d5e5f;
-    }
+body { font-family: var(--mono); color: var(--text); transition: background 300ms ease; }
 
-    .bevel-in {
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #ffffff;
-      border-right: 2px solid #ffffff;
-    }
+/* ══ LIGHT THEME ══════════════════════════════════════════ */
+html[data-theme="light"] {
+  --bg:       #f5f3ee;
+  --bg1:      #ebe8df;
+  --bg2:      #e2dfd4;
+  --bg3:      #d6d2c4;
+  --bg4:      #c8c3b3;
+  --border:   #bfb9a8;
+  --border2:  #a8a292;
+  --text:     #1a1814;
+  --text2:    #45413a;
+  --text3:    #807a6a;
+}
+html[data-theme="light"] body { background: #f5f3ee; }
+html[data-theme="light"] .win { box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+html[data-theme="light"] .term-body,
+html[data-theme="light"] .about-term { background: #fafaf6; }
+html[data-theme="light"] .nf-ascii { color: var(--accent); }
+html[data-theme="light"] #topbar { background: rgba(245,243,238,0.92); }
+html[data-theme="light"] #taskbar { background: rgba(235,232,223,0.95); }
+html[data-theme="light"] .filetree-body,
+html[data-theme="light"] .win { background: #fafaf6; }
+html[data-theme="light"] #tweaks-panel { background: rgba(245,243,238,0.97); color: #45413a; }
+html[data-theme="light"] .win-statusbar { color: #1a1814; }
+html[data-theme="light"] #scanlines { display: none; }
 
-    .title-bar {
-      background: linear-gradient(90deg, #474eb7 0%, #6068d2 100%);
-    }
+html[data-theme="light"] body {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(45,212,191,0.08), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(137,180,250,0.05), transparent 60%),
+    #f5f3ee;
+}
+html:not([data-theme="light"]) body {
+  background: #000;
+}
 
-    .desktop {
-      background-color: #008080;
-    }
+/* ══ SKELETON LOADING ════════════════════════════════════ */
+@keyframes skeletonShimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg,
+    var(--bg2) 0%, var(--bg3) 50%, var(--bg2) 100%);
+  background-size: 200% 100%;
+  animation: skeletonShimmer 1.4s linear infinite;
+  border-radius: 0;
+}
+.skel-line { height: 12px; margin: 8px 0; }
+.skel-line.short { width: 40%; }
+.skel-line.medium { width: 70%; }
+.skel-line.long { width: 95%; }
+.skel-block { height: 80px; margin: 12px 0; }
+.win-skeleton {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
 
-    .crt-effect {
-      background:
-        linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.08) 50%),
-        linear-gradient(90deg, rgba(255,0,0,0.04), rgba(0,255,0,0.02), rgba(0,0,255,0.04));
-      background-size: 100% 2px, 3px 100%;
-    }
+/* ══ THREE.JS CANVAS ══════════════════════════════════════ */
+#bg-canvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
 
-    .taskbar-btn {
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-bottom: 2px solid #5d5e5f;
-      border-right: 2px solid #5d5e5f;
-      background: #dadada;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 0 10px;
-      height: 36px;
-      cursor: pointer;
-      white-space: nowrap;
-    }
+/* ══ TOP BAR (i3bar style) ════════════════════════════════ */
+#topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: var(--bar-h);
+  background: rgba(0,0,0,0.88);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+  user-select: none;
+}
 
-    .taskbar-btn:hover { background: #e8e8e8; }
+/* Workspaces */
+#ws-list {
+  display: flex;
+  height: 100%;
+  flex-shrink: 0;
+}
+.ws-item {
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  font-size: 11px;
+  color: var(--text3);
+  cursor: pointer;
+  border-right: 1px solid var(--border);
+  transition: background 100ms, color 100ms;
+  letter-spacing: 0.03em;
+}
+.ws-item:first-child { border-left: 1px solid var(--border); }
+.ws-item:hover { background: var(--bg3); color: var(--text2); }
+.ws-item.ws-active { background: var(--bg2); color: var(--accent); }
+.ws-item.ws-occupied { color: var(--text2); }
 
-    .taskbar-btn.active {
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #ffffff;
-      border-right: 2px solid #ffffff;
-      background: #c8c8c8;
-    }
+/* Centered clock */
+#bar-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--text2);
+  letter-spacing: 0.04em;
+  gap: 16px;
+}
+#bar-date { color: var(--text3); }
+#bar-time { color: var(--text); font-weight: 500; }
 
-    .taskbar-btn:active {
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #ffffff;
-      border-right: 2px solid #ffffff;
-      transform: translate(1px, 1px);
-    }
+/* System tray */
+#bar-tray {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 0;
+  flex-shrink: 0;
+}
+.tray-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+  height: 100%;
+  font-size: 11px;
+  color: var(--text2);
+  border-left: 1px solid var(--border);
+  cursor: default;
+  white-space: nowrap;
+}
+.tray-icon { font-size: 12px; }
+.tray-warn { color: var(--yellow); }
+.tray-alert { color: var(--red); }
 
-    .start-btn {
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-bottom: 2px solid #3a3a3a;
-      border-right: 2px solid #3a3a3a;
-      background: #dadada;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 0 12px;
-      height: 36px;
-      cursor: pointer;
-    }
+/* ══ DESKTOP ══════════════════════════════════════════════ */
+#desktop {
+  position: fixed;
+  top: var(--bar-h);
+  left: 0; right: 0;
+  bottom: var(--taskbar-h);
+  z-index: 1;
+}
 
-    .start-btn:active {
-      border-top: 2px solid #3a3a3a;
-      border-left: 2px solid #3a3a3a;
-      border-bottom: 2px solid #ffffff;
-      border-right: 2px solid #ffffff;
-      transform: translate(1px, 1px);
-    }
+/* ══ WINDOWS ══════════════════════════════════════════════ */
+.win {
+  position: absolute;
+  display: none;
+  flex-direction: column;
+  background: var(--bg1);
+  border: 1px solid var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  z-index: 100;
+  min-width: 300px;
+  min-height: 180px;
+}
+.win.win-focused {
+  border-color: var(--border2);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.7);
+}
 
-    .win-btn {
-      width: 20px;
-      height: 18px;
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-bottom: 2px solid #5d5e5f;
-      border-right: 2px solid #5d5e5f;
-      background: #dadada;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Work Sans', monospace;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-      flex-shrink: 0;
-    }
+/* Titlebar */
+.win-titlebar {
+  height: var(--title-h);
+  background: var(--bg3);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-shrink: 0;
+  cursor: grab;
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.win-titlebar:active { cursor: grabbing; }
 
-    .win-btn:hover { background: #eeeeee; }
-    .win-btn:active {
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #fff;
-      border-right: 2px solid #fff;
-      transform: translate(1px,1px);
-    }
+/* Traffic lights — left side */
+.win-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  flex-shrink: 0;
+}
+.wc-btn {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: filter 100ms;
+  outline: none;
+  flex-shrink: 0;
+}
+.wc-btn:hover { filter: brightness(1.4); }
+.wc-close  { background: #f38ba8; }
+.wc-min    { background: #f9e2af; }
+.wc-max    { background: #a6e3a1; }
 
-    .desktop-icon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: pointer;
-      width: 64px;
-      padding: 4px;
-      user-select: none;
-    }
+/* Tab-style title */
+.win-title-tab {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  font-size: 11px;
+  color: var(--text2);
+  border-right: 1px solid var(--border);
+  gap: 6px;
+  letter-spacing: 0.02em;
+}
+.win-title-tab .tab-icon { color: var(--text3); font-size: 10px; }
+.win-title-tab.active-tab { background: var(--bg2); color: var(--text); border-bottom: 1px solid var(--accent); margin-bottom: -1px; }
 
-    .desktop-icon:hover .icon-label,
-    .desktop-icon:focus .icon-label {
-      background: #000080;
-      color: white;
-      outline: 1px dotted rgba(255,255,255,0.5);
-    }
+.win-title-spacer { flex: 1; }
 
-    .icon-label {
-      font-family: 'Work Sans', sans-serif;
-      font-size: 11px;
-      color: white;
-      text-shadow: 1px 1px 1px #000;
-      padding: 1px 3px;
-      text-align: center;
-      word-break: break-word;
-      line-height: 1.2;
-    }
+/* Body */
+.win-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.win-body-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.win-body-scroll::-webkit-scrollbar { width: 3px; }
+.win-body-scroll::-webkit-scrollbar-thumb { background: var(--border2); }
 
-    #start-menu {
-      position: fixed;
-      bottom: 44px;
-      left: 0;
-      width: 220px;
-      z-index: 200;
-      display: none;
-      flex-direction: row;
-      background: #dadada;
-      border-top: 2px solid #fff;
-      border-left: 2px solid #fff;
-      border-right: 2px solid #5d5e5f;
-      border-bottom: 2px solid #5d5e5f;
-    }
+/* Resize handle */
+.win-resize-handle {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 10px; height: 10px;
+  cursor: se-resize;
+  z-index: 10;
+}
 
-    #start-menu.open { display: flex; }
+/* ══ STATUS BAR (bottom of window, like vim) ═════════════ */
+.win-statusbar {
+  height: 20px;
+  background: var(--accent2);
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--bg);
+  flex-shrink: 0;
+}
+.win-statusbar.green { background: var(--green); }
+.win-statusbar.mauve { background: var(--mauve); }
+.ws-sep { color: rgba(0,0,0,0.3); }
 
-    .start-menu-header {
-      background: linear-gradient(180deg, #474eb7 0%, #6068d2 100%);
-      color: white;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 900;
-      font-size: 15px;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
-      padding: 8px 5px;
-      letter-spacing: 0.06em;
-      width: 28px;
-      flex-shrink: 0;
-    }
+/* ══ TERMINAL WINDOW ═════════════════════════════════════ */
+.term-body {
+  background: #000;
+  flex: 1;
+  padding: 8px 12px;
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-y: auto;
+  cursor: text;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.t-output { display: flex; flex-direction: column; }
+.t-line { white-space: pre-wrap; word-break: break-all; }
+.t-input-wrap {
+  display: flex; align-items: center; gap: 0;
+  margin-top: 2px;
+}
+.t-input {
+  background: transparent; border: none; outline: none;
+  color: var(--text); font-family: var(--mono); font-size: 12px;
+  flex: 1; caret-color: var(--accent);
+}
+.t-ps1 { white-space: nowrap; }
+.t-user  { color: var(--green); }
+.t-at    { color: var(--text3); }
+.t-host  { color: var(--accent2); }
+.t-sep   { color: var(--text3); }
+.t-path  { color: var(--accent2); }
+.t-git   { color: var(--mauve); }
+.t-dollar{ color: var(--text); }
+.t-c     { color: var(--accent); }
+.t-link  { color: var(--accent2); text-decoration: underline; cursor: pointer; }
+.t-dim   { color: var(--text3); }
+.nf-arch { color: var(--accent); }
+.nf-key  { color: var(--accent2); }
+.nf-val  { color: var(--text); }
 
-    .start-menu-items {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-    }
+/* ══ NEOFETCH OUTPUT ═════════════════════════════════════ */
+.neofetch-wrap {
+  display: flex;
+  gap: 24px;
+  padding: 6px 0;
+}
+.nf-ascii {
+  color: var(--accent);
+  font-size: 11px;
+  line-height: 1.45;
+  flex-shrink: 0;
+  white-space: pre;
+}
+.nf-info { display: flex; flex-direction: column; gap: 1px; }
+.nf-info-row { display: flex; gap: 0; font-size: 11px; line-height: 1.6; }
+.nf-info-key { color: var(--accent2); font-weight: 600; min-width: 100px; }
+.nf-info-val { color: var(--text); }
+.nf-colors { display: flex; gap: 2px; margin-top: 6px; }
+.nf-color-swatch { width: 14px; height: 14px; }
 
-    .start-menu-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 12px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      color: #1a1c1c;
-    }
+/* ══ FILE TREE ═══════════════════════════════════════════ */
+.filetree-body {
+  background: var(--bg1);
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px 0;
+  font-size: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.ft-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px 2px 0;
+  cursor: pointer;
+  color: var(--text2);
+  white-space: nowrap;
+  transition: background 80ms;
+}
+.ft-row:hover { background: var(--bg3); }
+.ft-row.ft-active { background: var(--bg4); color: var(--text); }
+.ft-row.ft-dir { color: var(--accent2); }
+.ft-indent { display: inline-block; }
+.ft-icon { color: var(--text3); font-size: 11px; width: 14px; text-align: center; }
+.ft-icon.dir { color: var(--accent2); }
+.ft-icon.py  { color: var(--yellow); }
+.ft-icon.git { color: var(--red); }
+.ft-icon.md  { color: var(--text2); }
+.ft-icon.pdf { color: var(--red); }
 
-    .start-menu-item:hover {
-      background: #474eb7;
-      color: white;
-    }
+/* ══ PROJECTS / EDITOR STYLE ════════════════════════════ */
+.editor-body {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+.editor-gutter {
+  width: 36px;
+  background: var(--bg1);
+  border-right: 1px solid var(--border);
+  padding: 8px 0;
+  font-size: 11px;
+  color: var(--text3);
+  text-align: right;
+  padding-right: 6px;
+  line-height: 1.6;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.editor-content {
+  flex: 1;
+  padding: 8px 16px;
+  font-size: 12px;
+  line-height: 1.6;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+  color: var(--text);
+}
+.e-comment { color: var(--text3); }
+.e-kw      { color: var(--mauve); }
+.e-fn      { color: var(--accent2); }
+.e-str     { color: var(--green); }
+.e-num     { color: var(--yellow); }
+.e-op      { color: var(--text2); }
+.e-cls     { color: var(--yellow); }
+.e-dec     { color: var(--accent); }
+.e-h1      { color: var(--accent2); font-weight: 700; }
+.e-h2      { color: var(--accent); font-weight: 600; }
+.e-h3      { color: var(--mauve); font-weight: 600; }
+.e-link    { color: var(--accent2); text-decoration: underline; }
+.e-bold    { color: var(--text); font-weight: 600; }
 
-    .start-menu-item:hover .material-symbols-outlined { color: white !important; }
+/* ══ CONTACT / SKILLS WINDOW ════════════════════════════ */
+.info-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border2) transparent;
+}
+.info-section-title {
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+}
+.skill-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+.skill-label-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text2);
+}
+.skill-track {
+  height: 2px;
+  background: var(--bg3);
+  border-radius: 1px;
+}
+.skill-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 1px;
+  width: 0;
+  transition: width 900ms cubic-bezier(.22,1,.36,1);
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 120ms, background 120ms;
+}
+.contact-row:hover { border-color: var(--accent); background: var(--bg3); }
+.contact-platform { font-size: 12px; color: var(--text); }
+.contact-url { font-size: 10px; color: var(--text3); margin-top: 1px; }
+.contact-arrow { margin-left: auto; color: var(--text3); font-size: 12px; }
 
-    .start-menu-divider {
-      height: 1px;
-      background: #5d5e5f;
-      margin: 2px 6px;
-    }
+/* chips */
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-size: 10px;
+  color: var(--text2);
+  border: 1px solid var(--border2);
+  padding: 3px 10px;
+  background: var(--bg2);
+  transition: border-color 120ms, color 120ms;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
 
-    .sys-tray {
-      margin-left: auto;
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #fff;
-      border-right: 2px solid #fff;
-      background: #dadada;
-      padding: 2px 10px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      height: 36px;
-    }
+/* ══ RESUME ══════════════════════════════════════════════ */
+.resume-toolbar {
+  height: 28px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 12px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.resume-label { color: var(--text3); flex: 1; }
+.resume-dl {
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  padding: 2px 10px;
+  font-size: 10px;
+  transition: border-color 120ms;
+}
+.resume-dl:hover { border-color: var(--accent); }
+.resume-inner { flex: 1; display: flex; flex-direction: column; }
+.resume-inner iframe { flex: 1; border: none; width: 100%; }
 
-    ::-webkit-scrollbar { width: 16px; }
-    ::-webkit-scrollbar-track { background: #dadada; }
-    ::-webkit-scrollbar-thumb {
-      background: #dadada;
-      border-top: 2px solid #fff;
-      border-left: 2px solid #fff;
-      border-bottom: 2px solid #5d5e5f;
-      border-right: 2px solid #5d5e5f;
-    }
+/* ══ ABOUT (neofetch style) ══════════════════════════════ */
+.about-term {
+  background: #000;
+  flex: 1;
+  padding: 12px 16px;
+  overflow-y: auto;
+  font-size: 12px;
+  line-height: 1.55;
+}
 
-    .view { display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0; }
+/* ══ TASKBAR ═════════════════════════════════════════════ */
+#taskbar {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  height: var(--taskbar-h);
+  background: rgba(10,10,10,0.95);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(12px);
+  gap: 2px;
+  padding: 0 8px;
+}
+.tb-start {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg3);
+  border: 1px solid var(--border2);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--accent);
+  margin-right: 4px;
+  transition: background 100ms;
+  flex-shrink: 0;
+}
+.tb-start:hover { background: var(--bg4); }
+.tb-divider { width: 1px; height: 24px; background: var(--border); margin: 0 4px; flex-shrink: 0; }
+.tb-apps { display: flex; gap: 2px; flex: 1; overflow: hidden; }
+.tb-btn {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 10px;
+  height: 30px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 100ms, color 100ms, border-color 100ms;
+  border-radius: 0;
+}
+.tb-btn:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+.tb-btn.tb-active { background: var(--bg3); color: var(--accent); border-bottom: 1px solid var(--accent); }
+.tb-btn-icon { width: 14px; height: 14px; background: var(--bg4); display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--text3); }
+.tb-tray { display: flex; align-items: center; gap: 2px; flex-shrink: 0; }
+.tb-tray-item {
+  padding: 0 8px; height: 30px;
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--text2);
+  background: var(--bg2); border: 1px solid var(--border);
+  white-space: nowrap;
+  cursor: default;
+}
+.tb-clock { color: var(--text); min-width: 70px; text-align: center; }
 
-    .drag-handle { cursor: move; }
+/* ══ BOOT ════════════════════════════════════════════════ */
+#boot {
+  position: fixed; inset: 0;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  z-index: 99999;
+  gap: 20px;
+}
+.boot-ascii {
+  color: var(--accent);
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: pre;
+  text-align: center;
+}
+.boot-text { font-size: 11px; color: var(--text3); }
+.boot-log {
+  width: 420px;
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.boot-log-line { font-size: 10px; color: var(--text3); }
+.boot-log-line .ok { color: var(--green); }
+.boot-log-line .started { color: var(--accent2); }
 
-    .address-bar {
-      background: white;
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #fff;
-      border-right: 2px solid #fff;
-      padding: 1px 6px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 11px;
-      color: #5d5e5f;
-      flex: 1;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+/* ══ SPLIT LAYOUT HELPER ════════════════════════════════ */
+.split-h { display: flex; height: 100%; }
+.split-v { display: flex; flex-direction: column; height: 100%; }
+.split-pane { display: flex; flex-direction: column; overflow: hidden; }
+.split-divider-v { width: 1px; background: var(--border); flex-shrink: 0; }
+.split-divider-h { height: 1px; background: var(--border); flex-shrink: 0; }
+.pane-titlebar {
+  height: 20px;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  padding: 0 8px; gap: 8px;
+  font-size: 10px; color: var(--text3);
+  flex-shrink: 0;
+}
+.pane-tb-name { color: var(--text2); }
+.pane-tb-git  { color: var(--mauve); }
 
-    .tab-active {
-      background: #faf9f9;
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-right: 2px solid #fff;
-      border-bottom: 2px solid #faf9f9;
-      z-index: 10;
-      margin-bottom: -2px;
-      padding: 4px 16px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-    }
+/* ══ SPOTIFY WIDGET ══════════════════════════════════════ */
+#spotify-widget {
+  position: fixed;
+  right: 12px;
+  bottom: 52px;
+  width: 280px;
+  background: rgba(15,15,15,0.92);
+  border: 1px solid var(--border);
+  border-left: 2px solid #1DB954;
+  backdrop-filter: blur(12px);
+  z-index: 999;
+  font-family: var(--mono);
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms ease, opacity 200ms ease;
+  user-select: none;
+}
+html[data-theme="light"] #spotify-widget { background: rgba(255,255,255,0.92); }
+#spotify-widget.hidden { transform: translateY(20px); opacity: 0; pointer-events: none; }
+.sw-header {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: 0.08em;
+}
+.sw-spotify-logo { color: #1DB954; font-size: 11px; font-weight: 600; display: flex; align-items: center; gap: 4px; }
+.sw-min {
+  background: none; border: none; color: var(--text3);
+  cursor: pointer; font-size: 12px; font-family: var(--mono);
+  padding: 0; line-height: 1;
+}
+.sw-min:hover { color: var(--text); }
+.sw-body {
+  display: flex;
+  gap: 10px;
+  padding: 10px 12px;
+  align-items: center;
+}
+.sw-art {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, #1DB954 0%, #2dd4bf 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+  color: #000;
+}
+.sw-info { flex: 1; min-width: 0; }
+.sw-track {
+  font-size: 12px;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sw-artist {
+  font-size: 10px;
+  color: var(--text3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.sw-controls {
+  display: flex;
+  gap: 12px;
+  padding: 0 12px 10px;
+  align-items: center;
+}
+.sw-btn {
+  background: none; border: none; color: var(--text2);
+  cursor: pointer; font-size: 14px; padding: 2px;
+  font-family: inherit; line-height: 1;
+}
+.sw-btn:hover { color: var(--accent); }
+.sw-btn.sw-play { color: var(--text); font-size: 16px; }
+.sw-progress {
+  flex: 1;
+  height: 2px;
+  background: var(--bg3);
+  position: relative;
+  cursor: pointer;
+}
+.sw-progress-fill {
+  position: absolute;
+  left: 0; top: 0; height: 100%;
+  background: var(--text2);
+  transition: width 120ms linear, background 120ms;
+}
+.sw-progress:hover .sw-progress-fill { background: #1DB954; }
 
-    .tab-inactive {
-      background: #dadada;
-      border-top: 2px solid #fff;
-      border-left: 2px solid #fff;
-      border-right: 2px solid #5d5e5f;
-      border-bottom: 2px solid #5d5e5f;
-      cursor: pointer;
-      padding: 4px 16px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      opacity: 0.7;
-    }
+/* ══ DESKTOP CONTEXT MENU ════════════════════════════════ */
+#ctx-menu {
+  position: fixed;
+  background: rgba(10,10,10,0.97);
+  border: 1px solid var(--border2);
+  backdrop-filter: blur(12px);
+  z-index: 100000;
+  min-width: 220px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text);
+  display: none;
+  padding: 4px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+}
+html[data-theme="light"] #ctx-menu { background: rgba(255,255,255,0.97); color: #1a1814; }
+.ctx-item {
+  padding: 6px 14px 6px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  position: relative;
+  transition: background 60ms;
+}
+.ctx-item:hover { background: var(--accent); color: #000; }
+.ctx-item.disabled { color: var(--text3); cursor: not-allowed; }
+.ctx-item.disabled:hover { background: transparent; color: var(--text3); }
+.ctx-sep {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+.ctx-kbd {
+  font-size: 9px;
+  color: var(--text3);
+  letter-spacing: 0.05em;
+}
+.ctx-item:hover .ctx-kbd { color: rgba(0,0,0,0.7); }
+.ctx-arrow { font-size: 9px; opacity: 0.6; }
+.ctx-sub-anchor:hover .ctx-submenu { display: block; }
+.ctx-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -4px;
+  background: rgba(10,10,10,0.97);
+  border: 1px solid var(--border2);
+  min-width: 180px;
+  padding: 4px;
+}
+html[data-theme="light"] .ctx-submenu { background: rgba(255,255,255,0.97); }
 
-    .tab-inactive:hover { background: #eeeeee; }
+/* ══ DESKTOP ICONS GRID ══════════════════════════════════ */
+#desktop-icons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 92px);
+  gap: 4px;
+  z-index: 5;
+}
+.desk-icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 100ms, border-color 100ms;
+  width: 92px;
+  text-align: center;
+  position: relative;
+}
+.desk-icon:hover {
+  background: rgba(45,212,191,0.08);
+  border-color: rgba(45,212,191,0.2);
+}
+.desk-icon.selected {
+  background: rgba(45,212,191,0.15);
+  border-color: var(--accent);
+}
+.desk-icon-glyph {
+  width: 48px; height: 48px;
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: var(--accent);
+  font-family: var(--mono);
+  position: relative;
+}
+html[data-theme="light"] .desk-icon-glyph { background: rgba(255,255,255,0.6); }
+.desk-icon-label {
+  font-size: 10px;
+  color: var(--text2);
+  line-height: 1.3;
+  word-break: normal;
+  overflow-wrap: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  font-family: var(--mono);
+}
+html[data-theme="light"] .desk-icon-label { text-shadow: 0 1px 2px rgba(255,255,255,0.5); color: var(--text); }
+.desk-icon:active { transform: scale(0.96); }
 
-    .proj-card { transition: background 0.05s; }
-    .proj-card:hover { background: rgba(71,78,183,0.06); }
+/* "Launching" animation when icon clicked */
+.desk-icon.launching .desk-icon-glyph {
+  animation: launchPulse 400ms ease;
+}
+@keyframes launchPulse {
+  0%   { box-shadow: 0 0 0 0 var(--accent); }
+  50%  { box-shadow: 0 0 0 12px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
 
-    #menu-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 150;
-    }
+/* ══ MOBILE RESPONSIVE ═══════════════════════════════════ */
+@media (max-width: 768px) {
+  :root { --bar-h: 28px; --taskbar-h: 44px; --title-h: 28px; }
 
-    #menu-overlay.open { display: block; }
+  /* Top bar: hide workspaces + tray, only show clock */
+  #ws-list { display: none; }
+  #bar-tray .tray-item:not(:last-child) { display: none; }
+  #bar-center { font-size: 10px; }
 
-    .action-btn {
-      border-top: 2px solid #ffffff;
-      border-left: 2px solid #ffffff;
-      border-bottom: 2px solid #5d5e5f;
-      border-right: 2px solid #5d5e5f;
-      padding: 5px 18px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
+  /* Desktop icons go to bottom dock-style */
+  #desktop-icons {
+    top: auto;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    grid-template-columns: repeat(6, 56px);
+    gap: 4px;
+    background: rgba(15,15,15,0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    padding: 6px;
+    z-index: 9000;
+  }
+  .desk-icon { width: 56px; padding: 4px; }
+  .desk-icon-glyph { width: 36px; height: 36px; font-size: 16px; }
+  .desk-icon-label { font-size: 8px; }
 
-    .action-btn:hover { filter: brightness(1.05); }
-    .action-btn:active {
-      border-top: 2px solid #5d5e5f;
-      border-left: 2px solid #5d5e5f;
-      border-bottom: 2px solid #fff;
-      border-right: 2px solid #fff;
-      transform: translate(1px, 1px);
-    }
-  </style>
+  /* Windows go fullscreen on mobile */
+  .win {
+    left: 0 !important;
+    top: var(--bar-h) !important;
+    width: 100vw !important;
+    height: calc(100vh - var(--bar-h) - var(--taskbar-h) - 80px) !important;
+    border-radius: 0;
+  }
+  .win-resize-handle { display: none; }
+
+  /* Spotify hide on mobile */
+  #spotify-widget { display: none; }
+
+  /* Taskbar: show clock only, hide other apps */
+  .tb-tray-item:not(.tb-clock) { display: none; }
+  .tb-apps .tb-btn { padding: 0 6px; font-size: 9px; }
+
+  /* Resume PDF: scrollable iframe height */
+  .resume-inner iframe { min-height: 300px; }
+}
+
+@media (max-width: 480px) {
+  #desktop-icons { grid-template-columns: repeat(3, 56px); }
+}
+</style>
 </head>
-<body class="font-body" style="height:100vh;display:flex;flex-direction:column;overflow:hidden;background:#008080;">
+<body>
 
-  <!-- View container -->
-  <div style="flex:1;position:relative;overflow:hidden;">
+<canvas id="bg-canvas"></canvas>
 
-    <!-- ====== DESKTOP VIEW ====== -->
-    <div id="view-desktop" class="view active desktop">
-      <!-- Desktop Icons -->
-      <div style="position:absolute;left:8px;top:8px;display:flex;flex-direction:column;gap:6px;z-index:10;">
-        <div class="desktop-icon" tabindex="0" onclick="openView('desktop')">
-          <span class="material-symbols-outlined text-white" style="font-size:36px;text-shadow:1px 1px 2px #000;">desktop_windows</span>
-          <span class="icon-label">My Computer</span>
-        </div>
-        <div class="desktop-icon" tabindex="0" onclick="openView('portfolio')">
-          <span class="material-symbols-outlined text-white" style="font-size:36px;text-shadow:1px 1px 2px #000;">folder</span>
-          <span class="icon-label">Portfolio</span>
-        </div>
-        <div class="desktop-icon" tabindex="0" onclick="openView('about')">
-          <span class="material-symbols-outlined text-white" style="font-size:36px;text-shadow:1px 1px 2px #000;">person</span>
-          <span class="icon-label">About Me</span>
-        </div>
-        <div class="desktop-icon" tabindex="0" onclick="openView('contact')">
-          <span class="material-symbols-outlined text-white" style="font-size:36px;text-shadow:1px 1px 2px #000;">mail</span>
-          <span class="icon-label">Contact</span>
-        </div>
-        <div class="desktop-icon" tabindex="0">
-          <span class="material-symbols-outlined text-white" style="font-size:36px;text-shadow:1px 1px 2px #000;">delete</span>
-          <span class="icon-label">Recycle Bin</span>
-        </div>
-      </div>
+<!-- ══ TOP BAR ══════════════════════════════════════════════ -->
+<div id="topbar">
+  <div id="ws-list">
+    <div class="ws-item ws-active" onclick="switchWS(1)">A 1</div>
+    <div class="ws-item ws-occupied" onclick="switchWS(2)">2</div>
+    <div class="ws-item" onclick="switchWS(3)">3</div>
+    <div class="ws-item" onclick="switchWS(4)">4</div>
+  </div>
+  <div id="bar-center">
+    <span id="bar-date"></span>
+    <span id="bar-time"></span>
+  </div>
+  <div id="bar-tray">
+    <div class="tray-item"><span class="tray-icon">󰍛</span><span id="tray-ram">1.2GB</span></div>
+    <div class="tray-item tray-warn"><span class="tray-icon">󰁹</span><span>46%</span></div>
+    <div class="tray-item"><span class="tray-icon">󰖩</span><span>arch</span></div>
+  </div>
+</div>
 
-      <!-- Main Portfolio Window -->
-      <div class="bevel-out" id="win-main" style="position:absolute;top:8%;left:18%;width:58%;min-width:360px;background:#dadada;z-index:20;">
-        <div class="title-bar drag-handle" style="height:28px;display:flex;align-items:center;padding:0 4px;justify-content:space-between;user-select:none;">
-          <div style="display:flex;align-items:center;gap:6px;padding:0 4px;">
-            <span class="material-symbols-outlined text-white" style="font-size:13px;">person</span>
-            <span style="color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;letter-spacing:-0.02em;">My Portfolio — C:\Desktop\index.html</span>
-          </div>
-          <div style="display:flex;gap:2px;">
-            <button class="win-btn">_</button>
-            <button class="win-btn">□</button>
-            <button class="win-btn">×</button>
-          </div>
-        </div>
-        <!-- Toolbar row -->
-        <div style="background:#dadada;padding:2px 4px;border-bottom:1px solid #b0b0b0;display:flex;align-items:center;gap:8px;">
-          <button style="display:flex;align-items:center;gap:2px;font-size:11px;font-family:'Work Sans',sans-serif;font-weight:600;background:none;border:none;cursor:pointer;padding:2px 4px;">
-            <span class="material-symbols-outlined" style="font-size:15px;">arrow_back</span>Back
-          </button>
-          <button style="display:flex;align-items:center;gap:2px;font-size:11px;font-family:'Work Sans',sans-serif;font-weight:600;background:none;border:none;cursor:pointer;padding:2px 4px;">
-            <span class="material-symbols-outlined" style="font-size:15px;">arrow_forward</span>Fwd
-          </button>
-          <button style="display:flex;align-items:center;gap:2px;font-size:11px;font-family:'Work Sans',sans-serif;font-weight:600;background:none;border:none;cursor:pointer;padding:2px 4px;">
-            <span class="material-symbols-outlined" style="font-size:15px;">home</span>Home
-          </button>
-          <div style="height:14px;width:1px;background:#aaa;"></div>
-          <div class="address-bar">C:\WINDOWS\Desktop\Portfolio\index.html</div>
-        </div>
-        <!-- Content -->
-        <div style="background:#ffffff;padding:24px 28px;display:flex;gap:20px;align-items:flex-start;min-height:220px;flex-wrap:wrap;">
-          <div style="flex-shrink:0;">
-            <div class="bevel-out" style="padding:3px;background:#dadada;display:inline-block;">
-              <img src="https://placehold.co/116x116/dadada/474eb7?text=AP" alt="Profile" style="width:116px;height:116px;object-fit:cover;display:block;" />
-            </div>
-          </div>
-          <div style="flex:1;min-width:200px;">
-            <h1 style="font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:900;color:#474eb7;letter-spacing:-0.03em;line-height:0.95;margin-bottom:12px;">Welcome to<br>my OS</h1>
-            <p style="color:#5d5e5f;font-size:0.9rem;line-height:1.7;max-width:420px;font-family:'Work Sans',sans-serif;">
-              I am a Digital Archivist and Interface Architect specializing in retro-modern experiences. By blending the constraints of legacy computing with modern performance, I build digital environments that feel both nostalgic and authoritative.
-            </p>
-            <div style="margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;">
-              <button class="action-btn" style="background:#474eb7;color:#fff;" onclick="openView('contact')">Hire Me</button>
-              <button class="action-btn" style="background:#dadada;color:#1a1c1c;">Download CV</button>
-              <button class="action-btn" style="background:#dadada;color:#1a1c1c;" onclick="openView('portfolio')">View Projects</button>
-            </div>
-          </div>
-        </div>
-        <div style="background:#dadada;padding:2px 5px;display:flex;gap:4px;">
-          <div class="bevel-in" style="flex:1;padding:1px 6px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;color:#5d5e5f;">Ready</div>
-          <div class="bevel-in" style="width:100px;padding:1px 6px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;color:#5d5e5f;text-align:right;">3 objects</div>
-        </div>
-      </div>
+<!-- ══ DESKTOP ══════════════════════════════════════════════ -->
+<div id="desktop" oncontextmenu="showCtxMenu(event); return false;">
 
-      <!-- Projects floating window -->
-      <div class="bevel-out hidden md:block" id="win-projects" style="position:absolute;bottom:15%;right:4%;width:300px;background:#dadada;z-index:30;">
-        <div class="title-bar drag-handle" style="height:28px;display:flex;align-items:center;padding:0 4px;justify-content:space-between;user-select:none;">
-          <div style="display:flex;align-items:center;gap:6px;padding:0 4px;">
-            <span class="material-symbols-outlined text-white" style="font-size:13px;">folder_open</span>
-            <span style="color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;">Projects</span>
-          </div>
-          <button class="win-btn">×</button>
-        </div>
-        <div style="padding:6px;">
-          <div class="bevel-in" style="background:#fff;padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px;height:152px;overflow-y:auto;">
-            <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px;" ondblclick="openView('portfolio')">
-              <span class="material-symbols-outlined" style="font-size:34px;color:#006565;">folder</span>
-              <span style="font-size:10px;font-family:'Work Sans',sans-serif;text-align:center;padding:1px 2px;">Design_2024</span>
-            </div>
-            <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px;">
-              <span class="material-symbols-outlined" style="font-size:34px;color:#006565;">folder</span>
-              <span style="font-size:10px;font-family:'Work Sans',sans-serif;text-align:center;padding:1px 2px;">Source_Code</span>
-            </div>
-            <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px;">
-              <span class="material-symbols-outlined" style="font-size:34px;color:#006565;">folder</span>
-              <span style="font-size:10px;font-family:'Work Sans',sans-serif;text-align:center;padding:1px 2px;">Art_Assets</span>
-            </div>
-            <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;cursor:pointer;padding:4px;">
-              <span class="material-symbols-outlined" style="font-size:34px;color:#474eb7;">description</span>
-              <span style="font-size:10px;font-family:'Work Sans',sans-serif;text-align:center;padding:1px 2px;">readme.txt</span>
-            </div>
-          </div>
-          <div style="margin-top:3px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;color:#3e4949;display:flex;justify-content:space-between;">
-            <span>4 objects</span><span>1.2 MB</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- System Identity floating window -->
-      <div class="bevel-out" id="win-identity" style="position:absolute;top:38%;right:5%;width:260px;background:#dadada;z-index:40;">
-        <div style="background:#e3e2e2;height:26px;display:flex;align-items:center;padding:0 4px;justify-content:space-between;user-select:none;" class="drag-handle">
-          <div style="display:flex;align-items:center;gap:6px;padding:0 4px;">
-            <span class="material-symbols-outlined" style="font-size:13px;color:#1a1c1c;">info</span>
-            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;color:#1a1c1c;">System Identity</span>
-          </div>
-          <button class="win-btn">×</button>
-        </div>
-        <div style="padding:8px;display:flex;gap:8px;">
-          <div class="bevel-out" style="width:56px;height:56px;background:#fff;overflow:hidden;flex-shrink:0;">
-            <img src="https://placehold.co/56x56/1a1c1c/474eb7?text=v1" alt="Badge" style="width:56px;height:56px;object-fit:cover;filter:grayscale(1) brightness(1.2);" />
-          </div>
-          <div style="font-family:'Work Sans',sans-serif;display:flex;flex-direction:column;">
-            <span style="font-size:12px;font-weight:700;">System User: v.1.0.98</span>
-            <span style="font-size:10px;color:#626363;margin-top:3px;">Status: <span style="color:#006565;font-weight:700;">● Online</span></span>
-            <p style="font-size:10px;margin-top:5px;line-height:1.4;color:#3e4949;">Identity verified. Accessing portfolio archives...</p>
-          </div>
-        </div>
-        <div style="background:#f4f3f3;padding:4px 8px;display:flex;justify-content:flex-end;border-top:1px solid #bdc9c8;">
-          <button class="bevel-out" style="background:#dadada;padding:2px 14px;font-size:11px;font-family:'Work Sans',sans-serif;font-weight:700;cursor:pointer;" onclick="openView('about')">About Me</button>
-        </div>
-      </div>
+  <!-- ══ DESKTOP ICONS ══ -->
+  <div id="desktop-icons">
+    <div class="desk-icon" onclick="launchApp('terminal', this)" data-app="terminal">
+      <div class="desk-icon-glyph">❯_</div>
+      <div class="desk-icon-label">Terminal</div>
     </div>
-
-    <!-- ====== ABOUT / SYSTEM IDENTITY VIEW ====== -->
-    <div id="view-about" class="view desktop" style="align-items:center;justify-content:center;padding:16px;">
-      <div class="bevel-out" style="background:#dadada;width:100%;max-width:580px;display:flex;flex-direction:column;">
-        <div class="title-bar" style="height:28px;display:flex;align-items:center;padding:0 4px;justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:6px;padding:0 4px;">
-            <span class="material-symbols-outlined text-white" style="font-size:13px;">account_circle</span>
-            <span style="color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;">System Identity</span>
-          </div>
-          <button class="win-btn" onclick="openView('desktop')">×</button>
-        </div>
-        <!-- Tabs -->
-        <div style="display:flex;align-items:flex-end;padding:4px 4px 0;border-bottom:2px solid #fff;">
-          <div class="tab-active">User Profile</div>
-          <div class="tab-inactive">Permissions</div>
-          <div class="tab-inactive">Network</div>
-        </div>
-        <!-- Tab content -->
-        <div class="bevel-in" style="background:#dadada;margin:0;padding:18px;display:flex;gap:20px;flex-wrap:wrap;">
-          <!-- Avatar -->
-          <div style="display:flex;flex-direction:column;align-items:center;gap:10px;min-width:130px;">
-            <div class="bevel-in" style="padding:3px;background:#000;">
-              <div class="crt-effect" style="width:120px;height:120px;background:#0a0a0a;overflow:hidden;position:relative;">
-                <img src="https://placehold.co/120x120/1a1c1c/6068d2?text=AP" alt="Avatar" style="width:100%;height:100%;object-fit:cover;filter:grayscale(1) opacity(0.85) brightness(1.1);mix-blend-mode:screen;" />
-                <div style="position:absolute;inset:0;border:3px solid rgba(71,78,183,0.2);pointer-events:none;"></div>
-              </div>
-            </div>
-            <div style="text-align:center;">
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:0.95rem;font-weight:900;color:#474eb7;letter-spacing:-0.02em;">DESIGNER_ADMIN</div>
-              <div style="font-family:'Work Sans',sans-serif;font-size:10px;color:#5d5e5f;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;">Access Level: Root</div>
-            </div>
-          </div>
-          <!-- Details -->
-          <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:8px;">
-            <div>
-              <label style="font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;color:#5d5e5f;display:block;padding:0 2px;">Identity Node:</label>
-              <div class="bevel-in" style="background:#fff;padding:4px 8px;font-family:'Work Sans',sans-serif;font-size:12px;color:#1a1c1c;">
-                Creative Director // Archive Division
-              </div>
-            </div>
-            <div>
-              <label style="font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;color:#5d5e5f;display:block;padding:0 2px;">System Bio:</label>
-              <div class="bevel-in" style="background:#fff;padding:8px;font-family:'Work Sans',sans-serif;font-size:11px;color:#1a1c1c;line-height:1.6;min-height:100px;">
-                Specializing in the curation of digital heritage. I architect interfaces that bridge the gap between human memory and silicon logic.
-                <br/><br/>
-                Current directive: Reclaiming the tactile rigidity of the early web for the high-end editorial era.
-                <br/><br/>
-                <span style="color:#474eb7;font-weight:700;"># STATUS: ONLINE</span>
-              </div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;">
-              <div class="bevel-out" style="background:#faf9f9;padding:5px 7px;display:flex;align-items:center;gap:5px;">
-                <span class="material-symbols-outlined" style="font-size:15px;color:#5d5e5f;">database</span>
-                <div>
-                  <div style="font-size:9px;font-family:'Work Sans',sans-serif;font-weight:700;text-transform:uppercase;color:#5d5e5f;">Data Usage</div>
-                  <div style="font-size:11px;font-family:'Work Sans',sans-serif;font-weight:900;color:#1a1c1c;">1.44 MB / 2 GB</div>
-                </div>
-              </div>
-              <div class="bevel-out" style="background:#faf9f9;padding:5px 7px;display:flex;align-items:center;gap:5px;">
-                <span class="material-symbols-outlined" style="font-size:15px;color:#5d5e5f;">lan</span>
-                <div>
-                  <div style="font-size:9px;font-family:'Work Sans',sans-serif;font-weight:700;text-transform:uppercase;color:#5d5e5f;">Bandwidth</div>
-                  <div style="font-size:11px;font-family:'Work Sans',sans-serif;font-weight:900;color:#1a1c1c;">TCP/IP Ready</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Actions -->
-        <div style="padding:8px 10px;display:flex;justify-content:flex-end;gap:6px;">
-          <button class="bevel-out" style="background:#dadada;padding:4px 18px;font-size:12px;font-family:'Work Sans',sans-serif;font-weight:700;cursor:pointer;" onclick="openView('desktop')">OK</button>
-          <button class="bevel-out" style="background:#dadada;padding:4px 18px;font-size:12px;font-family:'Work Sans',sans-serif;font-weight:700;cursor:pointer;" onclick="openView('desktop')">Cancel</button>
-          <button class="bevel-out" style="background:#dadada;padding:4px 18px;font-size:12px;font-family:'Work Sans',sans-serif;font-weight:700;cursor:not-allowed;opacity:0.5;" disabled>Apply</button>
-        </div>
-      </div>
+    <div class="desk-icon" onclick="launchApp('about', this)" data-app="about">
+      <div class="desk-icon-glyph" style="font-size:18px;">AP</div>
+      <div class="desk-icon-label">About</div>
     </div>
-
-    <!-- ====== PORTFOLIO VIEW ====== -->
-    <div id="view-portfolio" class="view desktop" style="align-items:center;justify-content:center;padding:16px;">
-      <div class="bevel-out" style="background:#dadada;width:100%;max-width:680px;max-height:calc(100vh - 80px);display:flex;flex-direction:column;">
-        <div class="title-bar" style="height:28px;display:flex;align-items:center;padding:0 4px;justify-content:space-between;flex-shrink:0;">
-          <div style="display:flex;align-items:center;gap:6px;padding:0 4px;">
-            <span class="material-symbols-outlined text-white" style="font-size:13px;">folder_special</span>
-            <span style="color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;">Portfolio — C:\Projects\</span>
-          </div>
-          <div style="display:flex;gap:2px;">
-            <button class="win-btn">_</button>
-            <button class="win-btn">□</button>
-            <button class="win-btn" onclick="openView('desktop')">×</button>
-          </div>
-        </div>
-        <div style="background:#dadada;padding:2px 5px;border-bottom:1px solid #b0b0b0;display:flex;align-items:center;gap:6px;flex-shrink:0;">
-          <button onclick="openView('desktop')" style="display:flex;align-items:center;gap:2px;font-size:11px;font-family:'Work Sans',sans-serif;font-weight:600;background:none;border:none;cursor:pointer;padding:2px 4px;">
-            <span class="material-symbols-outlined" style="font-size:15px;">arrow_back</span>Back
-          </button>
-          <div style="height:1px;flex:1;background:#b0b0b0;"></div>
-          <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;color:#5d5e5f;">Icons view</span>
-        </div>
-        <div style="display:flex;flex:1;overflow:hidden;">
-          <!-- Sidebar -->
-          <div style="width:130px;flex-shrink:0;background:#f4f3f3;border-right:1px solid #b0b0b0;padding:6px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;">
-            <div style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:700;text-transform:uppercase;color:#5d5e5f;margin-bottom:3px;">Folders</div>
-            <div class="bevel-in" style="display:flex;align-items:center;gap:3px;cursor:pointer;padding:2px 4px;background:#dadada;">
-              <span class="material-symbols-outlined" style="font-size:13px;color:#006565;">folder_open</span>
-              <span style="font-size:11px;font-family:'Work Sans',sans-serif;font-weight:600;">Projects</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:3px;cursor:pointer;padding:2px 4px 2px 14px;">
-              <span class="material-symbols-outlined" style="font-size:12px;color:#474eb7;">folder</span>
-              <span style="font-size:11px;font-family:'Work Sans',sans-serif;">Design_2024</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:3px;cursor:pointer;padding:2px 4px 2px 14px;">
-              <span class="material-symbols-outlined" style="font-size:12px;color:#474eb7;">folder</span>
-              <span style="font-size:11px;font-family:'Work Sans',sans-serif;">Source_Code</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:3px;cursor:pointer;padding:2px 4px 2px 14px;">
-              <span class="material-symbols-outlined" style="font-size:12px;color:#474eb7;">folder</span>
-              <span style="font-size:11px;font-family:'Work Sans',sans-serif;">Art_Assets</span>
-            </div>
-          </div>
-          <!-- File grid -->
-          <div class="bevel-in" style="flex:1;background:#fff;padding:14px;overflow-y:auto;">
-            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:12px;">
-              <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px;">
-                <div class="bevel-out" style="width:72px;height:56px;background:#dadada;display:flex;align-items:center;justify-content:center;">
-                  <span class="material-symbols-outlined" style="font-size:28px;color:#474eb7;">web</span>
-                </div>
-                <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;text-align:center;padding:1px 3px;">OS_Portfolio.exe</span>
-                <span style="font-size:9px;font-family:'Work Sans',sans-serif;color:#5d5e5f;">Application</span>
-              </div>
-              <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px;">
-                <div class="bevel-out" style="width:72px;height:56px;background:#dadada;display:flex;align-items:center;justify-content:center;">
-                  <span class="material-symbols-outlined" style="font-size:28px;color:#006565;">palette</span>
-                </div>
-                <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;text-align:center;padding:1px 3px;">Design_System.psd</span>
-                <span style="font-size:9px;font-family:'Work Sans',sans-serif;color:#5d5e5f;">Photoshop</span>
-              </div>
-              <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px;">
-                <div class="bevel-out" style="width:72px;height:56px;background:#dadada;display:flex;align-items:center;justify-content:center;">
-                  <span class="material-symbols-outlined" style="font-size:28px;color:#474eb7;">code</span>
-                </div>
-                <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;text-align:center;padding:1px 3px;">Archive_UI.html</span>
-                <span style="font-size:9px;font-family:'Work Sans',sans-serif;color:#5d5e5f;">HTML File</span>
-              </div>
-              <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px;">
-                <div class="bevel-out" style="width:72px;height:56px;background:#dadada;display:flex;align-items:center;justify-content:center;">
-                  <span class="material-symbols-outlined" style="font-size:28px;color:#5d5e5f;">image</span>
-                </div>
-                <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;text-align:center;padding:1px 3px;">Retro_UI.jpg</span>
-                <span style="font-size:9px;font-family:'Work Sans',sans-serif;color:#5d5e5f;">JPEG Image</span>
-              </div>
-              <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px;">
-                <div class="bevel-out" style="width:72px;height:56px;background:#dadada;display:flex;align-items:center;justify-content:center;">
-                  <span class="material-symbols-outlined" style="font-size:28px;color:#474eb7;">description</span>
-                </div>
-                <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;text-align:center;padding:1px 3px;">readme.txt</span>
-                <span style="font-size:9px;font-family:'Work Sans',sans-serif;color:#5d5e5f;">Text File</span>
-              </div>
-              <div class="proj-card" style="display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:6px;">
-                <div class="bevel-out" style="width:72px;height:56px;background:#dadada;display:flex;align-items:center;justify-content:center;">
-                  <span class="material-symbols-outlined" style="font-size:28px;color:#006565;">data_object</span>
-                </div>
-                <span style="font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;text-align:center;padding:1px 3px;">config.json</span>
-                <span style="font-size:9px;font-family:'Work Sans',sans-serif;color:#5d5e5f;">JSON File</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div style="background:#dadada;padding:2px 5px;display:flex;gap:4px;flex-shrink:0;">
-          <div class="bevel-in" style="flex:1;padding:1px 6px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;color:#5d5e5f;">6 objects • 4.7 MB</div>
-          <div class="bevel-in" style="width:90px;padding:1px 6px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:600;color:#5d5e5f;text-align:right;">Ready</div>
-        </div>
-      </div>
+    <div class="desk-icon" onclick="launchApp('projects', this)" data-app="projects">
+      <div class="desk-icon-glyph">⬡</div>
+      <div class="desk-icon-label">Projects</div>
     </div>
-
-    <!-- ====== CONTACT / MAIL VIEW ====== -->
-    <div id="view-contact" class="view desktop" style="align-items:center;justify-content:center;padding:16px;">
-      <div class="bevel-out" style="background:#dadada;width:100%;max-width:620px;display:flex;flex-direction:column;">
-        <div class="title-bar" style="height:28px;display:flex;align-items:center;padding:0 4px;justify-content:space-between;">
-          <div style="display:flex;align-items:center;gap:6px;padding:0 4px;">
-            <span class="material-symbols-outlined text-white" style="font-size:13px;font-variation-settings:'FILL' 1;">mail</span>
-            <span style="color:#fff;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;">New Message — Outlook Express</span>
-          </div>
-          <div style="display:flex;gap:2px;">
-            <button class="win-btn">_</button>
-            <button class="win-btn">□</button>
-            <button class="win-btn" onclick="openView('desktop')">×</button>
-          </div>
-        </div>
-        <!-- Mail toolbar -->
-        <div style="background:#dadada;padding:3px 3px;border-bottom:1px solid #b0b0b0;display:flex;gap:1px;flex-wrap:wrap;">
-          <button style="display:flex;flex-direction:column;align-items:center;padding:3px 10px;background:none;border:none;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;">
-            <span class="material-symbols-outlined" style="font-size:24px;color:#474eb7;">send</span>Send
-          </button>
-          <div style="width:1px;background:#b0b0b0;margin:2px 3px;align-self:stretch;"></div>
-          <button style="display:flex;flex-direction:column;align-items:center;padding:3px 8px;background:none;border:none;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;">
-            <span class="material-symbols-outlined" style="font-size:20px;color:#5d5e5f;">attach_file</span>Attach
-          </button>
-          <button style="display:flex;flex-direction:column;align-items:center;padding:3px 8px;background:none;border:none;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;">
-            <span class="material-symbols-outlined" style="font-size:20px;color:#5d5e5f;">content_cut</span>Cut
-          </button>
-          <button style="display:flex;flex-direction:column;align-items:center;padding:3px 8px;background:none;border:none;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;">
-            <span class="material-symbols-outlined" style="font-size:20px;color:#5d5e5f;">content_copy</span>Copy
-          </button>
-          <button style="display:flex;flex-direction:column;align-items:center;padding:3px 8px;background:none;border:none;cursor:pointer;font-family:'Work Sans',sans-serif;font-size:10px;font-weight:700;text-transform:uppercase;">
-            <span class="material-symbols-outlined" style="font-size:20px;color:#5d5e5f;">content_paste</span>Paste
-          </button>
-        </div>
-        <!-- Headers -->
-        <div style="background:#dadada;padding:6px 10px;display:flex;flex-direction:column;gap:5px;">
-          <div style="display:flex;align-items:center;gap:6px;">
-            <label style="width:52px;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:700;color:#5d5e5f;flex-shrink:0;">To:</label>
-            <div class="bevel-in" style="flex:1;background:#fff;padding:3px 7px;font-family:'Work Sans',sans-serif;font-size:12px;color:#1a1c1c;">darsanaarun.sg@gmail.com</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <label style="width:52px;font-family:'Work Sans',sans-serif;font-size:12px;font-weight:700;color:#5d5e5f;flex-shrink:0;">Subject:</label>
-            <input type="text" placeholder="Project Inquiry" style="flex:1;border-top:2px solid #5d5e5f;border-left:2px solid #5d5e5f;border-bottom:2px solid #fff;border-right:2px solid #fff;background:#fff;padding:3px 7px;font-family:'Work Sans',sans-serif;font-size:12px;outline:none;" />
-          </div>
-        </div>
-        <!-- Message area -->
-        <div style="padding:0 10px 8px;flex:1;display:flex;flex-direction:column;">
-          <div class="bevel-in" style="flex:1;background:#fff;padding:8px;display:flex;flex-direction:column;">
-            <textarea placeholder="Type your message here..." style="width:100%;min-height:190px;resize:none;border:none;outline:none;font-family:'Work Sans',sans-serif;font-size:13px;line-height:1.7;color:#1a1c1c;background:transparent;"></textarea>
-          </div>
-        </div>
-        <!-- Status bar -->
-        <div style="background:#dadada;padding:2px 5px;display:flex;gap:3px;">
-          <div class="bevel-in" style="flex:1;padding:1px 5px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:700;text-transform:uppercase;color:#5d5e5f;">Ready</div>
-          <div class="bevel-in" style="width:70px;padding:1px 5px;font-size:10px;font-family:'Work Sans',sans-serif;font-weight:700;text-transform:uppercase;color:#5d5e5f;">Offline</div>
-        </div>
-      </div>
+    <div class="desk-icon" onclick="launchApp('skills', this)" data-app="skills">
+      <div class="desk-icon-glyph">⌗</div>
+      <div class="desk-icon-label">Skills</div>
     </div>
-
-  </div><!-- end view container -->
-
-  <!-- ====== START MENU ====== -->
-  <div id="menu-overlay" onclick="closeStartMenu()"></div>
-  <div id="start-menu">
-    <div class="start-menu-header">The Digital Archivist</div>
-    <div class="start-menu-items">
-      <div class="start-menu-item" onclick="openView('desktop');closeStartMenu();">
-        <span class="material-symbols-outlined" style="font-size:17px;color:#474eb7;">home</span>Desktop
-      </div>
-      <div class="start-menu-item" onclick="openView('portfolio');closeStartMenu();">
-        <span class="material-symbols-outlined" style="font-size:17px;color:#006565;">folder_special</span>Portfolio
-      </div>
-      <div class="start-menu-item" onclick="openView('about');closeStartMenu();">
-        <span class="material-symbols-outlined" style="font-size:17px;color:#5d5e5f;">person</span>About Me
-      </div>
-      <div class="start-menu-item" onclick="openView('contact');closeStartMenu();">
-        <span class="material-symbols-outlined" style="font-size:17px;color:#474eb7;">mail</span>Contact
-      </div>
-      <div class="start-menu-divider"></div>
-      <div class="start-menu-item" style="opacity:0.45;cursor:not-allowed;">
-        <span class="material-symbols-outlined" style="font-size:17px;color:#5d5e5f;">settings</span>Settings
-      </div>
-      <div class="start-menu-item" style="opacity:0.45;cursor:not-allowed;">
-        <span class="material-symbols-outlined" style="font-size:17px;color:#ba1a1a;">power_settings_new</span>Shut Down
-      </div>
+    <div class="desk-icon" onclick="launchApp('contact', this)" data-app="contact">
+      <div class="desk-icon-glyph">@</div>
+      <div class="desk-icon-label">Contact</div>
+    </div>
+    <div class="desk-icon" onclick="launchApp('resume', this)" data-app="resume">
+      <div class="desk-icon-glyph" style="font-size:16px;">PDF</div>
+      <div class="desk-icon-label">Resume</div>
     </div>
   </div>
 
-  <!-- ====== TASKBAR ====== -->
-  <footer style="background:#dadada;height:44px;display:flex;align-items:center;gap:2px;padding:0 4px;border-top:2px solid #fff;flex-shrink:0;position:relative;z-index:100;">
-    <button class="start-btn" onclick="toggleStartMenu()">
-      <span class="material-symbols-outlined" style="font-size:17px;color:#1a3a8a;font-variation-settings:'wght' 700;">menu</span>
-      <span style="font-family:'Space Grotesk',sans-serif;font-weight:900;font-style:italic;text-transform:uppercase;font-size:13px;color:#1a3a8a;">Start</span>
-    </button>
-    <div style="width:1px;height:28px;border-left:1px solid #999;border-right:1px solid #fff;margin:0 3px;"></div>
-    <button id="tab-desktop" class="taskbar-btn active" onclick="openView('desktop')">
-      <span class="material-symbols-outlined" style="font-size:13px;">desktop_windows</span>
-      <span>Desktop</span>
-    </button>
-    <button id="tab-portfolio" class="taskbar-btn" onclick="openView('portfolio')">
-      <span class="material-symbols-outlined" style="font-size:13px;">folder_special</span>
-      <span class="hidden sm:inline">Portfolio</span>
-    </button>
-    <button id="tab-about" class="taskbar-btn" onclick="openView('about')">
-      <span class="material-symbols-outlined" style="font-size:13px;">person</span>
-      <span class="hidden sm:inline">About</span>
-    </button>
-    <button id="tab-contact" class="taskbar-btn" onclick="openView('contact')">
-      <span class="material-symbols-outlined" style="font-size:13px;font-variation-settings:'FILL' 1;">mail</span>
-      <span class="hidden sm:inline">Contact</span>
-    </button>
-    <div class="sys-tray">
-      <span class="material-symbols-outlined" style="font-size:13px;color:#5d5e5f;">volume_up</span>
-      <span id="clock"></span>
+  <!-- ══ TERMINAL / NEOFETCH WINDOW ══ -->
+  <div class="win" id="win-terminal" data-title="zsh"
+       style="left:20px; top:20px; width:620px; height:420px;">
+    <div class="win-titlebar">
+      <div class="win-controls">
+        <button class="wc-btn wc-close"  onclick="WM.close('terminal')"></button>
+        <button class="wc-btn wc-min"    onclick="WM.minimize('terminal')"></button>
+        <button class="wc-btn wc-max"    onclick="WM.maximize('terminal')"></button>
+      </div>
+      <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>zsh</div>
+      <div class="win-title-spacer"></div>
     </div>
-  </footer>
+    <div class="win-body">
+      <div class="term-body" id="term-container">
+        <!-- Prompt line 1 -->
+        <div class="t-line">
+          <span class="t-user">advaith</span><span class="t-at">@</span><span class="t-host">archlinux</span>
+          <span class="t-sep"> in </span><span class="t-path">~/.config</span>
+          <span class="t-sep"> in </span><span class="t-git">master✔ 26-04-21 · 14:18:43</span>
+        </div>
+        <div class="t-line t-dim">❯ neofetch</div>
+        <div class="neofetch-wrap">
+          <div class="nf-ascii">         .+          
+        .ooo/         
+      +oooo:          
+     +oooooo:         
+     -+oooooo+:       
+      -/++++++:       
+   -/++oooooooo+      
+  -/+++oooooooo+      
+ ./oossssso++osssss+  
+./ossssssso-  osssss+ 
+/ossssssso:    osssss+
++sssssssso:    +ssssso
+.ssssssso:     +ssssso
+ /sssssso:    -osssso/
+  -/+oso+-:/-+ossso/  
+   -:+/  -/+osso/-    
+      -:/+oso/-       
+         -/-          </div>
+          <div class="nf-info">
+            <div class="nf-info-row"><span class="nf-key" style="color:var(--accent2);font-weight:700;">advaith</span><span class="nf-val" style="color:var(--text3);">@</span><span class="nf-key" style="color:var(--accent2);font-weight:700;">archlinux</span></div>
+            <div class="nf-info-row" style="color:var(--text3);">─────────────────────</div>
+            <div class="nf-info-row"><span class="nf-info-key">OS</span><span class="nf-info-val">Arch Linux x86_64</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Host</span><span class="nf-info-val">Portfolio 1.0</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Kernel</span><span class="nf-info-val">6.8.0-arch1-1</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Uptime</span><span class="nf-info-val">4 hours, 12 mins</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Shell</span><span class="nf-info-val">zsh 5.9</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Resolution</span><span class="nf-info-val">1920×1080</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">WM</span><span class="nf-info-val">i3</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Theme</span><span class="nf-info-val">Catppuccin Mocha</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Terminal Font</span><span class="nf-info-val">JetBrains Mono 12</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">CPU</span><span class="nf-info-val">AMD Ryzen 9 5900X @ 3.7GHz</span></div>
+            <div class="nf-info-row"><span class="nf-info-key">Memory</span><span class="nf-info-val">1.2GB / 16GB</span></div>
+            <div class="nf-colors">
+              <div class="nf-color-swatch" style="background:#1e1e2e;border:1px solid #333;"></div>
+              <div class="nf-color-swatch" style="background:#f38ba8;"></div>
+              <div class="nf-color-swatch" style="background:#a6e3a1;"></div>
+              <div class="nf-color-swatch" style="background:#f9e2af;"></div>
+              <div class="nf-color-swatch" style="background:#89b4fa;"></div>
+              <div class="nf-color-swatch" style="background:#cba6f7;"></div>
+              <div class="nf-color-swatch" style="background:#2dd4bf;"></div>
+              <div class="nf-color-swatch" style="background:#cdd6f4;"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Second prompt + interactive input -->
+        <div class="t-line" style="margin-top:4px;">
+          <span class="t-user">advaith</span><span class="t-at">@</span><span class="t-host">archlinux</span>
+          <span class="t-sep"> in </span><span class="t-path">~/.config</span>
+          <span class="t-sep"> in </span><span class="t-git">master✔ 26-04-21 · 14:19:54</span>
+        </div>
+        <div class="t-output" id="term-output"></div>
+        <div class="t-input-wrap" id="term-input-wrap">
+          <span class="t-ps1"><span class="t-dollar">❯ </span></span>
+          <input class="t-input" id="term-input" type="text" autocomplete="off" spellcheck="false" />
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar green">
+      <span>NORMAL</span><span class="ws-sep"> │ </span>
+      <span>zsh</span><span class="ws-sep"> │ </span>
+      <span>advaith@archlinux</span>
+    </div>
+  </div>
 
-  <script>
-    // Init
-    window.addEventListener('DOMContentLoaded', () => openView('desktop'));
+  <!-- ══ PROJECTS WINDOW (NvimTree + Editor split) ══ -->
+  <div class="win" id="win-projects" data-title="projects"
+       style="left:20px; top:20px; width:820px; height:500px;">
+    <div class="win-titlebar">
+      <div class="win-controls">
+        <button class="wc-btn wc-close"  onclick="WM.close('projects')"></button>
+        <button class="wc-btn wc-min"    onclick="WM.minimize('projects')"></button>
+        <button class="wc-btn wc-max"    onclick="WM.maximize('projects')"></button>
+      </div>
+      <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>projects/ — nvim</div>
+      <div class="win-title-spacer"></div>
+    </div>
+    <div class="win-body">
+      <div class="split-h" style="height:100%;">
+        <!-- File tree -->
+        <div class="split-pane" style="width:200px; flex-shrink:0;">
+          <div class="pane-titlebar">
+            <span class="pane-tb-name">NvimTree_1</span>
+            <span class="pane-tb-git" style="margin-left:auto;">master✔</span>
+          </div>
+          <div class="filetree-body">
+            <div class="ft-row ft-dir" style="padding-left:8px;"><span class="ft-icon dir">▼</span>~/projects</div>
+            <div class="ft-row ft-active" style="padding-left:20px;" onclick="showProject(0)"><span class="ft-icon py">▷</span>momentum-ml</div>
+            <div class="ft-row" style="padding-left:20px;" onclick="showProject(1)"><span class="ft-icon py">▷</span>shannon-entropy</div>
+            <div class="ft-row" style="padding-left:20px;" onclick="showProject(2)"><span class="ft-icon py">▷</span>finance-tracker</div>
+            <div class="ft-row ft-dir" style="padding-left:8px; margin-top:4px;"><span class="ft-icon dir">▼</span>~/config</div>
+            <div class="ft-row" style="padding-left:20px;"><span class="ft-icon git">.git</span></div>
+            <div class="ft-row" style="padding-left:20px;"><span class="ft-icon md">README.md</span></div>
+            <div class="ft-row" style="padding-left:20px;"><span class="ft-icon py">requirements.txt</span></div>
+          </div>
+        </div>
+        <div class="split-divider-v"></div>
+        <!-- Editor -->
+        <div class="split-pane" style="flex:1;">
+          <div class="pane-titlebar" id="proj-tab-bar">
+            <span class="tab-icon" style="color:var(--text3);">◆</span>
+            <span class="pane-tb-name" id="proj-filename">momentum-ml/README.md</span>
+            <span class="pane-tb-git" style="margin-left:auto; color:var(--text3);">utf-8 · md</span>
+          </div>
+          <div class="editor-body">
+            <div class="editor-gutter" id="proj-gutter"></div>
+            <div class="editor-content win-body-scroll" id="proj-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar mauve">
+      <span>NORMAL</span><span class="ws-sep"> │ </span>
+      <span id="proj-status-name">momentum-ml</span><span class="ws-sep"> │ </span>
+      <span>master✔</span><span class="ws-sep"> │ </span>
+      <span>github.com/advaithprabhudev</span>
+    </div>
+  </div>
 
-    // Clock
-    function updateClock() {
-      const now = new Date();
-      let h = now.getHours(), m = now.getMinutes();
-      const ap = h >= 12 ? 'PM' : 'AM';
-      h = h % 12 || 12;
-      document.getElementById('clock').textContent = h + ':' + String(m).padStart(2,'0') + ' ' + ap;
-    }
-    updateClock();
-    setInterval(updateClock, 10000);
+  <!-- ══ SKILLS WINDOW ══ -->
+  <div class="win" id="win-skills" data-title="skills"
+       style="left:60px; top:60px; width:500px; height:480px;">
+    <div class="win-titlebar">
+      <div class="win-controls">
+        <button class="wc-btn wc-close"  onclick="WM.close('skills')"></button>
+        <button class="wc-btn wc-min"    onclick="WM.minimize('skills')"></button>
+        <button class="wc-btn wc-max"    onclick="WM.maximize('skills')"></button>
+      </div>
+      <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>skills.py — python</div>
+      <div class="win-title-spacer"></div>
+    </div>
+    <div class="win-body">
+      <div class="info-body">
+        <div>
+          <div class="info-section-title">Languages</div>
+          <div class="chips">
+            <div class="chip">Python</div><div class="chip">R</div><div class="chip">SQL</div>
+          </div>
+        </div>
+        <div>
+          <div class="info-section-title">Data Science &amp; Finance</div>
+          <div class="chips">
+            <div class="chip">NumPy</div><div class="chip">Pandas</div><div class="chip">YFinance</div>
+            <div class="chip">QuantLib</div><div class="chip">Matplotlib</div><div class="chip">Plotly</div>
+            <div class="chip">Streamlit</div>
+          </div>
+        </div>
+        <div>
+          <div class="info-section-title">Machine Learning</div>
+          <div class="chips">
+            <div class="chip">Scikit-Learn</div><div class="chip">PyTorch</div>
+          </div>
+        </div>
+        <div>
+          <div class="info-section-title">Databases &amp; Tools</div>
+          <div class="chips">
+            <div class="chip">MongoDB</div><div class="chip">MySQL</div>
+            <div class="chip">Git</div><div class="chip">GitHub</div>
+          </div>
+        </div>
+        <div>
+          <div class="info-section-title">Proficiency</div>
+          <div id="skill-bars">
+            <div class="skill-row"><div class="skill-label-row"><span>Python</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
+            <div class="skill-row"><div class="skill-label-row"><span>Data Analysis</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+            <div class="skill-row"><div class="skill-label-row"><span>Quantitative Finance</span><span>82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
+            <div class="skill-row"><div class="skill-label-row"><span>Machine Learning</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" data-w="78"></div></div></div>
+            <div class="skill-row"><div class="skill-label-row"><span>R</span><span>65%</span></div><div class="skill-track"><div class="skill-fill" data-w="65"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <span>NORMAL</span><span class="ws-sep"> │ </span>
+      <span>skills.py</span><span class="ws-sep"> │ </span>
+      <span>python3</span>
+    </div>
+  </div>
 
-    // View switching
-    const VIEWS = ['desktop','about','portfolio','contact'];
-    function openView(name) {
-      VIEWS.forEach(v => {
-        const el = document.getElementById('view-' + v);
-        const tab = document.getElementById('tab-' + v);
-        if (el) {
-          const isActive = v === name;
-          el.classList.toggle('active', isActive);
-          el.style.display = isActive ? (v === 'desktop' ? 'block' : 'flex') : 'none';
-        }
-        if (tab) tab.classList.toggle('active', v === name);
-      });
-    }
+  <!-- ══ ABOUT WINDOW ══ -->
+  <div class="win" id="win-about" data-title="about"
+       style="left:80px; top:80px; width:560px; height:380px;">
+    <div class="win-titlebar">
+      <div class="win-controls">
+        <button class="wc-btn wc-close"  onclick="WM.close('about')"></button>
+        <button class="wc-btn wc-min"    onclick="WM.minimize('about')"></button>
+        <button class="wc-btn wc-max"    onclick="WM.maximize('about')"></button>
+      </div>
+      <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>about.md — nvim</div>
+      <div class="win-title-spacer"></div>
+    </div>
+    <div class="win-body">
+      <div class="split-h" style="height:100%;">
+        <div class="editor-gutter">
+          1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18
+        </div>
+        <div class="editor-content win-body-scroll" style="display:flex; gap:24px;">
+          <div style="flex:1;">
+            <div class="e-h1"># Advaith Prabhu</div>
+            <br>
+            <div class="e-h2">## About</div>
+            <br>
+            <div>I'm a student at <span class="e-str">GIIS</span> with a passion for building</div>
+            <div>models that solve real-world problems in finance.</div>
+            <div>I love exploring how data can tell stories and</div>
+            <div>predict outcomes.</div>
+            <br>
+            <div class="e-h2">## Focus</div>
+            <br>
+            <div><span class="e-kw">- </span>Quantitative Finance</div>
+            <div><span class="e-kw">- </span>Machine Learning</div>
+            <div><span class="e-kw">- </span>Statistical Modelling</div>
+            <div><span class="e-kw">- </span>Algorithmic Trading</div>
+            <br>
+            <div class="e-h2">## Contact</div>
+            <br>
+            <div><span class="e-kw">- </span>GitHub: <span class="e-link">advaithprabhudev</span></div>
+            <div><span class="e-kw">- </span>LinkedIn: <span class="e-link">advaith-prabhu</span></div>
+          </div>
+          <div style="flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:10px; padding-top:8px;">
+            <img src="uploads/avatar-1777620007227.png" alt="Advaith"
+                 style="width:72px;height:72px;border-radius:50%;border:1px solid var(--border2);object-fit:cover;" />
+            <div style="font-size:10px;color:var(--text3);text-align:center;">advaith@arch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <span>NORMAL</span><span class="ws-sep"> │ </span>
+      <span>about.md</span><span class="ws-sep"> │ </span>
+      <span>markdown</span><span class="ws-sep"> │ </span>
+      <span>utf-8</span>
+    </div>
+  </div>
 
-    // Start menu
-    function toggleStartMenu() {
-      const m = document.getElementById('start-menu');
-      const o = document.getElementById('menu-overlay');
-      const open = !m.classList.contains('open');
-      m.classList.toggle('open', open);
-      o.classList.toggle('open', open);
-    }
+  <!-- ══ CONTACT WINDOW ══ -->
+  <div class="win" id="win-contact" data-title="contact"
+       style="left:100px; top:100px; width:440px; height:300px;">
+    <div class="win-titlebar">
+      <div class="win-controls">
+        <button class="wc-btn wc-close"  onclick="WM.close('contact')"></button>
+        <button class="wc-btn wc-min"    onclick="WM.minimize('contact')"></button>
+        <button class="wc-btn wc-max"    onclick="WM.maximize('contact')"></button>
+      </div>
+      <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>contact.sh</div>
+      <div class="win-title-spacer"></div>
+    </div>
+    <div class="win-body">
+      <div class="info-body">
+        <div class="info-section-title">Links</div>
+        <a class="contact-row" href="https://github.com/advaithprabhudev" target="_blank">
+          <div>
+            <div class="contact-platform">GitHub</div>
+            <div class="contact-url">github.com/advaithprabhudev</div>
+          </div>
+          <div class="contact-arrow">↗</div>
+        </a>
+        <a class="contact-row" href="https://www.linkedin.com/in/advaith-prabhu/" target="_blank">
+          <div>
+            <div class="contact-platform">LinkedIn</div>
+            <div class="contact-url">linkedin.com/in/advaith-prabhu</div>
+          </div>
+          <div class="contact-arrow">↗</div>
+        </a>
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <span>NORMAL</span><span class="ws-sep"> │ </span><span>contact.sh</span>
+    </div>
+  </div>
 
-    function closeStartMenu() {
-      document.getElementById('start-menu').classList.remove('open');
-      document.getElementById('menu-overlay').classList.remove('open');
-    }
+  <!-- ══ RESUME WINDOW ══ -->
+  <div class="win" id="win-resume" data-title="resume"
+       style="left:120px; top:40px; width:700px; height:540px;">
+    <div class="win-titlebar">
+      <div class="win-controls">
+        <button class="wc-btn wc-close"  onclick="WM.close('resume')"></button>
+        <button class="wc-btn wc-min"    onclick="WM.minimize('resume')"></button>
+        <button class="wc-btn wc-max"    onclick="WM.maximize('resume')"></button>
+      </div>
+      <div class="win-title-tab active-tab"><span class="tab-icon">▶</span>resume.pdf</div>
+      <div class="win-title-spacer"></div>
+    </div>
+    <div class="win-body">
+      <div class="resume-inner">
+        <div class="resume-toolbar">
+          <span class="resume-label">Advaith_Prabhu_Resume.pdf</span>
+          <a class="resume-dl" href="uploads/resume-1777620021379.pdf" download="Advaith_Prabhu_Resume.pdf">↓ Download</a>
+        </div>
+        <iframe src="uploads/resume-1777620021379.pdf" title="Resume"></iframe>
+      </div>
+    </div>
+    <div class="win-statusbar">
+      <span>VIEW</span><span class="ws-sep"> │ </span><span>resume.pdf</span><span class="ws-sep"> │ </span><span>PDF Viewer</span>
+    </div>
+  </div>
 
-    // Window dragging
-    document.querySelectorAll('[id^="win-"]').forEach(win => {
-      const handle = win.querySelector('.drag-handle');
-      if (!handle) return;
-      let dragging = false, ox = 0, oy = 0;
-      handle.addEventListener('mousedown', e => {
-        dragging = true;
-        const rect = win.getBoundingClientRect();
-        ox = e.clientX - rect.left;
-        oy = e.clientY - rect.top;
-        win.style.position = 'absolute';
-        win.style.zIndex = 60;
-        e.preventDefault();
-      });
-      document.addEventListener('mousemove', e => {
-        if (!dragging) return;
-        const parent = win.offsetParent || document.body;
-        const pr = parent.getBoundingClientRect();
-        win.style.left = (e.clientX - pr.left - ox) + 'px';
-        win.style.top = (e.clientY - pr.top - oy) + 'px';
-        win.style.right = 'auto';
-        win.style.bottom = 'auto';
-      });
-      document.addEventListener('mouseup', () => { dragging = false; });
+</div><!-- /desktop -->
+
+<!-- ══ SPOTIFY NOW PLAYING WIDGET ══ -->
+<div id="spotify-widget">
+  <div class="sw-header">
+    <div class="sw-spotify-logo">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+      Now Playing
+    </div>
+    <button class="sw-min" onclick="document.getElementById('spotify-widget').classList.toggle('hidden')">−</button>
+  </div>
+  <div class="sw-body">
+    <div class="sw-art" id="sw-art">♪</div>
+    <div class="sw-info">
+      <div class="sw-track" id="sw-track">Time</div>
+      <div class="sw-artist" id="sw-artist">Hans Zimmer · Inception</div>
+    </div>
+  </div>
+  <div class="sw-controls">
+    <button class="sw-btn" onclick="swPrev()" title="Previous">⏮</button>
+    <button class="sw-btn sw-play" id="sw-play-btn" onclick="swTogglePlay()" title="Play/Pause">▶</button>
+    <button class="sw-btn" onclick="swNext()" title="Next">⏭</button>
+    <div class="sw-progress" onclick="swSeek(event)">
+      <div class="sw-progress-fill" id="sw-progress-fill" style="width:32%"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ DESKTOP CONTEXT MENU ══ -->
+<div id="ctx-menu">
+  <div class="ctx-item ctx-sub-anchor">
+    <span>Open Application</span>
+    <span class="ctx-arrow">▸</span>
+    <div class="ctx-submenu">
+      <div class="ctx-item" onclick="launchApp('terminal'); hideCtxMenu()">❯_ Terminal <span class="ctx-kbd">⌘T</span></div>
+      <div class="ctx-item" onclick="launchApp('about'); hideCtxMenu()">📝 About</div>
+      <div class="ctx-item" onclick="launchApp('projects'); hideCtxMenu()">⬡ Projects</div>
+      <div class="ctx-item" onclick="launchApp('skills'); hideCtxMenu()">⌗ Skills</div>
+      <div class="ctx-item" onclick="launchApp('contact'); hideCtxMenu()">@ Contact</div>
+      <div class="ctx-item" onclick="launchApp('resume'); hideCtxMenu()">📄 Resume</div>
+    </div>
+  </div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item ctx-sub-anchor">
+    <span>Change Wallpaper</span>
+    <span class="ctx-arrow">▸</span>
+    <div class="ctx-submenu">
+      <div class="ctx-item" onclick="setWallpaper('surface'); hideCtxMenu()">Volatility Surface</div>
+      <div class="ctx-item" onclick="setWallpaper('starfield'); hideCtxMenu()">Starfield</div>
+      <div class="ctx-item" onclick="setWallpaper('grid'); hideCtxMenu()">Minimal Grid</div>
+      <div class="ctx-item" onclick="setWallpaper('off'); hideCtxMenu()">None (Solid)</div>
+    </div>
+  </div>
+  <div class="ctx-item ctx-sub-anchor">
+    <span>Accent Color</span>
+    <span class="ctx-arrow">▸</span>
+    <div class="ctx-submenu" id="ctx-colors"></div>
+  </div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="toggleTheme(); hideCtxMenu()">
+    <span>Toggle Theme</span>
+    <span class="ctx-kbd">⌘\\</span>
+  </div>
+  <div class="ctx-item" onclick="document.getElementById('spotify-widget').classList.toggle('hidden'); hideCtxMenu()">
+    <span id="ctx-spotify-toggle">Hide Spotify</span>
+  </div>
+  <div class="ctx-sep"></div>
+  <div class="ctx-item" onclick="window.location.reload()">
+    <span>Reboot</span>
+    <span class="ctx-kbd">⌘R</span>
+  </div>
+</div>
+
+
+<!-- ══ TASKBAR ══════════════════════════════════════════════ -->
+<div id="taskbar">
+  <div class="tb-start" onclick="WM.open('terminal')" title="Terminal">❯</div>
+  <div class="tb-divider"></div>
+  <div class="tb-apps" id="tb-apps"></div>
+  <div class="tb-tray">
+    <div class="tb-tray-item"><span>󰖩</span> arch</div>
+    <div class="tb-tray-item tb-clock" id="tb-clock"></div>
+  </div>
+</div>
+
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="js/three-scene.js"></script>
+
+<script>
+// ══ WINDOW MANAGER ══════════════════════════════════════════
+let zTop = 100;
+const WM = {
+  open(id) {
+    const win = document.getElementById('win-' + id);
+    if (!win) return;
+    win.style.display = 'flex';
+    win.classList.remove('minimized');
+    this.focus(win);
+    win.style.opacity = '0';
+    win.style.transform = 'scale(0.96)';
+    requestAnimationFrame(() => {
+      win.style.transition = 'opacity 140ms ease, transform 140ms ease';
+      win.style.opacity = '1';
+      win.style.transform = 'scale(1)';
+      setTimeout(() => { win.style.transition = ''; }, 150);
     });
-
-    // Bring window to front
-    document.querySelectorAll('[id^="win-"]').forEach(win => {
-      win.addEventListener('mousedown', () => {
-        document.querySelectorAll('[id^="win-"]').forEach(w => w.style.zIndex = 20);
-        win.style.zIndex = 50;
-      });
+    this.addTaskbarBtn(id);
+    // Side effects
+    if (id === 'skills') setTimeout(() => {
+      document.querySelectorAll('.skill-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+    }, 200);
+    if (id === 'projects') setTimeout(() => renderProject(currentProject), 100);
+  },
+  close(id) {
+    const win = document.getElementById('win-' + id);
+    if (!win) return;
+    win.style.transition = 'opacity 120ms ease, transform 120ms ease';
+    win.style.opacity = '0';
+    win.style.transform = 'scale(0.96)';
+    setTimeout(() => {
+      win.style.display = 'none';
+      win.style.transition = win.style.transform = win.style.opacity = '';
+    }, 130);
+    this.removeTaskbarBtn(id);
+  },
+  minimize(id) {
+    const win = document.getElementById('win-' + id);
+    if (!win) return;
+    win.style.transition = 'opacity 120ms ease, transform 120ms ease';
+    win.style.opacity = '0';
+    win.style.transform = 'scale(0.9) translateY(20px)';
+    setTimeout(() => {
+      win.style.display = 'none';
+      win.classList.add('minimized');
+      win.style.transition = win.style.transform = win.style.opacity = '';
+    }, 130);
+    const btn = document.getElementById('tbbtn-' + id);
+    if (btn) btn.classList.remove('tb-active');
+  },
+  maximize(id) {
+    const win = document.getElementById('win-' + id);
+    if (!win) return;
+    if (win.dataset.max === '1') {
+      win.style.left   = win.dataset.pl || '100px';
+      win.style.top    = win.dataset.pt || '40px';
+      win.style.width  = win.dataset.pw || '600px';
+      win.style.height = win.dataset.ph || '440px';
+      win.dataset.max  = '0';
+    } else {
+      win.dataset.pl = win.style.left;
+      win.dataset.pt = win.style.top;
+      win.dataset.pw = win.style.width;
+      win.dataset.ph = win.style.height;
+      win.style.left = '0'; win.style.top = '0';
+      win.style.width = '100vw';
+      win.style.height = 'calc(100vh - ' + (26 + 40) + 'px)';
+      win.dataset.max = '1';
+    }
+  },
+  focus(win) {
+    document.querySelectorAll('.win').forEach(w => w.classList.remove('win-focused'));
+    win.classList.add('win-focused');
+    win.style.zIndex = ++zTop;
+  },
+  addTaskbarBtn(id) {
+    if (document.getElementById('tbbtn-' + id)) {
+      document.getElementById('tbbtn-' + id).classList.add('tb-active');
+      return;
+    }
+    const win = document.getElementById('win-' + id);
+    const title = win?.dataset.title || id;
+    const btn = document.createElement('div');
+    btn.className = 'tb-btn tb-active';
+    btn.id = 'tbbtn-' + id;
+    btn.innerHTML = `<span class="tb-btn-icon">❯</span>${title}`;
+    btn.onclick = () => {
+      const w = document.getElementById('win-' + id);
+      if (!w) return;
+      if (w.style.display === 'none' || w.classList.contains('minimized')) {
+        WM.open(id);
+      } else {
+        WM.minimize(id);
+      }
+    };
+    document.getElementById('tb-apps').appendChild(btn);
+  },
+  removeTaskbarBtn(id) {
+    document.getElementById('tbbtn-' + id)?.remove();
+  },
+  initDrag(win) {
+    const tb = win.querySelector('.win-titlebar');
+    if (!tb) return;
+    let drag = false, ox = 0, oy = 0;
+    tb.addEventListener('mousedown', e => {
+      if (e.target.closest('.win-controls')) return;
+      if (win.dataset.max === '1') return;
+      drag = true; ox = e.clientX - win.offsetLeft; oy = e.clientY - win.offsetTop;
+      WM.focus(win); e.preventDefault();
     });
-  </script>
+    document.addEventListener('mousemove', e => {
+      if (!drag) return;
+      win.style.left = Math.max(0, Math.min(window.innerWidth - 80, e.clientX - ox)) + 'px';
+      win.style.top  = Math.max(0, Math.min(window.innerHeight - 60, e.clientY - oy)) + 'px';
+    });
+    document.addEventListener('mouseup', () => { drag = false; });
+  },
+  initResize(win) {
+    const h = document.createElement('div');
+    h.className = 'win-resize-handle';
+    win.appendChild(h);
+    let r = false, sx, sy, sw, sh;
+    h.addEventListener('mousedown', e => {
+      r = true; sx = e.clientX; sy = e.clientY;
+      sw = win.offsetWidth; sh = win.offsetHeight; e.preventDefault();
+    });
+    document.addEventListener('mousemove', e => {
+      if (!r) return;
+      win.style.width  = Math.max(300, sw + e.clientX - sx) + 'px';
+      win.style.height = Math.max(180, sh + e.clientY - sy) + 'px';
+    });
+    document.addEventListener('mouseup', () => { r = false; });
+  },
+  init() {
+    document.querySelectorAll('.win').forEach(win => {
+      this.initDrag(win);
+      this.initResize(win);
+      win.addEventListener('mousedown', () => this.focus(win));
+    });
+  }
+};
+WM.init();
+
+// ══ CLOCK ════════════════════════════════════════════════════
+function updateClock() {
+  const now = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('bar-date').textContent =
+    days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('bar-time').textContent = h + ':' + m;
+  document.getElementById('tb-clock').textContent = h + ':' + m;
+}
+updateClock(); setInterval(updateClock, 10000);
+
+// ══ WORKSPACE SWITCHER ════════════════════════════════════════
+function switchWS(n) {
+  document.querySelectorAll('.ws-item').forEach((el,i) => {
+    el.classList.toggle('ws-active', i + 1 === n);
+  });
+}
+
+// ══ PROJECT EDITOR ══════════════════════════════════════════
+const PROJECTS = [
+  {
+    name: 'momentum-ml',
+    file: 'README.md',
+    lang: 'md',
+    repo: 'https://github.com/advaithprabhudev/Momentum-Research-Project',
+    demo: null, // streamlit app URL when hosted
+    chart: 'sharpe',
+    lines: [
+      '<span class="e-h1"># Momentum Strategies with Machine Learning</span>',
+      '',
+      '<span class="e-h2">## Overview</span>',
+      '',
+      'Research applying <span class="e-str">machine learning</span> to momentum-based',
+      'trading strategies across multiple market regimes.',
+      '',
+      '<span class="e-h2">## Stack</span>',
+      '',
+      '<span class="e-kw">- </span>Python, Pandas, YFinance',
+      '<span class="e-kw">- </span>Scikit-Learn, PyTorch',
+      '<span class="e-kw">- </span>Matplotlib, Plotly',
+      '',
+      '<span class="e-h2">## Key Results</span>',
+      '',
+      'Backtested signals across <span class="e-num">5+</span> market regimes.',
+      'Sharpe ratio improvement of <span class="e-num">~0.4</span> vs baseline.',
+      '',
+      '<span class="e-link">[View on GitHub →](https://github.com/advaithprabhudev/Momentum-Research-Project)</span>',
+    ]
+  },
+  {
+    name: 'shannon-entropy',
+    file: 'analysis.py',
+    lang: 'python',
+    repo: 'https://github.com/advaithprabhudev/Market-Microstructure-Analysis-using-Shannon-Entropy',
+    demo: null,
+    chart: 'entropy',
+    lines: [
+      '<span class="e-comment"># Shannon Entropy — Market Microstructure Analysis</span>',
+      '<span class="e-comment"># github.com/advaithprabhudev</span>',
+      '',
+      '<span class="e-kw">import</span> numpy <span class="e-kw">as</span> <span class="e-fn">np</span>',
+      '<span class="e-kw">import</span> pandas <span class="e-kw">as</span> <span class="e-fn">pd</span>',
+      '<span class="e-kw">from</span> scipy.stats <span class="e-kw">import</span> <span class="e-fn">entropy</span>',
+      '',
+      '<span class="e-kw">def</span> <span class="e-fn">shannon_entropy</span>(prices: <span class="e-cls">pd.Series</span>) -> <span class="e-cls">float</span>:',
+      '    <span class="e-str">"""Compute information entropy of price distribution."""</span>',
+      '    returns = prices.<span class="e-fn">pct_change</span>().<span class="e-fn">dropna</span>()',
+      '    hist, _ = np.<span class="e-fn">histogram</span>(returns, bins=<span class="e-num">50</span>, density=<span class="e-kw">True</span>)',
+      '    <span class="e-kw">return</span> <span class="e-fn">entropy</span>(hist + <span class="e-num">1e-10</span>)',
+      '',
+      '<span class="e-kw">def</span> <span class="e-fn">rolling_entropy</span>(prices, window=<span class="e-num">252</span>):',
+      '    <span class="e-kw">return</span> prices.<span class="e-fn">rolling</span>(window).<span class="e-fn">apply</span>(shannon_entropy)',
+    ]
+  },
+  {
+    name: 'finance-tracker',
+    file: 'tracker.py',
+    lang: 'python',
+    repo: 'https://github.com/advaithprabhudev/Finance-Automation-Tracker',
+    demo: null,
+    chart: 'portfolio',
+    lines: [
+      '<span class="e-comment"># Automated Finance Tracker</span>',
+      '<span class="e-comment"># Streamlit + MongoDB + Plotly pipeline</span>',
+      '',
+      '<span class="e-kw">import</span> streamlit <span class="e-kw">as</span> <span class="e-fn">st</span>',
+      '<span class="e-kw">import</span> plotly.express <span class="e-kw">as</span> <span class="e-fn">px</span>',
+      '<span class="e-kw">from</span> pymongo <span class="e-kw">import</span> <span class="e-fn">MongoClient</span>',
+      '',
+      'client = <span class="e-fn">MongoClient</span>(<span class="e-str">"mongodb://localhost:27017"</span>)',
+      'db = client[<span class="e-str">"finance"</span>]',
+      '',
+      'st.<span class="e-fn">title</span>(<span class="e-str">"💹 Finance Dashboard"</span>)',
+      '',
+      'transactions = list(db.transactions.<span class="e-fn">find</span>())',
+      'df = pd.<span class="e-fn">DataFrame</span>(transactions)',
+      '',
+      'fig = px.<span class="e-fn">line</span>(df, x=<span class="e-str">"date"</span>, y=<span class="e-str">"amount"</span>,',
+      '           title=<span class="e-str">"Portfolio Over Time"</span>)',
+      'st.<span class="e-fn">plotly_chart</span>(fig)',
+    ]
+  }
+];
+
+let currentProject = 0;
+function renderProject(idx) {
+  currentProject = idx;
+  const p = PROJECTS[idx];
+  document.getElementById('proj-filename').textContent = p.name + '/' + p.file;
+  document.getElementById('proj-status-name').textContent = p.name;
+  // Gutter
+  const gutter = document.getElementById('proj-gutter');
+  gutter.innerHTML = p.lines.map((_,i) => i + 1).join('<br>');
+  // Content + actions
+  const content = document.getElementById('proj-content');
+  const linesHtml = p.lines.map(l => `<div>${l || '&nbsp;'}</div>`).join('');
+  const chartHtml = renderProjectChart(p.chart);
+  const actionsHtml = `
+    <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--border);">
+      <div style="font-size:10px;color:var(--text3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Preview</div>
+      <div style="background:var(--bg2);border:1px solid var(--border);padding:14px;">
+        ${chartHtml}
+      </div>
+      <div style="display:flex;gap:6px;margin-top:14px;">
+        <a href="${p.repo}" target="_blank"
+          style="font-family:var(--mono);font-size:10px;color:var(--text2);
+          background:var(--bg2);border:1px solid var(--border);padding:5px 12px;
+          text-decoration:none;display:inline-flex;align-items:center;gap:6px;
+          transition:color 120ms,border-color 120ms,background 120ms;"
+          onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)';this.style.background='var(--bg3)'"
+          onmouseout="this.style.color='var(--text2)';this.style.borderColor='var(--border)';this.style.background='var(--bg2)'">
+          <span style="color:var(--accent);">▶</span> View on GitHub
+        </a>
+        ${p.demo ? `<a href="${p.demo}" target="_blank"
+          style="font-family:var(--mono);font-size:10px;color:var(--accent);
+          background:rgba(45,212,191,0.08);border:1px solid var(--accent);padding:5px 12px;
+          text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+          ⚡ Launch Demo
+        </a>` : `<span style="font-family:var(--mono);font-size:10px;color:var(--text3);padding:5px 12px;border:1px dashed var(--border);">demo coming soon</span>`}
+      </div>
+    </div>`;
+  content.innerHTML = linesHtml + actionsHtml;
+  // File tree highlight
+  document.querySelectorAll('.filetree-body .ft-row:not(.ft-dir)').forEach((row, i) => {
+    row.classList.toggle('ft-active', i === idx);
+  });
+}
+
+function renderProjectChart(kind) {
+  // SVG mini-charts inline — gives a quick visual hint of the project
+  if (kind === 'sharpe') {
+    // Stylized growth chart with two lines
+    return `<svg viewBox="0 0 300 80" style="width:100%;height:80px;display:block;">
+      <defs><linearGradient id="gA" x1="0" x2="0" y1="0" y2="1">
+        <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+      </linearGradient></defs>
+      <path d="M0,70 L20,68 L40,62 L60,55 L80,58 L100,48 L120,42 L140,35 L160,38 L180,28 L200,22 L220,18 L240,12 L260,15 L280,8 L300,5 L300,80 L0,80 Z" fill="url(#gA)"/>
+      <path d="M0,70 L20,68 L40,62 L60,55 L80,58 L100,48 L120,42 L140,35 L160,38 L180,28 L200,22 L220,18 L240,12 L260,15 L280,8 L300,5" stroke="var(--accent)" stroke-width="1.5" fill="none"/>
+      <path d="M0,72 L300,55" stroke="var(--text3)" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+      <text x="290" y="6" text-anchor="end" font-family="monospace" font-size="8" fill="var(--accent)">ML strategy</text>
+      <text x="290" y="58" text-anchor="end" font-family="monospace" font-size="8" fill="var(--text3)">baseline</text>
+    </svg>`;
+  }
+  if (kind === 'entropy') {
+    // Entropy plot — heatmap-like vertical bars
+    let bars = '';
+    for (let i = 0; i < 50; i++) {
+      const h = 20 + Math.sin(i * 0.4) * 12 + Math.cos(i * 0.7) * 8 + Math.random() * 4;
+      bars += `<rect x="${i*6}" y="${70-h}" width="4" height="${h}" fill="var(--accent)" opacity="${0.3 + (h/60)*0.7}"/>`;
+    }
+    return `<svg viewBox="0 0 300 80" style="width:100%;height:80px;display:block;">
+      ${bars}
+      <text x="4" y="10" font-family="monospace" font-size="8" fill="var(--text3)">H(p) entropy · rolling 252d</text>
+    </svg>`;
+  }
+  if (kind === 'portfolio') {
+    // Candlestick-style chart
+    let candles = '';
+    let y = 50;
+    for (let i = 0; i < 30; i++) {
+      const open  = y;
+      const move  = (Math.random() - 0.45) * 8;
+      const close = Math.max(10, Math.min(70, y + move));
+      const high  = Math.min(open, close) - Math.random() * 4;
+      const low   = Math.max(open, close) + Math.random() * 4;
+      const isUp = close < open;
+      const color = isUp ? 'var(--accent)' : 'var(--text3)';
+      candles += `<line x1="${10+i*10}" y1="${high}" x2="${10+i*10}" y2="${low}" stroke="${color}" stroke-width="1"/>`;
+      candles += `<rect x="${7+i*10}" y="${Math.min(open,close)}" width="6" height="${Math.abs(close-open)||1}" fill="${color}"/>`;
+      y = close;
+    }
+    return `<svg viewBox="0 0 300 80" style="width:100%;height:80px;display:block;">
+      ${candles}
+      <text x="4" y="10" font-family="monospace" font-size="8" fill="var(--text3)">portfolio · live tracker</text>
+    </svg>`;
+  }
+  return '';
+}
+
+function showProject(idx) { renderProject(idx); }
+renderProject(0);
+
+// ══ TERMINAL ════════════════════════════════════════════════
+const CMDS = {
+  help: () => `Available commands:
+  <span class="t-c">whoami</span>       — about me
+  <span class="t-c">ls</span>          — list projects
+  <span class="t-c">skills</span>      — tech stack
+  <span class="t-c">contact</span>     — links
+  <span class="t-c">open &lt;win&gt;</span> — open window (about|projects|skills|contact|resume)
+  <span class="t-c">clear</span>       — clear screen
+  <span class="t-c">uname -a</span>    — system info
+  <span class="t-c">date</span>        — current date`,
+
+  whoami: () => `advaith — Aspiring Quant, Student @ GIIS
+Passion: quantitative finance, ML, statistical modelling.`,
+
+  ls: () => `total 3
+drwxr-xr-x  <span class="t-c">Momentum-Research-Project</span>
+drwxr-xr-x  <span class="t-c">Market-Microstructure-Analysis-using-Shannon-Entropy</span>
+drwxr-xr-x  <span class="t-c">Finance-Automation-Tracker</span>`,
+
+  skills: () => `Python  NumPy  Pandas  YFinance  Matplotlib  Plotly
+R  Scikit-Learn  PyTorch  QuantLib
+MongoDB  MySQL  Streamlit  Git  GitHub`,
+
+  contact: () => `GitHub   → <a href="https://github.com/advaithprabhudev" target="_blank" class="t-link">github.com/advaithprabhudev</a>
+LinkedIn → <a href="https://www.linkedin.com/in/advaith-prabhu/" target="_blank" class="t-link">linkedin.com/in/advaith-prabhu</a>`,
+
+  'uname -a': () => `Linux archlinux 6.8.0-arch1-1 #1 SMP PREEMPT_DYNAMIC x86_64 GNU/Linux`,
+  uname: () => `Linux archlinux 6.8.0-arch1-1 #1 SMP x86_64 GNU/Linux`,
+
+  date: () => new Date().toString(),
+  clear: () => '__CLEAR__',
+
+  open: (args) => {
+    const n = args[0];
+    if (['about','projects','skills','contact','resume','terminal'].includes(n)) {
+      setTimeout(() => WM.open(n), 80);
+      return `Opening <span class="t-c">${n}</span>...`;
+    }
+    return `open: unknown: '${n}'`;
+  },
+};
+
+let termHistory = [], termHistIdx = -1;
+let termInit = false;
+
+function initTerminal() {
+  if (termInit) return; termInit = true;
+  const input = document.getElementById('term-input');
+  const output = document.getElementById('term-output');
+  const container = document.getElementById('term-container');
+
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function appendLine(html) {
+    const d = document.createElement('div');
+    d.className = 't-line'; d.innerHTML = html;
+    output.appendChild(d);
+    container.scrollTop = container.scrollHeight;
+  }
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      const val = input.value.trim();
+      input.value = '';
+      if (!val) return;
+      termHistory.unshift(val); termHistIdx = -1;
+      // Echo prompt
+      appendLine(`<span class="t-dollar">❯ </span>${esc(val)}`);
+      // Run
+      const parts = val.split(/\s+/);
+      const cmd = parts[0]; const args = parts.slice(1);
+      const full = val;
+      const handler = CMDS[full] || CMDS[cmd];
+      if (handler) {
+        const r = handler(args);
+        if (r === '__CLEAR__') { output.innerHTML = ''; }
+        else if (r) appendLine(r);
+      } else {
+        appendLine(`<span style="color:var(--red)">zsh: command not found: ${esc(cmd)}</span>`);
+      }
+    } else if (e.key === 'ArrowUp') {
+      termHistIdx = Math.min(termHistIdx + 1, termHistory.length - 1);
+      input.value = termHistory[termHistIdx] || '';
+      e.preventDefault();
+    } else if (e.key === 'ArrowDown') {
+      termHistIdx = Math.max(termHistIdx - 1, -1);
+      input.value = termHistIdx >= 0 ? termHistory[termHistIdx] : '';
+      e.preventDefault();
+    }
+  });
+  document.getElementById('term-container').addEventListener('click', () => input.focus());
+}
+
+// ══ BOOT SEQUENCE ════════════════════════════════════════════
+(function boot() {
+  const b = document.createElement('div');
+  b.id = 'boot';
+  b.innerHTML = `
+    <div class="boot-ascii">         .+          
+        .ooo/         
+      +oooo:          
+     +oooooo:         
+     -+oooooo+:       
+      -/++++++:       
+   -/++oooooooo+      
+  -/+++oooooooo+      
+ ./oossssso++osssss+  
+./ossssssso-  osssss+ 
+/ossssssso:    osssss+
++sssssssso:    +ssssso
+.ssssssso:     +ssssso
+ /sssssso:    -osssso/
+  -/+oso+-:/-+ossso/  
+   -:+/  -/+osso/-    
+      -:/+oso/-        </div>
+    <div class="boot-text" id="boot-msg">Initializing advaith@arch...</div>
+    <div class="boot-log" id="boot-log"></div>`;
+  b.style.cssText = 'position:fixed;inset:0;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;gap:16px;font-family:var(--mono);';
+  document.body.appendChild(b);
+
+  const msgs = [
+    '[ <span style="color:var(--green)">OK</span> ] Started udev Kernel Device Manager',
+    '[ <span style="color:var(--green)">OK</span> ] Started Network Manager',
+    '[ <span style="color:var(--green)">OK</span> ] Reached target Graphical Interface',
+    '[ <span style="color:var(--accent2)">  </span>] Starting advaith-portfolio.service...',
+    '[ <span style="color:var(--green)">OK</span> ] Started advaith-portfolio.service',
+  ];
+  const log = document.getElementById('boot-log');
+  msgs.forEach((m, i) => {
+    setTimeout(() => {
+      const d = document.createElement('div');
+      d.className = 'boot-log-line'; d.innerHTML = m;
+      log.appendChild(d);
+    }, 300 + i * 280);
+  });
+
+  setTimeout(() => {
+    b.style.transition = 'opacity 500ms ease';
+    b.style.opacity = '0';
+    setTimeout(() => {
+      b.remove();
+      WM.open('terminal');
+      setTimeout(autoTypeIntro, 600);
+      // About + Projects open after intro completes
+      setTimeout(() => { WM.open('about'); }, 4200);
+      setTimeout(() => { WM.open('projects'); }, 4500);
+    }, 520);
+  }, 2200);
+})();
+
+// Open skills bars when window shown
+document.getElementById('win-skills').addEventListener('mousedown', () => {
+  document.querySelectorAll('.skill-fill').forEach(el => {
+    if (!el.style.width || el.style.width === '0px') el.style.width = el.dataset.w + '%';
+  });
+});
+
+// Init terminal on open
+const _origOpen = WM.open.bind(WM);
+WM.open = function(id) {
+  _origOpen(id);
+  if (id === 'terminal') setTimeout(initTerminal, 150);
+};
+
+// ══ ACCENT COLOR ════════════════════════════════════════════
+function twSetAccentColor(c) {
+  document.documentElement.style.setProperty('--accent', c);
+  document.querySelectorAll('[data-tw-swatch]').forEach(s => {
+    s.style.borderColor = s.dataset.twSwatch === c ? '#fff' : 'transparent';
+  });
+  if (document.getElementById('tw-custom-color'))
+    document.getElementById('tw-custom-color').value = c;
+  if (window.__updateBgAccent) window.__updateBgAccent(c);
+  // Update Three.js background accent
+  localStorage.setItem('portfolio.accent', c);
+}
+
+// ══ LAUNCH APP ══════════════════════════════════════════════
+function launchApp(id, iconEl) {
+  if (iconEl) {
+    iconEl.classList.add('launching');
+    setTimeout(() => iconEl.classList.remove('launching'), 400);
+  }
+  const win = document.getElementById('win-' + id);
+  if (!win) return;
+  // Show skeleton state briefly
+  if (win.style.display === 'none' || !win.style.display) {
+    showSkeleton(win, () => WM.open(id));
+  } else {
+    WM.open(id);
+  }
+}
+
+function showSkeleton(win, cb) {
+  const body = win.querySelector('.win-body');
+  if (!body || win.dataset.loaded === '1') { cb(); return; }
+  const orig = body.innerHTML;
+  body.innerHTML = `
+    <div class="win-skeleton">
+      <div class="skeleton skel-line short"></div>
+      <div class="skeleton skel-block"></div>
+      <div class="skeleton skel-line long"></div>
+      <div class="skeleton skel-line medium"></div>
+      <div class="skeleton skel-line long"></div>
+      <div class="skeleton skel-line short"></div>
+    </div>`;
+  cb();
+  setTimeout(() => {
+    body.innerHTML = orig;
+    win.dataset.loaded = '1';
+    // Re-trigger side effects
+    if (win.id === 'win-projects') renderProject(currentProject);
+    if (win.id === 'win-skills')
+      document.querySelectorAll('.skill-fill').forEach(el => { el.style.width = el.dataset.w + '%'; });
+    if (win.id === 'win-terminal') { termInit = false; setTimeout(initTerminal, 100); }
+  }, 450);
+}
+
+// ══ DESKTOP CONTEXT MENU ════════════════════════════════════
+function showCtxMenu(e) {
+  e.preventDefault();
+  const menu = document.getElementById('ctx-menu');
+  menu.style.display = 'block';
+  // Position with viewport clamping
+  const w = menu.offsetWidth, h = menu.offsetHeight;
+  let x = e.clientX, y = e.clientY;
+  if (x + w > window.innerWidth)  x = window.innerWidth - w - 8;
+  if (y + h > window.innerHeight) y = window.innerHeight - h - 8;
+  menu.style.left = x + 'px';
+  menu.style.top  = y + 'px';
+  // Update spotify toggle label
+  const sp = document.getElementById('spotify-widget');
+  document.getElementById('ctx-spotify-toggle').textContent =
+    sp.classList.contains('hidden') ? 'Show Spotify' : 'Hide Spotify';
+}
+function hideCtxMenu() {
+  document.getElementById('ctx-menu').style.display = 'none';
+}
+document.addEventListener('click', e => {
+  if (!e.target.closest('#ctx-menu')) hideCtxMenu();
+});
+
+// Build accent color submenu
+(function() {
+  const colors = [
+    {c:'#2dd4bf',n:'Teal'},{c:'#89b4fa',n:'Blue'},{c:'#cba6f7',n:'Mauve'},
+    {c:'#f38ba8',n:'Red'},{c:'#f9e2af',n:'Yellow'},{c:'#a6e3a1',n:'Green'},
+    {c:'#f5c2e7',n:'Pink'},{c:'#fab387',n:'Orange'},
+  ];
+  document.getElementById('ctx-colors').innerHTML = colors.map(({c,n}) =>
+    `<div class="ctx-item" onclick="twSetAccentColor('${c}'); hideCtxMenu()">
+      <span style="display:flex;align-items:center;gap:8px;">
+        <span style="width:10px;height:10px;background:${c};display:inline-block;"></span>${n}
+      </span>
+    </div>`
+  ).join('');
+})();
+
+// ══ WALLPAPER SWITCHER ══════════════════════════════════════
+function setWallpaper(kind) {
+  const canvas = document.getElementById('bg-canvas');
+  if (kind === 'off') {
+    canvas.style.display = 'none';
+    return;
+  }
+  canvas.style.display = 'block';
+  if (kind === 'starfield') canvas.style.opacity = '0.6';
+  else if (kind === 'grid') canvas.style.opacity = '0.3';
+  else canvas.style.opacity = '1';
+  localStorage.setItem('portfolio.wallpaper', kind);
+}
+
+// ══ LIGHT/DARK THEME TOGGLE ═════════════════════════════════
+function toggleTheme() {
+  const html = document.documentElement;
+  const cur = html.getAttribute('data-theme');
+  const next = cur === 'light' ? 'dark' : 'light';
+  setTheme(next);
+}
+function setTheme(t) {
+  if (t === 'light') {
+    document.documentElement.setAttribute('data-theme', 'light');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+  if (window.__updateBgTheme) window.__updateBgTheme(t);
+  localStorage.setItem('portfolio.theme', t);
+  // Update tweaks panel button styles
+  const btnD = document.getElementById('tw-theme-dark');
+  const btnL = document.getElementById('tw-theme-light');
+  if (btnD && btnL) {
+    if (t === 'light') {
+      btnD.style.color = '#a6adc8'; btnD.style.background = '#111'; btnD.style.borderColor = '#2a2a2a';
+      btnL.style.color = 'var(--accent)'; btnL.style.background = 'rgba(45,212,191,0.08)'; btnL.style.borderColor = 'var(--accent)';
+    } else {
+      btnL.style.color = '#a6adc8'; btnL.style.background = '#111'; btnL.style.borderColor = '#2a2a2a';
+      btnD.style.color = 'var(--accent)'; btnD.style.background = 'rgba(45,212,191,0.08)'; btnD.style.borderColor = 'var(--accent)';
+    }
+  }
+}
+
+// Keyboard shortcut: Cmd/Ctrl + \ for theme toggle
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === '\\') {
+    e.preventDefault(); toggleTheme();
+  }
+  if ((e.metaKey || e.ctrlKey) && e.key === 't' && !e.shiftKey) {
+    // Only intercept if not focused on input
+    if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+      e.preventDefault(); launchApp('terminal');
+    }
+  }
+});
+
+// ══ SPOTIFY WIDGET ══════════════════════════════════════════
+const PLAYLIST = [
+  { track: 'Time',                 artist: 'Hans Zimmer · Inception',           dur: 250 },
+  { track: 'Strobe',               artist: 'Deadmau5 · For Lack of a Better Name', dur: 634 },
+  { track: 'Nuvole Bianche',       artist: 'Ludovico Einaudi · Una Mattina',    dur: 360 },
+  { track: 'Resonance',            artist: 'Home · Odyssey',                    dur: 209 },
+  { track: 'Outer Wilds',          artist: 'Andrew Prahlow · OST',              dur: 220 },
+  { track: 'Money for Nothing',    artist: 'Dire Straits · Brothers in Arms',   dur: 502 },
+];
+let swIdx = 0, swPlaying = false, swPos = 80, swTimer = null;
+
+function swRender() {
+  const p = PLAYLIST[swIdx];
+  document.getElementById('sw-track').textContent  = p.track;
+  document.getElementById('sw-artist').textContent = p.artist;
+  document.getElementById('sw-progress-fill').style.width = (swPos / p.dur * 100) + '%';
+  document.getElementById('sw-play-btn').textContent = swPlaying ? '⏸' : '▶';
+}
+function swTogglePlay() {
+  swPlaying = !swPlaying;
+  if (swPlaying) {
+    swTimer = setInterval(() => {
+      swPos += 1;
+      const p = PLAYLIST[swIdx];
+      if (swPos >= p.dur) { swPos = 0; swIdx = (swIdx+1) % PLAYLIST.length; }
+      swRender();
+    }, 1000);
+  } else {
+    clearInterval(swTimer);
+  }
+  swRender();
+}
+function swNext() { swIdx = (swIdx + 1) % PLAYLIST.length; swPos = 0; swRender(); }
+function swPrev() { swIdx = (swIdx - 1 + PLAYLIST.length) % PLAYLIST.length; swPos = 0; swRender(); }
+function swSeek(e) {
+  const bar = e.currentTarget;
+  const rect = bar.getBoundingClientRect();
+  const pct = (e.clientX - rect.left) / rect.width;
+  swPos = pct * PLAYLIST[swIdx].dur;
+  swRender();
+}
+swRender();
+
+// ══ TERMINAL: AUTO-TYPE INTRO + DISABLE CLOSE ══════════════
+// Disable close button on terminal — turn it into "always on" indicator
+(function() {
+  const tWin = document.getElementById('win-terminal');
+  const closeBtn = tWin.querySelector('.wc-close');
+  if (closeBtn) {
+    closeBtn.style.cursor = 'not-allowed';
+    closeBtn.style.opacity = '0.4';
+    closeBtn.title = 'Terminal is essential — cannot be closed';
+    closeBtn.onclick = (ev) => {
+      ev.preventDefault(); ev.stopPropagation();
+      // shake animation
+      tWin.style.animation = 'shake 200ms';
+      setTimeout(() => { tWin.style.animation = ''; }, 220);
+    };
+  }
+})();
+
+// Add shake keyframes
+const shakeStyle = document.createElement('style');
+shakeStyle.textContent = `
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25%     { transform: translateX(-4px); }
+    75%     { transform: translateX(4px); }
+  }
+  .desk-icon-launching { animation: launchPulse 400ms; }
+`;
+document.head.appendChild(shakeStyle);
+
+// Auto-type intro in terminal after boot
+function autoTypeIntro() {
+  const input = document.getElementById('term-input');
+  const output = document.getElementById('term-output');
+  if (!input || !output) return;
+  const cmds = ['whoami', 'ls'];
+  let cIdx = 0;
+  function typeCmd() {
+    if (cIdx >= cmds.length) return;
+    const cmd = cmds[cIdx];
+    let i = 0;
+    input.focus();
+    const typer = setInterval(() => {
+      input.value = cmd.slice(0, i + 1);
+      i++;
+      if (i >= cmd.length) {
+        clearInterval(typer);
+        setTimeout(() => {
+          // Trigger enter
+          input.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+          cIdx++;
+          setTimeout(typeCmd, 900);
+        }, 250);
+      }
+    }, 70);
+  }
+  setTimeout(typeCmd, 600);
+}
+
+// ══ THEME INIT FROM LOCALSTORAGE ════════════════════════════
+(function initTheme() {
+  const saved = localStorage.getItem('portfolio.theme') || 'dark';
+  setTheme(saved);
+  const accent = localStorage.getItem('portfolio.accent');
+  if (accent) twSetAccentColor(accent);
+})();
+
+// ══ TWEAKS PANEL ════════════════════════════════════════════
+(function setupTweaks() {
+  const panel = document.createElement('div');
+  panel.id = 'tweaks-panel';
+  panel.style.cssText = [
+    'position:fixed','right:16px','bottom:56px','z-index:2147483640',
+    'width:256px','background:rgba(10,10,10,0.97)',
+    'border:1px solid #2a2a2a','border-top:1px solid var(--accent)',
+    'font-family:var(--mono)','font-size:11px','color:#a6adc8',
+    'box-shadow:0 16px 56px rgba(0,0,0,0.8)',
+    'display:none','flex-direction:column',
+  ].join(';');
+
+  const swatches = [
+    {c:'#2dd4bf',n:'teal'},{c:'#89b4fa',n:'blue'},{c:'#cba6f7',n:'mauve'},
+    {c:'#f38ba8',n:'red'},{c:'#f9e2af',n:'yellow'},{c:'#a6e3a1',n:'green'},{c:'#f5c2e7',n:'pink'},
+  ];
+
+  panel.innerHTML = `
+  <div id="tw-handle" style="display:flex;align-items:center;justify-content:space-between;
+    padding:8px 12px;border-bottom:1px solid #2a2a2a;cursor:move;user-select:none;">
+    <span style="color:var(--accent);letter-spacing:0.06em;font-size:11px;">Tweaks</span>
+    <button id="tw-close-btn" style="background:none;border:none;color:#585b70;cursor:pointer;
+      font-size:14px;font-family:var(--mono);line-height:1;">✕</button>
+  </div>
+  <div style="padding:12px 14px;display:flex;flex-direction:column;gap:16px;
+    overflow-y:auto;max-height:460px;scrollbar-width:thin;scrollbar-color:#2a2a2a transparent;">
+
+    <div>
+      <div style="font-size:10px;color:#585b70;letter-spacing:0.1em;text-transform:uppercase;
+        margin-bottom:8px;border-bottom:1px solid #1a1a1a;padding-bottom:4px;">Theme</div>
+      <div style="display:flex;gap:4px;">
+        <button id="tw-theme-dark" onclick="setTheme('dark')"
+          style="flex:1;font-family:var(--mono);font-size:10px;color:var(--accent);
+          background:rgba(45,212,191,0.08);border:1px solid var(--accent);padding:6px;cursor:pointer;">
+          🌙 Dark
+        </button>
+        <button id="tw-theme-light" onclick="setTheme('light')"
+          style="flex:1;font-family:var(--mono);font-size:10px;color:#a6adc8;
+          background:#111;border:1px solid #2a2a2a;padding:6px;cursor:pointer;">
+          ☀ Light
+        </button>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;color:#585b70;letter-spacing:0.1em;text-transform:uppercase;
+        margin-bottom:8px;border-bottom:1px solid #1a1a1a;padding-bottom:4px;">Open Window</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px;">
+        ${['about','projects','skills','terminal','contact','resume'].map(w =>
+          `<button onclick="WM.open('${w}')"
+            style="font-family:var(--mono);font-size:10px;color:#a6adc8;
+            background:#111;border:1px solid #2a2a2a;padding:3px 10px;cursor:pointer;"
+            onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'"
+            onmouseout="this.style.color='#a6adc8';this.style.borderColor='#2a2a2a'">${w}</button>`
+        ).join('')}
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;color:#585b70;letter-spacing:0.1em;text-transform:uppercase;
+        margin-bottom:8px;border-bottom:1px solid #1a1a1a;padding-bottom:4px;">Accent Color</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+        ${swatches.map(({c,n}) =>
+          `<div onclick="twSetAccentColor('${c}')" title="${n}" data-tw-swatch="${c}"
+            style="width:20px;height:20px;background:${c};cursor:pointer;
+            border:2px solid ${c==='#2dd4bf'?'#fff':'transparent'};flex-shrink:0;transition:border-color 100ms;"></div>`
+        ).join('')}
+        <input type="color" id="tw-custom-color" value="#2dd4bf"
+          oninput="twSetAccentColor(this.value)"
+          style="width:20px;height:20px;border:1px solid #2a2a2a;background:none;cursor:pointer;padding:0;" />
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;color:#585b70;letter-spacing:0.1em;text-transform:uppercase;
+        margin-bottom:8px;border-bottom:1px solid #1a1a1a;padding-bottom:4px;">Background</div>
+      <div style="display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;color:#a6adc8;min-width:72px;">Opacity</span>
+          <input type="range" min="0" max="100" step="5" value="100"
+            oninput="document.getElementById('bg-canvas').style.opacity=(this.value/100)"
+            style="flex:1;accent-color:var(--accent);cursor:pointer;" />
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="font-size:10px;color:#a6adc8;min-width:72px;">Rain speed</span>
+          <input type="range" min="0.2" max="4" step="0.1" value="1"
+            oninput="window.__rainSpeed=parseFloat(this.value)"
+            style="flex:1;accent-color:var(--accent);cursor:pointer;" />
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size:10px;color:#585b70;letter-spacing:0.1em;text-transform:uppercase;
+        margin-bottom:8px;border-bottom:1px solid #1a1a1a;padding-bottom:4px;">Interface</div>
+      <div style="display:flex;flex-direction:column;gap:9px;">
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <span>Scanlines</span>
+          <input type="checkbox" onchange="document.getElementById('scanlines').style.opacity=this.checked?'1':'0'"
+            style="accent-color:var(--accent);width:13px;height:13px;" />
+        </label>
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <span>Top bar visible</span>
+          <input type="checkbox" checked onchange="document.getElementById('topbar').style.opacity=this.checked?'1':'0'"
+            style="accent-color:var(--accent);width:13px;height:13px;" />
+        </label>
+        <label style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;">
+          <span>Taskbar visible</span>
+          <input type="checkbox" checked onchange="document.getElementById('taskbar').style.opacity=this.checked?'1':'0'"
+            style="accent-color:var(--accent);width:13px;height:13px;" />
+        </label>
+      </div>
+    </div>
+
+  </div>`;
+
+  document.body.appendChild(panel);
+
+  // Close button
+  panel.querySelector('#tw-close-btn').addEventListener('click', () => {
+    panel.style.display = 'none';
+    window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*');
+  });
+
+  // Drag
+  const handle = panel.querySelector('#tw-handle');
+  let pdrag = false, pox = 0, poy = 0;
+  handle.addEventListener('mousedown', e => {
+    pdrag = true;
+    pox = e.clientX - panel.offsetLeft;
+    poy = e.clientY - panel.offsetTop;
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove', e => {
+    if (!pdrag) return;
+    panel.style.right = 'auto'; panel.style.bottom = 'auto';
+    panel.style.left = (e.clientX - pox) + 'px';
+    panel.style.top  = (e.clientY - poy) + 'px';
+  });
+  document.addEventListener('mouseup', () => { pdrag = false; });
+
+  // Host protocol — register listener FIRST, then announce
+  window.addEventListener('message', e => {
+    if (e.data?.type === '__activate_edit_mode')   panel.style.display = 'flex';
+    if (e.data?.type === '__deactivate_edit_mode') panel.style.display = 'none';
+  });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+})();
+
+
+</script>
 </body>
 </html>
