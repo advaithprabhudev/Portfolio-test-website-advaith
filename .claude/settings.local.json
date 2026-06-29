@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node serve.mjs)",
+      "WebFetch(domain:api.anthropic.com)",
+      "mcp__plugin_context-mode_context-mode__ctx_execute"
+    ]
+  }
+}
