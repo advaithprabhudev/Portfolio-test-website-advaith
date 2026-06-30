@@ -9,24 +9,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "gsap": "^3.12.5",
     "@gsap/react": "^2.1.1",
+    "@radix-ui/react-slot": "^1.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gsap": "^3.12.5",
     "lucide-react": "^0.475.0",
+    "motion": "^12.42.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "tailwind-merge": "^2.6.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "puppeteer": "^24.40.0",
     "tailwindcss": "^4.1.0",
-    "@tailwindcss/vite": "^4.1.0",
     "tw-animate-css": "^1.2.5",
     "typescript": "~5.7.2",
-    "vite": "^6.2.0",
-    "puppeteer": "^24.40.0"
+    "vite": "^6.2.0"
   }
 }

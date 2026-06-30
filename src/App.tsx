@@ -1,5 +1,47 @@
-﻿import FlowArt, { FlowSection } from './components/ui/story-scroll';
+import FlowArt, { FlowSection } from './components/ui/story-scroll';
 import { LiquidCursor } from './components/ui/liquid-cursor';
+import { SpecialText } from './components/ui/special-text';
+
+const ASCII_ART = `████████████████████████████████████████████████████████████████████████████████
+█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+█░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░█
+█░▒█████████████████████████████████████████████████████████████████████████░█
+█░▒█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█
+█░▒█░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░█░█
+█░▒█░░▓███████████████████████████████████████████████████████████████░█░█
+█░▒█░░▓█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█░█
+█░▒█░░▓█░░ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░█░█░█
+█░▒█░░▓█░░ █████████████████████████████████████████████████░█░█░█
+█░▒█░░▓█░░ █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█░█░█
+█░▒█░░▓█░░ █░░ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ █░█░█░█
+█░▒█░░▓█░░ █░░ \\ / \\ / \\ / \\ / \\ / \\ / \\ / \\ / █░█░█░█
+█░▒█░░▓█░░ █░░ / \\ / \\ / \\ / \\ / \\ / \\ / \\ █░█░█░█
+█░▒█░░▓█░░ █░░ — | — | — | — | — | — | — | █░█░█░█
+█░▒█░░▓█░░ █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█░█░█
+█░▒█░░▓█░░ █████████████████████████████████████████████████░█░█░█
+█░▒█░░▓█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█░█
+█░▒█░░▓███████████████████████████████████████████████████████████████░█░█
+█░▒█░░▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓░█░█
+█░▒█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█
+█░▒█████████████████████████████████████████████████████████████████████████░█
+█░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░█
+█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█
+████████████████████████████████████████████████████████████████████████████████
+█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+█▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓█
+█▓░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▓█
+█▓░▒ — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — ▒░▓█
+█▓░▒ | \\ / | \\ / | \\ / | \\ / | \\ / | \\ / | \\ / | \\ / | ▒░▓█
+█▓░▒ | \\ / | \\ / | \\ / | \\ / | \\ / | \\ / | \\ / | ▒░▓█
+█▓░▒ — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — ▒░▓█
+█▓░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▓█
+█▓░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▓█
+█▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓█
+████████████████████████████████████████████████████████████████████████████████
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+████████████████████████████████████████████████████████████████████████████████`;
 
 export default function App() {
   return (
@@ -17,91 +59,130 @@ export default function App() {
         <hr className="border-t border-black/10" />
         <div>
           <h1 className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight">
-            Software
+            <SpecialText className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight">
+              Advaith
+            </SpecialText>
             <br />
-            Engineer
+            <SpecialText
+              className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight"
+              delay={0.3}
+            >
+              Prabhu
+            </SpecialText>
           </h1>
         </div>
         <hr className="border-t border-black/10" />
         <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,1.75rem)] font-normal leading-relaxed opacity-70">
-          I build fast, accessible, and delightful products — from design systems
-          to full-stack applications.
+          Quantitative CS student building at the intersection of mathematics and markets
         </p>
+        {/* Right column ASCII Art */}
+        <div className="hidden lg:block absolute right-[5%] top-1/2 -translate-y-1/2">
+          <pre className="font-mono text-[0.35rem] leading-[1.1] text-[#C4BFB5] whitespace-pre overflow-hidden">
+            {ASCII_ART}
+          </pre>
+        </div>
       </FlowSection>
 
-      {/* 02 — About */}
+      {/* 02 — Internships & Awards */}
       <FlowSection
-        aria-label="About"
+        aria-label="Internships & Awards"
         style={{ backgroundColor: '#1A1A1A', color: '#F5F2EC' }}
       >
         <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50">
-          02 — About
+          02 — Internships & Awards
         </p>
         <hr className="border-t border-white/10" />
         <div>
           <h2 className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight">
-            Craft
+            Career
             <br />
-            Over
-            <br />
-            Noise
+            Milestones
           </h2>
         </div>
         <hr className="border-t border-white/10" />
-        <p className="max-w-[50ch] text-[clamp(1rem,2.5vw,1.75rem)] font-normal leading-relaxed opacity-70">
-          I care deeply about the intersection of engineering and design —
-          writing code that is readable, performant, and built to last.
-        </p>
-        <hr className="border-t border-white/10" />
-        <div className="flex flex-wrap gap-[3vw]">
+        <div className="space-y-8 max-w-2xl">
           {[
-            { label: 'Frontend', desc: 'React, TypeScript, Tailwind — with a focus on motion and accessibility.' },
-            { label: 'Backend', desc: 'Node.js, Python, SQL. Clean APIs and reliable data pipelines.' },
-            { label: 'Systems', desc: 'Performance profiling, build tooling, and developer experience.' },
-          ].map(({ label, desc }) => (
-            <div key={label} className="min-w-[180px] flex-1">
-              <p className="mb-2 text-sm font-bold uppercase tracking-wider">{label}</p>
-              <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-60">{desc}</p>
+            {
+              year: '2025–2026',
+              title: 'Codeforces Competitive Programmer',
+              desc: 'Applying data structures and algorithms in rated competitive programming contests',
+            },
+            {
+              year: '2025',
+              title: 'International Business Olympiad — Higher Distinction',
+              desc: 'Scored 256/300 in the International Business Olympiad',
+            },
+            {
+              year: '2025',
+              title: 'Top 5 — FedEx JA International Trade Challenge',
+              desc: 'National finalist across 40+ teams in international trade competition',
+            },
+          ].map(({ year, title, desc }) => (
+            <div key={title} className="border-l border-white/20 pl-6">
+              <p className="text-sm font-bold uppercase tracking-wider opacity-70">{year}</p>
+              <p className="text-[clamp(1rem,2.5vw,1.75rem)] font-bold mt-2">{title}</p>
+              <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-60 mt-2">{desc}</p>
             </div>
           ))}
         </div>
       </FlowSection>
 
-      {/* 03 — Work */}
+      {/* 03 — Projects */}
       <FlowSection
-        aria-label="Selected Work"
+        aria-label="Selected Projects"
         style={{ backgroundColor: '#fd5200', color: '#fff' }}
       >
         <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-70">
-          03 — Selected Work
+          03 — Projects
         </p>
         <hr className="border-t border-white/20" />
         <div>
           <h2 className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight">
-            Things
+            Selected
             <br />
-            I&apos;ve
-            <br />
-            Built
+            Projects
           </h2>
         </div>
         <hr className="border-t border-white/20" />
-        <div className="flex flex-wrap gap-[3vw]">
+        <div className="space-y-6 max-w-4xl">
           {[
-            { label: 'Portfolio', desc: 'This site — React, Vite, Tailwind v4, GSAP ScrollTrigger.' },
-            { label: 'Project 02', desc: 'Coming soon. Stay tuned.' },
-            { label: 'Project 03', desc: 'Coming soon. Stay tuned.' },
-          ].map(({ label, desc }) => (
-            <div key={label} className="min-w-[180px] flex-1">
-              <p className="mb-2 text-sm font-bold uppercase tracking-wider">{label}</p>
-              <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-80">{desc}</p>
+            {
+              id: '01',
+              title: 'Collatz Monte Carlo',
+              tags: 'Python · Random Walk · NumPy',
+              desc: 'Monte Carlo modelling of Collatz parity vectors to probe stochastic convergence behaviour',
+            },
+            {
+              id: '02',
+              title: 'ML Momentum Strategies',
+              tags: 'Python · ML · Statistical Modelling',
+              desc: 'Sharpe ratio and max drawdown analysis on 15 NYSE equities using MLP-filtered momentum systems',
+            },
+            {
+              id: '03',
+              title: 'Honeypot',
+              tags: 'Claude API · AI Systems · Security',
+              desc: 'AI-powered penetration testing tool built for SME threat detection and automated vulnerability reporting',
+            },
+            {
+              id: '04',
+              title: 'Fourier Transformations',
+              tags: 'NumPy · Python · Jupyter',
+              desc: 'Empirical distribution analysis of Fourier transforms using spectral density functions',
+            },
+          ].map(({ id, title, tags, desc }) => (
+            <div key={title} className="border-t border-white/20 pt-6">
+              <div className="flex items-start gap-6">
+                <span className="text-sm font-bold opacity-50">{id}</span>
+                <div className="flex-1">
+                  <p className="font-bold text-[clamp(1rem,2vw,1.5rem)]">{title}</p>
+                  <p className="text-xs uppercase tracking-wider opacity-50 mt-2">{tags}</p>
+                  <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-80 mt-3">{desc}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>
-        <hr className="border-t border-white/20" />
-        <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,1.75rem)] font-normal leading-relaxed opacity-80">
-          Each project is an opportunity to push craft further.
-        </p>
       </FlowSection>
 
       {/* 04 — Skills */}
@@ -121,15 +202,39 @@ export default function App() {
           </h2>
         </div>
         <hr className="border-t border-white/20" />
-        <div className="flex flex-wrap gap-[3vw]">
+        <div className="flex flex-wrap gap-[3vw] max-w-4xl">
           {[
-            { label: 'Languages', desc: 'TypeScript · Python · SQL · Bash' },
-            { label: 'Frameworks', desc: 'React · Next.js · Node.js · FastAPI' },
-            { label: 'Tooling', desc: 'Vite · Tailwind · GSAP · Figma · Git' },
-          ].map(({ label, desc }) => (
-            <div key={label} className="min-w-[180px] flex-1">
-              <p className="mb-2 text-sm font-bold uppercase tracking-wider">{label}</p>
-              <p className="text-[clamp(0.85rem,1.3vw,1.05rem)] leading-relaxed opacity-70">{desc}</p>
+            { label: 'Languages', skills: ['Python', 'C++', 'JavaScript', 'LaTeX'] },
+            {
+              label: 'Frameworks & Libraries',
+              skills: ['NumPy', 'Pandas', 'Scikit-learn', 'Framer Motion', 'React', 'Matplotlib'],
+            },
+            {
+              label: 'Mathematics & Theory',
+              skills: [
+                'Markov Chains',
+                'Monte Carlo Methods',
+                'Stochastic Processes',
+                'Information Theory',
+                'Fourier Analysis',
+                'Linear Algebra',
+                'Probability Theory',
+              ],
+            },
+            {
+              label: 'Tools & Infra',
+              skills: ['Git', 'GitHub', 'Jupyter', 'VS Code', 'Codeforces', 'LaTeX (Overleaf)'],
+            },
+          ].map(({ label, skills }) => (
+            <div key={label} className="min-w-[200px] flex-1">
+              <p className="mb-4 text-sm font-bold uppercase tracking-wider">{label}</p>
+              <div className="flex flex-wrap gap-2">
+                {skills.map((skill) => (
+                  <span key={skill} className="px-3 py-1 bg-white/10 rounded-full text-[clamp(0.75rem,1vw,0.9rem)] opacity-70">
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
           ))}
         </div>
@@ -148,20 +253,36 @@ export default function App() {
           <h2 className="text-[clamp(3.5rem,12vw,14rem)] font-bold leading-[0.85] uppercase tracking-tight">
             Let&apos;s
             <br />
-            Talk.
+            Work
+            <br />
+            Together
           </h2>
         </div>
         <hr className="border-t border-black/10" />
-        <p className="mt-auto max-w-[50ch] text-[clamp(1rem,2.5vw,1.75rem)] font-normal leading-relaxed opacity-70">
-          Open to new opportunities, collaborations, and interesting problems.
-          Reach out at{' '}
-          <a
-            href="mailto:darsanaarun.sg@gmail.com"
-            className="underline underline-offset-4 hover:opacity-100 opacity-70 transition-opacity"
-          >
-            darsanaarun.sg@gmail.com
-          </a>
-        </p>
+        <div className="mt-auto space-y-6">
+          <div className="flex gap-8 items-center justify-start flex-wrap text-[clamp(0.85rem,1.3vw,1.05rem)]">
+            {/* TODO: replace placeholder URLs */}
+            <a href="https://linkedin.com/in/advaith-prabhu" className="flex items-center gap-2 hover:opacity-70 transition-opacity font-bold uppercase tracking-wider text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/advaith-prabhu" className="flex items-center gap-2 hover:opacity-70 transition-opacity font-bold uppercase tracking-wider text-sm">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+              GitHub
+            </a>
+            <a href="mailto:advaith@gmail.com" className="flex items-center gap-2 hover:opacity-70 transition-opacity font-bold uppercase tracking-wider text-sm">
+              {/* TODO: replace placeholder email */}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
+              Gmail
+            </a>
+            <a href="#resume" className="flex items-center gap-2 hover:opacity-70 transition-opacity font-bold uppercase tracking-wider text-sm">
+              {/* TODO: replace placeholder href with real PDF download link */}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>
+              Résumé
+            </a>
+          </div>
+          <p className="text-xs opacity-40">© 2025 Advaith Prabhu. Built with React &amp; Framer Motion.</p>
+        </div>
       </FlowSection>
     </FlowArt>
     </>
